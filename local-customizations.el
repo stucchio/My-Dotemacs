@@ -1,0 +1,12 @@
+(custom-set-variables
+ '(LaTeX-command "latex -src")
+ '(LaTeX-enable-toolbar nil)
+ '(TeX-electric-sub-and-superscript t)
+ '(TeX-output-view-style (quote (("^dvi$" ("^landscape$" "^pstricks$\\|^pst-\\|^psfrag$") "%(o?)dvips -t landscape %d -o && gv %f") ("^dvi$" "^pstricks$\\|^pst-\\|^psfrag$" "%(o?)dvips %d -o && gv %f") ("^dvi$" ("^a4\\(?:dutch\\|paper\\|wide\\)\\|sem-a4$" "^landscape$") "%(o?)xdvi %dS -paper a4r -s 0 %d") ("^dvi$" "^a4\\(?:dutch\\|paper\\|wide\\)\\|sem-a4$" "%(o?)xdvi %dS -paper a4 %d") ("^dvi$" ("^a5\\(?:comb\\|paper\\)$" "^landscape$") "%(o?)xdvi %dS -paper a5r -s 0 %d") ("^dvi$" "^a5\\(?:comb\\|paper\\)$" "%(o?)xdvi %dS -paper a5 %d") ("^dvi$" "^b5paper$" "%(o?)xdvi %dS -paper b5 %d") ("^dvi$" "^letterpaper$" "%(o?)xdvi %dS -paper us %d") ("^dvi$" "^legalpaper$" "%(o?)xdvi %dS -paper legal %d") ("^dvi$" "^executivepaper$" "%(o?)xdvi %dS -paper 7.25x10.5in %d") ("^dvi$" "." "%(o?)xdvi -bg white -fg black -editor \"gnuclient -q +%l %f\" -offsets -0.6in -expert -s 7 -geometry +0+0 -paper 16x24%dS %d") ("^pdf$" "." "xpdf %o") ("^html?$" "." "netscape %o"))))
+ '(TeX-view-style (quote (("^a4\\(?:dutch\\|paper\\|wide\\)\\|sem-a4$" "%(o?)xdvi %dS -paper a4 %d") ("^a5\\(?:comb\\|paper\\)$" "%(o?)xdvi %dS -paper a5 %d") ("^b5paper$" "%(o?)xdvi %dS -paper b5 %d") ("^letterpaper$" "%(o?)xdvi %dS -paper us %d") ("^legalpaper$" "%(o?)xdvi %dS -paper legal %d") ("^executivepaper$" "%(o?)xdvi %dS -paper 7.25x10.5in %d") ("^landscape$" "%(o?)xdvi %dS -paper a4r -s 0 %d") ("." "%(o?)xdvi -editor \"gnuclient -q +%l %f\" %dS %d"))))
+  '(paren-mode (quote sexp) nil (paren))
+ '(lazy-lock-mode nil nil (lazy-lock))
+  '(st-shell-shell-function '(ansi-term (getenv "SHELL")))
+; '(gnuserv-frame t)
+; '(gnuserv-visit-hook (lambda () (raise-frame) (recenter)))
+)
