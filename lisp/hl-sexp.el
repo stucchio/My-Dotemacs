@@ -96,6 +96,18 @@
       (delete-overlay hl-sexp-overlay)))
 
 (defvar hl-timer nil)
+(defvar hl-needs-update nil)
+
+(defun hl-update-if-necessary ()
+  (if hl-needs-update
+      (progn 
+	(hl-sexp-unhighlight)
+	(hl-sexp-highlight)
+	(setq hl-needs-update nil)
+	)
+    )
+  )
+
 
 ;;;###autoload
 (define-minor-mode hl-sexp-mode
@@ -105,11 +117,10 @@ Uses functions `hl-sexp-unhighlight' and `hl-sexp-highlight' on
 `pre-command-hook' and `post-command-hook'."
   nil nil nil
   (if hl-sexp-mode
-      (setq hl-timer (run-with-idle-timer hl-delay t (lambda () 
-					     (progn 
-					       (hl-sexp-unhighlight)
-					       (hl-sexp-highlight)
-					       ))))
+      (progn
+	(add-hook 'post-command-hook (lambda () (setq hl-needs-update t) ))
+	(setq hl-timer (run-with-idle-timer hl-delay t 'hl-update-if-necessary))
+	)
     (progn 
       (hl-sexp-unhighlight)
       (cancel-timer hl-timer)
