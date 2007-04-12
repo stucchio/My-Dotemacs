@@ -49,3 +49,14 @@
     (start-kbd-macro nil)
     )
   )
+
+(defun lisp-files-in-directory (d)
+  "Return a list of lisp files in the directory d. d must take the form '/blah/blah', not '/blah/blah/'."
+  (split-string (shell-command-to-string (concat "ls " d "/*.el"))  "\n")
+  )
+
+(defun byte-compile-whole-directory (d)
+  "This function byte compiles all the *.el files in directory d. d must take the form '/blah/blah', not '/blah/blah/'."
+  (map 'list 'byte-compile-file
+       (lisp-files-in-directory d)
+     ))
