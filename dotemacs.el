@@ -15,6 +15,7 @@
 (add-path "site-lisp/gnuserv") ;;gnuserv
 (add-path "site-lisp/tuareg")  ;; OCaml support
 (add-path "site-lisp/gnuplot-mode") ;;Gnuplot support
+(add-path "site-lisp/python-mode") ;;Python mode
 
 ;;Load my basic customizations
 
@@ -102,6 +103,7 @@
 ;Load misc stuff
 (load-file (concat emacs-root "my_lisp/misc.el"))
 (load-file (concat emacs-root "my_lisp/fc-eval-and-replace.el"))
+(load-file (concat emacs-root "my_lisp/gpl.el"))
 
 
 ;********* Darcsum *********
@@ -122,6 +124,17 @@
 (autoload 'camldebug "camldebug" "Run the Caml debugger" t)
 
 (load-file (concat emacs-root "keys.el"))
+
+;;********* Python Mode **********
+(setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
+(setq interpreter-mode-alist (cons '("python" . python-mode)
+				   interpreter-mode-alist))
+(autoload 'python-mode "python-mode" "Python editing mode." t)
+
+(add-hook 'python-mode-hook (lambda () (load "python-custom")))
+(add-hook 'python-mode-hook (lambda () (setq font-lock-maximum-decoration t)))
+
+(require 'doctest-mode)
 
 ;;******** Haskell Mode *********
 (load (concat emacs-root "site-lisp/haskell-mode-2.1/haskell-site-file.el"))
