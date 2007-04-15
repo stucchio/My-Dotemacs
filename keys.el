@@ -1,6 +1,7 @@
 ;Makes f5 key open a new shell
 (global-set-key [(f5)] 'st-shell)
 (global-set-key [(f6)] 'st-shell-switch)
+(global-set-key [(control f6)] 'st-shell-go-back)
 (global-set-key [(f10)] 'start-or-end-kbd-macro) ;One-button recording of kbd macros
 (global-set-key [(f11)] 'call-last-kbd-macro) ;one button calling of kbd macros
 (global-set-key [(f7)] 'bm-toggle) 

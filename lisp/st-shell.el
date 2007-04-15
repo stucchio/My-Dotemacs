@@ -23,6 +23,7 @@
 
 (defvar st-shell-ring (make-ring 100) "This stores a bunch of buffers, which are shells created by st-shell." )
 (setq st-shell-index 0 )
+(defvar st-shell-last-buffer nil)
 
 (defun st-shell-is-current-buffer-current-st-shell (&optional ignored)
   "Checks if current buffer is the current st-shell."
@@ -68,20 +69,32 @@
 )
 
 ;;;###autoload
+(defun st-shell-go-back (&optional ignored)
+  "Switch to buffer st-shell-last-buffer."
+  (interactive "p")
+  (if (buffer-live-p st-shell-last-buffer)
+      (switch-to-buffer st-shell-last-buffer)
+    (message "Last buffer visited before st-shell is gone. Nothing to go back to..")
+     ))
+
+
+;;;###autoload
 (defun st-shell-switch (&optional ignored)
   "If current buffer is not an st-shell, switch to current st-shell buffer. Otherwise, switch to next st-shell buffer."
   (interactive "p")
-  (let ((still-looking t)
-	(empty nil))
-    (if (ring-empty-p st-shell-ring)
-	(st-shell 1)
-      (if (and (buffer-live-p (st-shell-current-shell) ) 
+  (progn
+    (setq st-shell-last-buffer (current-buffer))
+    (let ((still-looking t)
+	  (empty nil))
+      (if (ring-empty-p st-shell-ring)
+	  (st-shell 1)
+	(if (and (buffer-live-p (st-shell-current-shell) ) 
 	     (not (eq (st-shell-current-shell) (current-buffer))))
 	(switch-to-buffer (st-shell-current-shell))
       (st-shell-switch-to-next-live-shell)
       )
     )
-  ))
+  )))
 
 
 
@@ -89,34 +102,37 @@
 (defun st-shell (&optional numshells)
   "Creates a shell buffer. If one already exists, this creates a new buffer, with the name '*shell*<n>', where n is chosen by the function generate-new-buffer-name."
   (interactive "p")
-  (dotimes (i (if-void 'numshells 1) nil)
-  (let ( (tempname (generate-new-buffer-name "*tempshell*")) 
-	 (new-buff-name (generate-new-buffer-name st-shell-name))
-	 (localdir default-directory)
-       )
-  (if (eq (get-buffer st-shell-name) nil) ;If a 
-      (progn
-	(st-shell-function)
-	(process-send-string (get-buffer-process new-buff-name) (concat "cd " localdir "\n"))
-	(ring-insert st-shell-ring (current-buffer) )
-	(setq st-shell-index (+ st-shell-index 1))
-	)
-      (progn
-	(interactive)
-	(st-shell-function)
-	(rename-buffer tempname)
-	(st-shell-function)
-	(rename-buffer new-buff-name )
-	(switch-to-buffer tempname)
-	(rename-buffer st-shell-name)
+  (progn 
+    (setq st-shell-last-buffer (current-buffer))
+    (dotimes (i (if-void 'numshells 1) nil)
+      (let ( (tempname (generate-new-buffer-name "*tempshell*")) 
+	     (new-buff-name (generate-new-buffer-name st-shell-name))
+	     (localdir default-directory)
+	     )
+	(if (eq (get-buffer st-shell-name) nil) ;If a 
+	    (progn
+	      (st-shell-function)
+	      (process-send-string (get-buffer-process new-buff-name) (concat "cd " localdir "\n"))
+	      (ring-insert st-shell-ring (current-buffer) )
+	      (setq st-shell-index (+ st-shell-index 1))
+	      )
+	  (progn
+	    (interactive)
+	    (st-shell-function)
+	    (rename-buffer tempname)
+	    (st-shell-function)
+	    (rename-buffer new-buff-name )
+	    (switch-to-buffer tempname)
+	    (rename-buffer st-shell-name)
 	(switch-to-buffer new-buff-name)
 	(process-send-string (get-buffer-process new-buff-name) (concat "cd " localdir "\n"))
 	(ring-insert st-shell-ring (current-buffer) )
 	(setq st-shell-index (+ st-shell-index 1))
 	)
+	  )
+	)
       )
-  )
-  )
+    )
   )
 
 (defun shell-with-name (name)
