@@ -25,3 +25,7 @@
 ;Eval
 (global-set-key "\C-x\C-e" 'fc-eval-and-replace)
 (global-set-key "\C-c\C-d" 'insert-time-at-point)
+
+;unset f5 in icicle-mode
+(define-key icicle-mode-map [f5] nil)
+
