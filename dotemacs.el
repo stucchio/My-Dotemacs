@@ -16,6 +16,7 @@
 (add-path "site-lisp/tuareg")  ;; OCaml support
 (add-path "site-lisp/gnuplot-mode") ;;Gnuplot support
 (add-path "site-lisp/python-mode") ;;Python mode
+(add-path "site-lisp/icicles") ;;Icicles, autocompletion
 
 ;;Load my basic customizations
 
@@ -65,9 +66,10 @@
  '(uniquify-buffer-name-style (quote forward))
 )
 
-;;********* icomplete *********
-(require 'icomplete)
-(icomplete-mode)
+;; Icicles
+(load "icicles")
+(icy-mode)
+
 
 ;Load bm.el, bookmarking facility.
 (load "bm")
