@@ -25,6 +25,15 @@
 ;;********* st-shell stuff
 (require 'st-shell)
 
+;;******** tempbuf ********
+;; Kill buffers after a while, if I don't really want them
+(require 'tempbuf)
+(add-hook 'Man-mode-hook 'turn-on-tempbuf-mode) ;;Kill man pages after a while
+(add-hook 'view-mode-hook 'turn-on-tempbuf-mode) ;;kill view pages after some time
+(add-hook 'apropos-mode-hook 'turn-on-tempbuf-mode) ;;Kill apropos buffers
+(add-hook 'fundamental-mode-hook 'turn-on-tempbuf-mode) ;;Kill LaTeX-mode's old buffers
+(add-hook 'ps-mode-hook 'turn-on-tempbuf-mode) ;;Kill ps-mode
+
 ;;******** tabbar ********
 
 (require 'tabbar)
