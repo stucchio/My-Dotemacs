@@ -18,6 +18,8 @@
 (add-path "site-lisp/python-mode") ;;Python mode
 (add-path "site-lisp/icicles") ;;Icicles, autocompletion
 
+(transient-mark-mode 1)
+
 ;;Load my basic customizations
 
 ;;********* st-shell stuff
@@ -51,10 +53,11 @@
    :height 0.7)
 )
 
+(global-set-key [(control tab)] 'tabbar-forward-tab)
+(global-set-key [(control mod tab)] 'tabbar-forward-group)
 
-;;******** Basic configurations ********
-(transient-mark-mode t)
 
+;;Load local customizations
 (load-file (concat emacs-root "local-customizations.el"))
 
 (custom-set-variables
