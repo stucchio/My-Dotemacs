@@ -29,3 +29,6 @@
 ;unset f5 in icicle-mode
 (define-key icicle-mode-map [f5] nil)
 
+;; Tabbar mode
+(global-set-key [(control tab)] 'tabbar-forward-tab)
+(global-set-key [(control M tab)] 'tabbar-forward-group)

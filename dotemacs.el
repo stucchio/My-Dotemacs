@@ -53,10 +53,6 @@
    :height 0.7)
 )
 
-(global-set-key [(control tab)] 'tabbar-forward-tab)
-(global-set-key [(control mod tab)] 'tabbar-forward-group)
-
-
 ;;Load local customizations
 (load-file (concat emacs-root "local-customizations.el"))
 
