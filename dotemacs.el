@@ -33,6 +33,7 @@
 (add-hook 'apropos-mode-hook 'turn-on-tempbuf-mode) ;;Kill apropos buffers
 (add-hook 'fundamental-mode-hook 'turn-on-tempbuf-mode) ;;Kill LaTeX-mode's old buffers
 (add-hook 'ps-mode-hook 'turn-on-tempbuf-mode) ;;Kill ps-mode
+(add-hook 'dired-mode-hook 'turn-on-tempbuf-mode) ;;Kill old dired buffers
 
 ;;******** tabbar ********
 
