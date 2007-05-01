@@ -28,12 +28,13 @@
 ;;******** tempbuf ********
 ;; Kill buffers after a while, if I don't really want them
 (require 'tempbuf)
-(add-hook 'Man-mode-hook 'turn-on-tempbuf-mode) ;;Kill man pages after a while
-(add-hook 'view-mode-hook 'turn-on-tempbuf-mode) ;;kill view pages after some time
-(add-hook 'apropos-mode-hook 'turn-on-tempbuf-mode) ;;Kill apropos buffers
+(add-hook 'Man-mode-hook 'turn-on-tempbuf-mode)         ;;Kill man pages after a while
+(add-hook 'view-mode-hook 'turn-on-tempbuf-mode)        ;;kill view pages after some time
+(add-hook 'apropos-mode-hook 'turn-on-tempbuf-mode)     ;;Kill apropos buffers
 (add-hook 'fundamental-mode-hook 'turn-on-tempbuf-mode) ;;Kill LaTeX-mode's old buffers
-(add-hook 'ps-mode-hook 'turn-on-tempbuf-mode) ;;Kill ps-mode
-(add-hook 'dired-mode-hook 'turn-on-tempbuf-mode) ;;Kill old dired buffers
+(add-hook 'ps-mode-hook 'turn-on-tempbuf-mode)          ;;Kill ps-mode
+(add-hook 'dired-mode-hook 'turn-on-tempbuf-mode)       ;;Kill old dired buffers
+(custom-set-variables '(tempbuf-minimum-timeout 60))    ;;Make sure old buffers last at least 1 minute
 
 ;;******** tabbar ********
 
@@ -66,21 +67,6 @@
 ;;Load local customizations
 (load-file (concat emacs-root "local-customizations.el"))
 
-(custom-set-variables
- '(LaTeX-command "latex -src")
- '(LaTeX-enable-toolbar nil)
- '(TeX-electric-sub-and-superscript t)
- '(TeX-output-view-style (quote (("^dvi$" ("^landscape$" "^pstricks$\\|^pst-\\|^psfrag$") "%(o?)dvips -t landscape %d -o && gv %f") ("^dvi$" "^pstricks$\\|^pst-\\|^psfrag$" "%(o?)dvips %d -o && gv %f") ("^dvi$" ("^a4\\(?:dutch\\|paper\\|wide\\)\\|sem-a4$" "^landscape$") "%(o?)xdvi %dS -paper a4r -s 0 %d") ("^dvi$" "^a4\\(?:dutch\\|paper\\|wide\\)\\|sem-a4$" "%(o?)xdvi %dS -paper a4 %d") ("^dvi$" ("^a5\\(?:comb\\|paper\\)$" "^landscape$") "%(o?)xdvi %dS -paper a5r -s 0 %d") ("^dvi$" "^a5\\(?:comb\\|paper\\)$" "%(o?)xdvi %dS -paper a5 %d") ("^dvi$" "^b5paper$" "%(o?)xdvi %dS -paper b5 %d") ("^dvi$" "^letterpaper$" "%(o?)xdvi %dS -paper us %d") ("^dvi$" "^legalpaper$" "%(o?)xdvi %dS -paper legal %d") ("^dvi$" "^executivepaper$" "%(o?)xdvi %dS -paper 7.25x10.5in %d") ("^dvi$" "." "%(o?)xdvi -bg white -fg black -editor \"gnuclient -q +%l %f\" -offsets -0.6in -expert -s 7 -geometry +0+0 -paper 16x24%dS %d") ("^pdf$" "." "xpdf %o") ("^html?$" "." "netscape %o"))))
- '(TeX-view-style (quote (("^a4\\(?:dutch\\|paper\\|wide\\)\\|sem-a4$" "%(o?)xdvi %dS -paper a4 %d") ("^a5\\(?:comb\\|paper\\)$" "%(o?)xdvi %dS -paper a5 %d") ("^b5paper$" "%(o?)xdvi %dS -paper b5 %d") ("^letterpaper$" "%(o?)xdvi %dS -paper us %d") ("^legalpaper$" "%(o?)xdvi %dS -paper legal %d") ("^executivepaper$" "%(o?)xdvi %dS -paper 7.25x10.5in %d") ("^landscape$" "%(o?)xdvi %dS -paper a4r -s 0 %d") ("." "%(o?)xdvi -editor \"gnuclient -q +%l %f\" %dS %d"))))
-  '(paren-mode (quote sexp) nil (paren))
- '(lazy-lock-mode nil nil (lazy-lock))
- '(column-number-mode t)
- '(row-number-mode t)
- '(st-shell-shell-function '(ansi-term (getenv "SHELL")))
- '(gnuserv-frame t)
- '(gnuserv-visit-hook (lambda () (raise-frame) (recenter)))
-)
-
 ;; start gnuserv, so apps can talk to us (e.g. p4, browsers)
 (autoload 'gnuserv-start "gnuserv-compat"
              "Allow this Emacs process to be a server for client processes."
@@ -99,9 +85,23 @@
 ;;********* Uniquify buffer names *********
 (require 'uniquify)
 
+;;Customize some variables
 (custom-set-variables
- '(uniquify-buffer-name-style (quote forward))
-)
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(LaTeX-command "latex -src")
+ '(LaTeX-enable-toolbar nil)
+ '(TeX-electric-sub-and-superscript t)
+ '(TeX-output-view-style (quote (("^dvi$" ("^landscape$" "^pstricks$\\|^pst-\\|^psfrag$") "%(o?)dvips -t landscape %d -o && gv %f") ("^dvi$" "^pstricks$\\|^pst-\\|^psfrag$" "%(o?)dvips %d -o && gv %f") ("^dvi$" ("^a4\\(?:dutch\\|paper\\|wide\\)\\|sem-a4$" "^landscape$") "%(o?)xdvi %dS -paper a4r -s 0 %d") ("^dvi$" "^a4\\(?:dutch\\|paper\\|wide\\)\\|sem-a4$" "%(o?)xdvi %dS -paper a4 %d") ("^dvi$" ("^a5\\(?:comb\\|paper\\)$" "^landscape$") "%(o?)xdvi %dS -paper a5r -s 0 %d") ("^dvi$" "^a5\\(?:comb\\|paper\\)$" "%(o?)xdvi %dS -paper a5 %d") ("^dvi$" "^b5paper$" "%(o?)xdvi %dS -paper b5 %d") ("^dvi$" "^letterpaper$" "%(o?)xdvi %dS -paper us %d") ("^dvi$" "^legalpaper$" "%(o?)xdvi %dS -paper legal %d") ("^dvi$" "^executivepaper$" "%(o?)xdvi %dS -paper 7.25x10.5in %d") ("^dvi$" "." "%(o?)xdvi -bg white -fg black -editor \"gnuclient -q +%l %f\" -offsets -0.5in -expert -s 3 -geometry +0+0 -paper 16x24%dS %d") ("^pdf$" "." "xpdf %o") ("^html?$" "." "netscape %o"))))
+ '(TeX-view-style (quote (("^a4\\(?:dutch\\|paper\\|wide\\)\\|sem-a4$" "%(o?)xdvi %dS -paper a4 %d") ("^a5\\(?:comb\\|paper\\)$" "%(o?)xdvi %dS -paper a5 %d") ("^b5paper$" "%(o?)xdvi %dS -paper b5 %d") ("^letterpaper$" "%(o?)xdvi %dS -paper us %d") ("^legalpaper$" "%(o?)xdvi %dS -paper legal %d") ("^executivepaper$" "%(o?)xdvi %dS -paper 7.25x10.5in %d") ("^landscape$" "%(o?)xdvi %dS -paper a4r -s 0 %d") ("." "%(o?)xdvi -editor \"gnuclient -q +%l %f\" %dS %d"))))
+ '(icicle-reminder-prompt-flag 0)
+ '(lazy-lock-mode nil t (lazy-lock))
+ '(paren-mode (quote sexp) nil (paren))
+ '(reftex-toc-split-windows-horizontally t)
+ '(st-shell-shell-function (quote (ansi-term (getenv "SHELL"))))
+ '(uniquify-buffer-name-style (quote forward) nil (uniquify)))
 
 ;; Icicles
 (load "icicles")
@@ -134,7 +134,6 @@
 
 (require 'xdvi-search)
 (load-file (concat emacs-root "my_lisp/auctex-custom.el"))
-(load-file (concat emacs-root "my_lisp/reftex-custom.el"))
 (require 'bibtex)
 (add-hook 'LaTeX-mode-hook (lambda () (ispell-minor-mode) ))
 (add-hook 'LaTeX-mode-hook (lambda () (load "reftex-custom")))
@@ -162,8 +161,6 @@
 (autoload 'tuareg-mode "tuareg" "Major mode for editing Caml code" t)
 (autoload 'camldebug "camldebug" "Run the Caml debugger" t)
 
-(load-file (concat emacs-root "keys.el"))
-
 ;;********* Python Mode **********
 (setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
 (setq interpreter-mode-alist (cons '("python" . python-mode)
@@ -184,3 +181,5 @@
 ;;******** Global-sexp highlighting *********
 (require 'hl-sexp)
 (global-hl-sexp-mode)
+
+(load-file (concat emacs-root "keys.el"))
