@@ -1,4 +1,5 @@
 ;Makes f5 key open a new shell
+(global-set-key [(control f4)] (lambda () (interactive) (kill-buffer (current-buffer))))
 (global-set-key [(f5)] 'st-shell)
 (global-set-key [(f6)] 'st-shell-switch)
 (global-set-key [(control f6)] 'st-shell-go-back)
