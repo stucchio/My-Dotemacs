@@ -67,3 +67,27 @@
    icicle-recent-file "Open recently used files."
    find-file
    "Recent files: " recentf-list )
+
+;;;###autoload
+(defun kill-buffer-eventually ()
+  "Thus function kills a buffer eventually."
+  (progn
+    )
+  )
+
+;;;###autoload
+(defun kill-buffer-shortly ()
+  "This function will turn on tempbuf mode in a buffer, and then bury it. The buffer will be killed shortly."
+  (interactive)
+  (if (buffer-modified-p)
+      (if (yes-or-no-p (concat "Buffer " (buffer-name (current-buffer)) " modified; kill anyway? "))
+		       	  (progn
+			    (turn-on-tempbuf-mode)
+			    (bury-buffer)
+			    )
+	)
+    (progn
+      (turn-on-tempbuf-mode)
+      (bury-buffer)
+      )))
+	  

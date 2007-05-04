@@ -1,15 +1,21 @@
 ;Makes f5 key open a new shell
-(global-set-key [(control f4)] (lambda () (interactive) (kill-buffer (current-buffer))))
-(global-set-key [(f5)] 'st-shell)
+(global-set-key [(control f4)] 'kill-buffer-shortly)
+;;F6 controls the shell
 (global-set-key [(f6)] 'st-shell-switch)
-(global-set-key [(control f6)] 'st-shell-go-back)
-(global-set-key [(f10)] 'start-or-end-kbd-macro) ;One-button recording of kbd macros
-(global-set-key [(f11)] 'call-last-kbd-macro) ;one button calling of kbd macros
-(global-set-key [(f7)] 'bm-toggle) 
+(global-set-key [(control f6)] 'st-shell)
+(global-set-key [(M f6)] 'st-shell-go-back)
+;; F8 controls bookmarks
+(global-set-key [(control f8)] 'bm-toggle) 
 (global-set-key [(f8)] 'bm-next)
+;; F9 controls evaling lisp
 (global-set-key [(f9)] 'eval-last-sexp)
 (global-set-key [(control f9)] 'fc-eval-and-replace)
-(global-set-key [(control f8)] 'bm-previous)
+(global-set-key [(M f9)] 'execute-extended-command)
+;; F11 controls keyboard macros
+(global-set-key [(control f11)] 'start-or-end-kbd-macro) ;One-button recording of kbd macros
+(global-set-key [(control M f11)] 'name-last-kbd-macro) ;One button naming of last kbd macro
+(global-set-key [(f11)] 'call-last-kbd-macro) ;one button calling of kbd macros
+;; F12 controls darcs
 (global-set-key [(f12)] 'darcsum-no-duplicate-buffer);This is the easiest way to switch to darcs mode
 
 
@@ -36,4 +42,4 @@
 
 ;; Tabbar mode
 (global-set-key [(control tab)] 'tabbar-forward-tab)
-(global-set-key [(control M tab)] 'tabbar-forward-group)
+(global-set-key [(control M tab)] 'switch-to-buffer)
