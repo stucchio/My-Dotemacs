@@ -108,9 +108,7 @@
  '(uniquify-buffer-name-style (quote forward) nil (uniquify)))
 
 ;; Icicles
-(load "icicles")
-(icy-mode)
-
+(load "icicles-custom")
 
 ;Load bm.el, bookmarking facility.
 (load "bm")
