@@ -13,6 +13,8 @@
 (global-set-key [(f12)] 'darcsum-no-duplicate-buffer);This is the easiest way to switch to darcs mode
 
 
+(global-set-key "\C-x\C-r" 'icicle-recent-file)
+
 ;;Bind M-j to imenu, for quick navigation.
 (global-set-key "\M-j" 'imenu)
 

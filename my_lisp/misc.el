@@ -60,3 +60,10 @@
   (map 'list 'byte-compile-file
        (lisp-files-in-directory d)
      ))
+
+
+;;;###autoload
+(icicle-define-command
+   icicle-recent-file "Open recently used files."
+   find-file
+   "Recent files: " recentf-list )
