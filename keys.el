@@ -7,6 +7,8 @@
 (global-set-key [(f11)] 'call-last-kbd-macro) ;one button calling of kbd macros
 (global-set-key [(f7)] 'bm-toggle) 
 (global-set-key [(f8)] 'bm-next)
+(global-set-key [(f9)] 'eval-last-sexp)
+(global-set-key [(control f9)] 'fc-eval-and-replace)
 (global-set-key [(control f8)] 'bm-previous)
 (global-set-key [(f12)] 'darcsum-no-duplicate-buffer);This is the easiest way to switch to darcs mode
 
