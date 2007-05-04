@@ -27,13 +27,17 @@
 
 ;;******** tempbuf ********
 ;; Kill buffers after a while, if I don't really want them
-(require 'tempbuf)
-(add-hook 'Man-mode-hook 'turn-on-tempbuf-mode)         ;;Kill man pages after a while
-(add-hook 'view-mode-hook 'turn-on-tempbuf-mode)        ;;kill view pages after some time
-(add-hook 'apropos-mode-hook 'turn-on-tempbuf-mode)     ;;Kill apropos buffers
-(add-hook 'fundamental-mode-hook 'turn-on-tempbuf-mode) ;;Kill LaTeX-mode's old buffers
-(add-hook 'ps-mode-hook 'turn-on-tempbuf-mode)          ;;Kill ps-mode
-(add-hook 'dired-mode-hook 'turn-on-tempbuf-mode)       ;;Kill old dired buffers
+(require 'tempbuf) 
+(add-hook 'Man-mode-hook 'turn-on-tempbuf-mode)              ;;Kill man pages after a while
+(add-hook 'view-mode-hook 'turn-on-tempbuf-mode)             ;;kill view pages after some time
+(add-hook 'apropos-mode-hook 'turn-on-tempbuf-mode)          ;;Kill apropos buffers
+(add-hook 'fundamental-mode-hook 'turn-on-tempbuf-mode)      ;;Kill LaTeX-mode's old buffers
+(add-hook 'ps-mode-hook 'turn-on-tempbuf-mode)               ;;Kill ps-mode
+(add-hook 'dired-mode-hook 'turn-on-tempbuf-mode)            ;;Kill old dired buffers
+(add-hook 'reftex-toc-mode-hook 'turn-on-tempbuf-mode)       ;;Kill old reftex table-of-contents
+(add-hook 'bibtex-mode-hook 'turn-on-tempbuf-mode)           ;;Kill old bibtex; probably just opened by reftex
+(add-hook 'ediff-mode-hook 'turn-on-tempbuf-mode)
+(add-hook 'ediff-meta-mode-hook 'turn-on-tempbuf-mode)
 (custom-set-variables '(tempbuf-minimum-timeout 60))    ;;Make sure old buffers last at least 1 minute
 
 ;;******** tabbar ********
