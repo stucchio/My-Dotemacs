@@ -84,7 +84,7 @@
 	(turn-off-tempbuf-mode)
 	(message (concat "Saved buffer " (buffer-name (current-buffer)) " from imminent deletion."))
 	)
-    (if (buffer-modified-p)
+    (if (and (buffer-modified-p) (buffer-file-name))
 	(if (yes-or-no-p (concat "Buffer " (buffer-name (current-buffer)) " modified; kill anyway? "))
 	    (progn
 	      (turn-on-tempbuf-mode)
@@ -93,6 +93,7 @@
 	  )
       (progn
 	(turn-on-tempbuf-mode)
+	(message (concat "Buffer " (buffer-name (current-buffer)) " has been buried, will expire shortly.") )
 	(bury-buffer)
 	)))
   )
