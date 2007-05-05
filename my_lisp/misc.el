@@ -76,18 +76,24 @@
   )
 
 ;;;###autoload
-(defun kill-buffer-shortly ()
-  "This function will turn on tempbuf mode in a buffer, and then bury it. The buffer will be killed shortly."
-  (interactive)
-  (if (buffer-modified-p)
-      (if (yes-or-no-p (concat "Buffer " (buffer-name (current-buffer)) " modified; kill anyway? "))
-		       	  (progn
-			    (turn-on-tempbuf-mode)
-			    (bury-buffer)
-			    )
+(defun kill-buffer-shortly (&optional un-tempbufify)
+  "This function will turn on tempbuf mode in a buffer, and then bury it. The buffer will be killed shortly. When called with a non-nil argument, it will un-tempbuffer-ify the current buffer. (i.e. imagine we tempbufified something, and buried it."
+  (interactive "P")
+  (if un-tempbufify
+      (progn
+	(turn-off-tempbuf-mode)
+	(message (concat "Saved buffer " (buffer-name (current-buffer)) " from imminent deletion."))
 	)
-    (progn
-      (turn-on-tempbuf-mode)
-      (bury-buffer)
-      )))
+    (if (buffer-modified-p)
+	(if (yes-or-no-p (concat "Buffer " (buffer-name (current-buffer)) " modified; kill anyway? "))
+	    (progn
+	      (turn-on-tempbuf-mode)
+	      (bury-buffer)
+	      )
+	  )
+      (progn
+	(turn-on-tempbuf-mode)
+	(bury-buffer)
+	)))
+  )
 	  
