@@ -123,9 +123,9 @@
 (make-LaTeX-env-abbrev "\\beqn" "equation*")
 (make-LaTeX-env-abbrev "\\bem" "multline")
 (make-LaTeX-env-abbrev "\\bemn" "multline*")
-(make-LaTeX-env-abbrev "\\prop" "proposition")
-(make-LaTeX-env-abbrev "\\thm" "theorem")
-(make-LaTeX-env-abbrev "\\lem" "lemma")
+;;(make-LaTeX-env-abbrev "\\prop" "proposition")
+;;(make-LaTeX-env-abbrev "\\thm" "theorem")
+;;(make-LaTeX-env-abbrev "\\lem" "lemma")
 (make-LaTeX-env-abbrev "\\bslide" "slide")
 
 (define-abbrev text-mode-abbrev-table "bslide" "" 'tempo-template-bslide)
