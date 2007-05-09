@@ -94,9 +94,6 @@
 			(process-name (get-buffer-process buffer)))))
      (t t))))
  
-(add-to-list 'kill-buffer-query-functions 
-             'ask-before-killing-buffer)
-
 ;;;###autoload
 (defun kill-buffer-shortly (&optional un-tempbufify)
   "This function will turn on tempbuf mode in a buffer, and then bury it. The buffer will be killed shortly. When called with a non-nil argument, it will un-tempbuffer-ify the current buffer. (i.e. imagine we tempbufified something, and buried it."
