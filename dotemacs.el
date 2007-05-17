@@ -39,6 +39,7 @@
 (add-hook 'ediff-mode-hook 'turn-on-tempbuf-mode)
 (add-hook 'ediff-meta-mode-hook 'turn-on-tempbuf-mode)
 (custom-set-variables '(tempbuf-minimum-timeout 60))    ;;Make sure old buffers last at least 1 minute
+(add-hook 'darcsum-mode-hook 'turn-on-tempbuf-mode)
 
 ;;******** tabbar ********
 
