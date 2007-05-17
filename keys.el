@@ -1,5 +1,9 @@
-;Makes f5 key open a new shell
+;Use f1 for help of various sorts
+(global-set-key [(control f1)] 'apropos)
+(global-set-key [(M f1)] 'describe-function)
+;Makes f4 key switch to buffers, C-f4 kills buffer
 (global-set-key [(control f4)] 'kill-buffer-shortly)
+(global-set-key [(f4)] 'icicle-buffer)
 ;;F6 controls the shell
 (global-set-key [(f6)] 'st-shell-switch)
 (global-set-key [(control f6)] 'st-shell)
@@ -38,7 +42,7 @@
 (global-set-key "\C-c\C-d" 'insert-time-at-point)
 
 ;unset f5 in icicle-mode
-(define-key icicle-mode-map [f5] nil)
+(define-key icicle-mode-map [(f5)] nil)
 
 ;; Tabbar mode
 (global-set-key [(control tab)] 'tabbar-forward-tab)
