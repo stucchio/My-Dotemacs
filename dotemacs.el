@@ -113,13 +113,6 @@
 ;Load bm.el, bookmarking facility.
 (load "bm")
 
-;;********* ido *********
-;; This mode makes the minibuffer behave very nicely with regards to autocompletion
-;; when looking for files or buffers. Just type a substring, it will find buffers 
-;; associated to it. Makes a nice list of completions in the minibuffer, as opposed
-;; to irritating completion buffer.
-;(require 'ido)
-;(ido-mode t)
 ;;********* C-mode *********
 (load "c-custom")
 
@@ -184,9 +177,6 @@
 (require 'hl-sexp)
 (global-hl-sexp-mode)
 
-(load-file (concat emacs-root "keys.el"))
-
-
 ;;********** Desktop mode **********
 (desktop-save-mode 1)
 (setq history-length 250)
@@ -213,3 +203,6 @@
 
 ;;******** make scripts executable ********
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+
+;;******** Finally, set key bindings ********
+(load-file (concat emacs-root "keys.el"))
