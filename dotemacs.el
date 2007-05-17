@@ -210,3 +210,6 @@
 ;;******** windmove ********
 (when (fboundp 'windmove-default-keybindings) ;;Turns on windmove mode: shift+arrow keys move between windows.
   (windmove-default-keybindings))
+
+;;******** make scripts executable ********
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
