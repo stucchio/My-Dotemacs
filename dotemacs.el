@@ -206,3 +206,7 @@
 
 ;;******** Ediff mode ********
 (ediff-toggle-multiframe)
+
+;;******** windmove ********
+(when (fboundp 'windmove-default-keybindings) ;;Turns on windmove mode: shift+arrow keys move between windows.
+  (windmove-default-keybindings))
