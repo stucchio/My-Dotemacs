@@ -111,3 +111,9 @@
 	  )))
   )
 
+;;;###autoload
+(defun ediff-regions-wordwise-this-buffer ()
+  "Runs ediff-regions-wordwise with current buffer as both buffer A and buffer B."
+  (interactive)
+  (ediff-regions-wordwise (current-buffer) (current-buffer))
+  )

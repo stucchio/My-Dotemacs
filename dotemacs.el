@@ -203,3 +203,6 @@
 (recentf-mode 1)
 
 (global-auto-revert-mode 1) ;; If file attached to unmodified buffer is changed, revert it transparently.
+
+;;******** Ediff mode ********
+(ediff-toggle-multiframe)
