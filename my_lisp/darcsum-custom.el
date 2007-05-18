@@ -30,15 +30,13 @@
       (let ( (pristine-filename (darcsum-original-path (point)))
 	     (working-filename (darcsum-path (point)))
 	     (old-window-configuration (current-window-configuration))
-	     (pristine-buffer nil)
 	     )
       (progn
 	(save-excursion
 	  (find-file-read-only pristine-filename)
 	  (rename-buffer (concat "*darcs pristine buffer:" pristine-filename "*"))
 	  (rename-uniquely)
-	  (setq pristine-buffer (current-buffer))
-	  (tempbuf-mode)
+	  (tempbuf-mode) ;;Main difference between this and version in darcsum.el is this line
 	  )
 	(ediff pristine-filename
 	       working-filename
@@ -46,7 +44,6 @@
 			    (make-variable-buffer-local 'pre-darcsum-ediff-window-configuration)
 			    (make-variable-buffer-local 'darcsum-pristine-buffer)
 			    (setq pre-darcsum-ediff-window-configuration old-window-configuration)
-			    (setq darcsum-pristine-buffer pristine-buffer)
 			    (make-local-hook 'ediff-quit-hook)
 			    (add-hook 'ediff-quit-hook (lambda () 
 							 (set-window-configuration pre-darcsum-ediff-window-configuration)
