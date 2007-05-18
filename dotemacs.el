@@ -187,16 +187,24 @@
 (add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
 (add-to-list 'desktop-modes-not-to-save 'fundamental-mode)
 
+;;********** Turn on session ********
+(require 'session)
+(add-hook 'after-init-hook 'session-initialize)
+(setq desktop-globals-to-save '(desktop-missing-file-warning)) ;;Make sure session doesn't clobber desktop
+
+;'******** Save location of point in files
 (require 'saveplace)
 (setq-default save-place t)
 
+;;******** Save list of files recently opened
 (require 'recentf)
 (recentf-mode 1)
 
+;;******** Revert open files, if file on disk changed ********
 (global-auto-revert-mode 1) ;; If file attached to unmodified buffer is changed, revert it transparently.
 
 ;;******** Ediff mode ********
-(ediff-toggle-multiframe)
+(ediff-toggle-multiframe) ;;Don't make *Ediff Control Panel* open in new frame, just new window. 
 
 ;;******** windmove ********
 (when (fboundp 'windmove-default-keybindings) ;;Turns on windmove mode: shift+arrow keys move between windows.
