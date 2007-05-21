@@ -120,38 +120,6 @@
 
 (require 'tempo)
 
-;;; Expands into a titled slide environment
-(tempo-define-template "bslide"
-		       '( "\\begin{slide}{" (p "Title: ") "}" n
-			  p n
-			  "\\end{slide}" n
-			 )
-		       )
-
-;;; Expands into a titled slide environment, with N overlays, 
-(tempo-define-template "bslideo"
-		       '( "\\overlays{" (p "Number of Overlays: " ) "}{" n
-			 "\\begin{slide}{" (p "Title: ") "}" n
-			  p n
-			  "\\begin{itemstep}" n
-			  "\\end{itemstep}" n
-			  "\\end{slide}" n "}" n
-			 )
-		       )
-
-
-
-(make-LaTeX-env-abbrev "\\beq" "equation")
-(make-LaTeX-env-abbrev "\\beqn" "equation*")
-(make-LaTeX-env-abbrev "\\bem" "multline")
-(make-LaTeX-env-abbrev "\\bemn" "multline*")
-;;(make-LaTeX-env-abbrev "\\prop" "proposition")
-;;(make-LaTeX-env-abbrev "\\thm" "theorem")
-;;(make-LaTeX-env-abbrev "\\lem" "lemma")
-(make-LaTeX-env-abbrev "\\bslide" "slide")
-
-(define-abbrev text-mode-abbrev-table "bslide" "" 'tempo-template-bslide)
-(define-abbrev text-mode-abbrev-table "bslideo" "" 'tempo-template-bslideo)
 ;;Expands "\n" to "\\". If the current environment is equation or equation*, turn it into multline or multline*. Otherwise, just replace \n by \\.
 (add-hook 'LaTeX-mode-hook (lambda () 
 			     (define-abbrev text-mode-abbrev-table "\\n" "" (lambda () 
