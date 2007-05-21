@@ -78,6 +78,28 @@
 	    (message (concat "Changed environment to " new-environment))
 	    ))))
 
+;;******** Variables needed by LaTeX-insert-environment-interactive ********
+(defvar LaTeX-environments-to-insert-interactively '("equation" "multline" "equation*" "multline*" "eqnarray"))
+(defvar LaTeX-environments-to-insert-ring (make-ring (length LaTeX-environments-to-insert-interactively)))
+(mapc (lambda (obj) (ring-insert LaTeX-environments-to-insert-ring obj))
+      LaTeX-environments-to-insert-interactively)
+(defvar LaTeX-environments-to-insert-ring-index 1)
+
+(defun LaTeX-insert-environment-interactive ()
+  "Interactively inserts latex environments. \nCalled once, inserts (car LaTeX-environments-to-insert-interactively). Called repeatedly, changes current environment to cycle through that ring." 
+  (interactive)
+  (if (eq last-command 'LaTeX-insert-environment-interactive)
+      (progn
+	(setq LaTeX-environments-to-insert-ring-index (+ LaTeX-environments-to-insert-ring-index 1) )
+	(LaTeX-modify-environment (ring-ref LaTeX-environments-to-insert-ring LaTeX-environments-to-insert-ring-index) )
+      )
+    (progn
+      (setq LaTeX-environments-to-insert-ring-index 1)
+      (LaTeX-insert-environment (ring-ref LaTeX-environments-to-insert-ring LaTeX-environments-to-insert-ring-index))
+      )
+    )
+)
+
 
 ;;;***************************************************************************
 ;;; This part of the file defines some tempo-templates which are useful in auctex
