@@ -49,5 +49,8 @@
 (global-set-key [(control M tab)] 'switch-to-buffer)
 
 ;; LaTeX-mode
-(define-key LaTeX-mode-map [(insert)] 'LaTeX-insert-environment-interactive)
-(define-key LaTeX-mode-map [(delete)] (lambda () (interactive) (message "Delete remapped. You use this key?")))
+
+(add-hook 'LaTeX-mode-hook (lambda ()
+			     (define-key LaTeX-mode-map [(insert)] 'LaTeX-insert-environment-interactive) ))
+(add-hook 'LaTeX-mode-hook (lambda ()
+			     (define-key LaTeX-mode-map [(delete)] (lambda () (interactive) (message "Delete remapped. You use this key?")))))
