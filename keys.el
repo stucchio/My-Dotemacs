@@ -42,7 +42,11 @@
 (global-set-key "\C-c\C-d" 'insert-time-at-point)
 
 ;unset f5 in icicle-mode
-(define-key icicle-mode-map [(f5)] nil)
+(add-hook 'icicle-mode-hook (lambda ()
+			      (define-key icicle-mode-map [(f5)] nil) ))
+(add-hook 'icicle-mode-hook (lambda ()
+			      (define-key icicle-mode-map "\C-c`" nil) ))
+
 
 ;; Tabbar mode
 (global-set-key [(control tab)] 'tabbar-forward-tab)
