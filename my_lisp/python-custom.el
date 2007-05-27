@@ -48,7 +48,7 @@
 (abbrev-mode t)
 
 ;;;And set these abbreviations to the above templates
-(define-abbrev python-mode-abbrev-table "lclexpt" "" 'tempo-template-py-local-exception)
-(define-abbrev python-mode-abbrev-table "class" "" 'tempo-template-py-class)
-(define-abbrev python-mode-abbrev-table "classi" "" 'tempo-template-py-classi)
+;;(define-abbrev python-mode-abbrev-table "lclexpt" "" 'tempo-template-py-local-exception)
+;;(define-abbrev python-mode-abbrev-table "class" "" 'tempo-template-py-class)
+;;(define-abbrev python-mode-abbrev-table "classi" "" 'tempo-template-py-classi)
 ;;(define-abbrev python-mode-abbrev-table "def" "" 'tempo-template-py-funcdef)
