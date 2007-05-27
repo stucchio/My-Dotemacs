@@ -117,3 +117,14 @@
   (interactive)
   (ediff-regions-wordwise (current-buffer) (current-buffer))
   )
+
+;;;###autoload
+(defun windows-text-to-unix-text ()
+  "Remove ^M (control-M, decimal 13) characters from the file"
+  (interactive)
+  (beginning-of-buffer)       ; start search from the top
+  (while (re-search-forward "\015" nil t)
+    (replace-match "" nil nil)
+  )
+  (beginning-of-buffer)       ; finish at top
+)
