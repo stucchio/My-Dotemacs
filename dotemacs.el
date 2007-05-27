@@ -168,6 +168,9 @@
 
 (require 'doctest-mode)
 
+;;******** nxml mode ********
+(load "~/emacs/site-lisp/nxml/autostart.el")
+
 ;;******** Haskell Mode *********
 (load (concat emacs-root "site-lisp/haskell-mode-2.1/haskell-site-file.el"))
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
