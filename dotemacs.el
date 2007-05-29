@@ -170,6 +170,7 @@
 
 ;;******** nxml mode ********
 (load "~/emacs/site-lisp/nxml/autostart.el")
+(load "~/emacs/my_lisp/nxml-custom.el")
 
 ;;******** Haskell Mode *********
 (load (concat emacs-root "site-lisp/haskell-mode-2.1/haskell-site-file.el"))
