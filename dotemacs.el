@@ -22,6 +22,9 @@
 
 ;;Load my basic customizations
 
+;;******** bubble-buffer ********
+(require 'bubble-buffer)
+
 ;;********* st-shell stuff
 (require 'st-shell)
 
