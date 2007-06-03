@@ -4,6 +4,9 @@
 ;Makes f4 key switch to buffers, C-f4 kills buffer
 (global-set-key [(control f4)] 'kill-buffer-shortly)
 (global-set-key [(f4)] 'icicle-buffer)
+;; F5 does bubble-buffer
+(global-set-key [(f5)] 'bubble-buffer-next)
+(global-set-key [(control f5)] 'bubble-buffer-previous)
 ;;F6 controls the shell
 (global-set-key [(f6)] 'st-shell-switch)
 (global-set-key [(control f6)] 'st-shell)
