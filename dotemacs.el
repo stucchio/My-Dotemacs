@@ -182,6 +182,9 @@
 (require 'hl-sexp)
 (global-hl-sexp-mode)
 
+;;******** Show parenthesis ********
+(show-paren-mode t)
+
 ;;********** Desktop mode **********
 (desktop-save-mode 1)
 (setq history-length 250)
