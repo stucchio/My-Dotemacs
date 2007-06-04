@@ -41,8 +41,23 @@
 (add-hook 'bibtex-mode-hook 'turn-on-tempbuf-mode)           ;;Kill old bibtex; probably just opened by reftex
 (add-hook 'ediff-mode-hook 'turn-on-tempbuf-mode)
 (add-hook 'ediff-meta-mode-hook 'turn-on-tempbuf-mode)
-(custom-set-variables '(tempbuf-minimum-timeout 60))    ;;Make sure old buffers last at least 1 minute
 (add-hook 'darcsum-mode-hook 'turn-on-tempbuf-mode)
+
+(custom-set-variables
+ '(LaTeX-command "latex -src")
+ '(LaTeX-enable-toolbar nil)
+ '(TeX-electric-sub-and-superscript t)
+ '(icicle-reminder-prompt-flag 0)
+ '(lazy-lock-mode nil t (lazy-lock))
+ '(paren-mode (quote sexp) nil (paren))
+ '(popcmp-popup-completion nil)
+ '(reftex-toc-split-windows-horizontally t)
+ '(st-shell-shell-function '(eshell)) 
+ '(st-shell-name "*eshell*")
+ '(paren-mode (quote sexp) nil (paren))
+ '(lazy-lock-mode nil nil (lazy-lock))
+ '(tempbuf-minimum-timeout 60)
+ '(uniquify-buffer-name-style (quote forward) nil (uniquify)))
 
 ;;******** tabbar ********
 
@@ -92,24 +107,6 @@
 
 ;;********* Uniquify buffer names *********
 (require 'uniquify)
-
-;;Customize some variables
-(custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(LaTeX-command "latex -src")
- '(LaTeX-enable-toolbar nil)
- '(TeX-electric-sub-and-superscript t)
- '(TeX-output-view-style (quote (("^dvi$" ("^landscape$" "^pstricks$\\|^pst-\\|^psfrag$") "%(o?)dvips -t landscape %d -o && gv %f") ("^dvi$" "^pstricks$\\|^pst-\\|^psfrag$" "%(o?)dvips %d -o && gv %f") ("^dvi$" ("^a4\\(?:dutch\\|paper\\|wide\\)\\|sem-a4$" "^landscape$") "%(o?)xdvi %dS -paper a4r -s 0 %d") ("^dvi$" "^a4\\(?:dutch\\|paper\\|wide\\)\\|sem-a4$" "%(o?)xdvi %dS -paper a4 %d") ("^dvi$" ("^a5\\(?:comb\\|paper\\)$" "^landscape$") "%(o?)xdvi %dS -paper a5r -s 0 %d") ("^dvi$" "^a5\\(?:comb\\|paper\\)$" "%(o?)xdvi %dS -paper a5 %d") ("^dvi$" "^b5paper$" "%(o?)xdvi %dS -paper b5 %d") ("^dvi$" "^letterpaper$" "%(o?)xdvi %dS -paper us %d") ("^dvi$" "^legalpaper$" "%(o?)xdvi %dS -paper legal %d") ("^dvi$" "^executivepaper$" "%(o?)xdvi %dS -paper 7.25x10.5in %d") ("^dvi$" "." "%(o?)xdvi -bg white -fg black -editor \"gnuclient -q +%l %f\" -offsets -0.5in -expert -s 3 -geometry +0+0 -paper 16x24%dS %d") ("^pdf$" "." "xpdf %o") ("^html?$" "." "netscape %o"))))
- '(TeX-view-style (quote (("^a4\\(?:dutch\\|paper\\|wide\\)\\|sem-a4$" "%(o?)xdvi %dS -paper a4 %d") ("^a5\\(?:comb\\|paper\\)$" "%(o?)xdvi %dS -paper a5 %d") ("^b5paper$" "%(o?)xdvi %dS -paper b5 %d") ("^letterpaper$" "%(o?)xdvi %dS -paper us %d") ("^legalpaper$" "%(o?)xdvi %dS -paper legal %d") ("^executivepaper$" "%(o?)xdvi %dS -paper 7.25x10.5in %d") ("^landscape$" "%(o?)xdvi %dS -paper a4r -s 0 %d") ("." "%(o?)xdvi -editor \"gnuclient -q +%l %f\" %dS %d"))))
- '(icicle-reminder-prompt-flag 0)
- '(lazy-lock-mode nil t (lazy-lock))
- '(paren-mode (quote sexp) nil (paren))
- '(reftex-toc-split-windows-horizontally t)
- '(st-shell-shell-function (quote (ansi-term (getenv "SHELL"))))
- '(uniquify-buffer-name-style (quote forward) nil (uniquify)))
 
 ;; Icicles
 (load "icicles-custom")
