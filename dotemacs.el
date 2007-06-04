@@ -62,6 +62,9 @@
  '(eshell-directory-name (concat emacs-root "eshell-custom/") )
 )
 
+;;******** eshell custom ********
+(load-file (concat emacs-root "my_lisp/eshell-custom.el"))
+
 ;;******** tabbar ********
 
 (require 'tabbar)
