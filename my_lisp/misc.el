@@ -118,7 +118,6 @@
   (ediff-regions-wordwise (current-buffer) (current-buffer))
   )
 
-(require 'tempbuff)
 ;;;###autoload
 (defun find-file-temporary (filename)
   "Calls find-file, but in a temporary buffer."

@@ -58,7 +58,9 @@
  '(paren-mode (quote sexp) nil (paren))
  '(lazy-lock-mode nil nil (lazy-lock))
  '(tempbuf-minimum-timeout 60)
- '(uniquify-buffer-name-style (quote forward) nil (uniquify)))
+ '(uniquify-buffer-name-style (quote forward) nil (uniquify))
+ '(eshell-directory-name (concat emacs-root "eshell-custom/") )
+)
 
 ;;******** tabbar ********
 
