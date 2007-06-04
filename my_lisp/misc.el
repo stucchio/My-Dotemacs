@@ -118,6 +118,23 @@
   (ediff-regions-wordwise (current-buffer) (current-buffer))
   )
 
+(require 'tempbuff)
+;;;###autoload
+(defun find-file-temporary (filename)
+  "Calls find-file, but in a temporary buffer."
+  (interactive "f")
+  (save-excursion
+    (let ((old-buff (current-buffer)))
+      (find-file filename)
+      (tempbuf-mode t)
+      (let ((new-buff (current-buffer)))
+	(switch-to-buffer old-buff)
+	(display-buffer new-buff)
+	)
+      )
+    )
+)
+
 ;;;###autoload
 (defun windows-text-to-unix-text ()
   "Remove ^M (control-M, decimal 13) characters from the file"
