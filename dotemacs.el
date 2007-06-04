@@ -27,6 +27,7 @@
 
 ;;********* st-shell stuff
 (require 'st-shell)
+(defalias 'emacs 'find-file) ;;This binds the command emacs to find-file. Useful in eshell.
 
 ;;******** tempbuf ********
 ;; Kill buffers after a while, if I don't really want them
