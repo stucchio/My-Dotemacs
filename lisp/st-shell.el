@@ -112,7 +112,7 @@
 	(if (eq (get-buffer st-shell-name) nil) ;If a 
 	    (progn
 	      (st-shell-function)
-	      (process-send-string (get-buffer-process new-buff-name) (concat "cd " localdir "\n"))
+	      ;(process-send-string (get-buffer-process new-buff-name) (concat "cd " localdir "\n"))
 	      (ring-insert st-shell-ring (current-buffer) )
 	      (setq st-shell-index (+ st-shell-index 1))
 	      )
@@ -125,7 +125,7 @@
 	    (switch-to-buffer tempname)
 	    (rename-buffer st-shell-name)
 	(switch-to-buffer new-buff-name)
-	(process-send-string (get-buffer-process new-buff-name) (concat "cd " localdir "\n"))
+	;(process-send-string (get-buffer-process new-buff-name) (concat "cd " localdir "\n"))
 	(ring-insert st-shell-ring (current-buffer) )
 	(setq st-shell-index (+ st-shell-index 1))
 	)
