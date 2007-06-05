@@ -61,3 +61,6 @@
 			     (define-key LaTeX-mode-map [(insert)] 'LaTeX-insert-environment-interactive) ))
 (add-hook 'LaTeX-mode-hook (lambda ()
 			     (define-key LaTeX-mode-map [(delete)] (lambda () (interactive) (message "Delete remapped. You use this key?")))))
+
+(add-hook 'eshell-mode-hook
+	  '(lambda () (define-key eshell-mode-map "\C-a" 'eshell-maybe-bol)))

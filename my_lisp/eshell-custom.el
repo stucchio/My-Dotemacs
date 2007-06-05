@@ -35,3 +35,11 @@
                                     'keymap ted-eshell-ls-keymap)
                               ad-return-value)
          ad-return-value)))
+
+(defun eshell-maybe-bol ()
+  (interactive)
+  (let ((p (point)))
+    (eshell-bol)
+    (if (= p (point))
+	(beginning-of-line))))
+
