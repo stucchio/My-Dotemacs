@@ -149,6 +149,8 @@
 ;********* Darcsum *********
 (load-file (concat emacs-root "lisp/darcsum.el"))
 (load-file (concat emacs-root "my_lisp/darcsum-custom.el"))
+;********* Mercurial *********
+(require 'mercurial)
 
 
 ;********* Gnuplot mode *********
