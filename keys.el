@@ -25,6 +25,12 @@
 ;; F12 controls darcs
 (global-set-key [(f12)] 'darcsum-no-duplicate-buffer);This is the easiest way to switch to darcs mode
 
+;;******** wrap-region stuff ********
+(global-set-key "(" (wrap-region-with-function "(" ")"))
+(global-set-key "{" (wrap-region-with-function "{" "}"))
+(global-set-key "[" (wrap-region-with-function "[" "]"))
+(define-key LaTeX-mode-map "$" (wrap-region-with-function "$" "$"))
+
 
 (global-set-key "\C-x\C-r" 'icicle-recent-file)
 
