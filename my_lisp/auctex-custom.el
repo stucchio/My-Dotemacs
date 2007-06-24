@@ -120,29 +120,3 @@
 )
 
 
-;;;***************************************************************************
-;;; This part of the file defines some tempo-templates which are useful in auctex
-;;;***************************************************************************
-
-;When we load LaTeX, turn on abbrev-mode
-
-;(require 'latex)
-
-(add-hook 'LaTeX-mode-hook (lambda () (abbrev-mode t)))
-
-
-(defmacro make-LaTeX-env-abbrev (abb env)
-  `(add-hook 'LaTeX-mode-hook (lambda ()
-				(define-abbrev text-mode-abbrev-table ,abb "" 
-				  (lambda () (LaTeX-insert-environment ,env)))))
-)
-
-(require 'tempo)
-
-;;Expands "\n" to "\\". If the current environment is equation or equation*, turn it into multline or multline*. Otherwise, just replace \n by \\.
-(add-hook 'LaTeX-mode-hook (lambda () 
-			     (define-abbrev text-mode-abbrev-table "\\n" "" (lambda () 
-									      (progn 
-										(single-line-to-multiline)
-										(insert "\\\\")
-										)))))
