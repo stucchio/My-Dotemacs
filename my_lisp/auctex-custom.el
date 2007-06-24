@@ -85,6 +85,25 @@
       LaTeX-environments-to-insert-interactively)
 (defvar LaTeX-environments-to-insert-ring-index 1)
 
+(member "multline" LaTeX-environments-to-insert-interactively)
+
+(defun LaTeX-insert-or-change-environment-interactive ()
+  "Interactively inserts or changes latex environments. Checks if the current environment is a member of LaTeX-environments-to-insert-interactively. If so, changes the environment to the nesxt environment listed in  LaTeX-environments-to-insert-interactively."
+  (interactive)
+  (let ( (env-list (member (LaTeX-current-environment) LaTeX-environments-to-insert-interactively))
+	 )
+    (if env-list ;;If current environment a member of LaTeX-environments-to-insert-interactively, 
+	(let ((env-list-tail (cdr env-list)))
+	  (if env-list-tail
+	      (LaTeX-modify-environment (car env-list-tail)) ;;then change environment to next environment in list
+	    (LaTeX-modify-environment (car LaTeX-environments-to-insert-interactively)) ;;If at the end of the list, change to first element in the list
+	    )
+	)
+      (LaTeX-insert-environment (car LaTeX-environments-to-insert-interactively)) ;;If not in an eq environment, just insert first environment from the list.
+      )
+    )
+  )
+
 (defun LaTeX-insert-environment-interactive ()
   "Interactively inserts latex environments. \nCalled once, inserts (car LaTeX-environments-to-insert-interactively). Called repeatedly, changes current environment to cycle through that ring." 
   (interactive)
