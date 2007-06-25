@@ -29,7 +29,6 @@
 (global-set-key "(" (wrap-region-with-function "(" ")"))
 (global-set-key "{" (wrap-region-with-function "{" "}"))
 (global-set-key "[" (wrap-region-with-function "[" "]"))
-(define-key LaTeX-mode-map "$" (wrap-region-with-function "$" "$"))
 
 
 (global-set-key "\C-x\C-r" 'icicle-recent-file)
@@ -67,6 +66,10 @@
 			     (define-key LaTeX-mode-map [(insert)] 'LaTeX-insert-or-change-environment-interactive) ))
 (add-hook 'LaTeX-mode-hook (lambda ()
 			     (define-key LaTeX-mode-map [(delete)] (lambda () (interactive) (message "Delete remapped. You use this key?")))))
+(add-hook 'LaTeX-mode-hook (lambda ()
+			     (define-key LaTeX-mode-map "$" (wrap-region-with-function "$" "$") )))
+
+;; Eshell-mode
 
 (add-hook 'eshell-mode-hook
 	  '(lambda () (define-key eshell-mode-map "\C-a" 'eshell-maybe-bol)))
