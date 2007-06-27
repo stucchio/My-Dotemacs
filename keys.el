@@ -73,3 +73,5 @@
 
 (add-hook 'eshell-mode-hook
 	  '(lambda () (define-key eshell-mode-map "\C-a" 'eshell-maybe-bol)))
+(add-hook 'eshell-mode-hook
+	  '(lambda () (define-key eshell-mode-map [(control f4)] '(lambda () (interactive) (kill-buffer (current-buffer))))))
