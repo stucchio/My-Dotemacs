@@ -19,11 +19,15 @@
   (interactive "cBackward Zap to Char: ")
   (zap-to-char -1 c)
   )
-;;;###autoload
-(defun backward-zap-up-to-char (c)
+
+;;;###autoload 
+(defun backward-zap-up-to-char (arg c)
   "Just like zap-up-to-char, except works backwards."
-  (interactive "cBackward Zap to Char: ")
-  (zap-up-to-char -1 c)
+  (interactive "p\ncBackward Zap up to Char: ")
+  (kill-region (point) 
+	       (progn (search-backward (char-to-string c) nil nil arg)
+		      (forward-char)
+      (point)))
   )
 
 ;;;###autoload
