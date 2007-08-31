@@ -23,7 +23,9 @@
 (global-set-key [(control M f11)] 'name-last-kbd-macro) ;One button naming of last kbd macro
 (global-set-key [(f11)] 'call-last-kbd-macro) ;one button calling of kbd macros
 ;; F12 controls darcs
-(global-set-key [(f12)] 'darcsum-no-duplicate-buffer);This is the easiest way to switch to darcs mode
+(global-set-key [(f12)] 
+		(try-several-commands (darcsum-no-duplicate-buffer hg-commit-start ) "Failed to run darcs or hg")
+		); Tries to run either darcsum-no-duplicate-buffer or hg-commit start, i.e. run darcs or mercurial. Raise error message if neither one works.
 
 ;;******** wrap-region stuff ********
 (global-set-key "(" (wrap-region-with-function "(" ")"))

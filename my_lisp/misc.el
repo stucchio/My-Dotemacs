@@ -148,3 +148,27 @@
   )
   (beginning-of-buffer)       ; finish at top
 )
+
+;;;###autoload
+(defmacro catch-and-ignore-error (cmd)
+  "Given a command cmd, will return a function that tries to run command. If errors occur, they are ignored and nil is returned, otherwise either t or the result of cmd is returned."
+  `(condition-case nil
+       (or (,cmd) t)
+     (error nil)
+     )
+  )
+
+;;;###autoload
+(defmacro try-several-commands (cmds failure-message)
+  "Given a list of commands, will return a function that will try to run each of them in sequence."
+  (let ( (error-catching-commands 
+	  (mapcar (lambda (x) (macroexpand `(catch-and-ignore-error ,x))) cmds)
+	  )
+	 )
+    `(lambda ()
+       (interactive)
+       ,(append '(or) error-catching-commands `((message ,failure-message)) )
+       )
+    )
+  )
+
