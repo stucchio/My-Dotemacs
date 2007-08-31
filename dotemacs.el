@@ -103,7 +103,10 @@
              "Allow this Emacs process to be a server for client processes."
              t)
 (setq gnuserv-frame (selected-frame))
-(gnuserv-start)
+(condition-case nil
+	   (gnuserv-start)
+	   (error (message "Warning! Failed to start gnuserv!"))
+	   )
 
 
 ;Turn on scroll bars, turn off menu-bar and toolbar
