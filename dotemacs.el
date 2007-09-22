@@ -36,7 +36,7 @@
 
 ;;******** tempbuf ********
 ;; Kill buffers after a while, if I don't really want them
-(require 'tempbuf) 
+(require 'tempbuf)
 (add-hook 'Man-mode-hook 'turn-on-tempbuf-mode)              ;;Kill man pages after a while
 (add-hook 'view-mode-hook 'turn-on-tempbuf-mode)             ;;kill view pages after some time
 (add-hook 'apropos-mode-hook 'turn-on-tempbuf-mode)          ;;Kill apropos buffers
@@ -58,7 +58,7 @@
  '(paren-mode (quote sexp) nil (paren))
  '(popcmp-popup-completion nil)
  '(reftex-toc-split-windows-horizontally t)
- '(st-shell-shell-function '(eshell)) 
+ '(st-shell-shell-function '(eshell))
  '(st-shell-name "*eshell*")
  '(paren-mode (quote sexp) nil (paren))
  '(lazy-lock-mode nil nil (lazy-lock))
@@ -195,8 +195,8 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
 ;;******** Global-sexp highlighting *********
-(require 'hl-sexp)
-(global-hl-sexp-mode)
+;(require 'hl-sexp)
+;(global-hl-sexp-mode)
 
 ;;******** Show parenthesis ********
 (show-paren-mode t)
@@ -227,7 +227,7 @@
 (global-auto-revert-mode 1) ;; If file attached to unmodified buffer is changed, revert it transparently.
 
 ;;******** Ediff mode ********
-(ediff-toggle-multiframe) ;;Don't make *Ediff Control Panel* open in new frame, just new window. 
+(ediff-toggle-multiframe) ;;Don't make *Ediff Control Panel* open in new frame, just new window.
 
 ;;******** windmove ********
 (when (fboundp 'windmove-default-keybindings) ;;Turns on windmove mode: shift+arrow keys move between windows.
