@@ -21,6 +21,7 @@
 (add-path "site-lisp/icicles") ;;Icicles, autocompletion
 
 (transient-mark-mode 1)
+(add-hook 'write-file-functions 'delete-trailing-whitespace)
 
 ;;Load my basic customizations
 
