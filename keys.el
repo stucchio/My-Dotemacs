@@ -35,6 +35,10 @@
 
 (global-set-key "\C-x\C-r" 'icicle-recent-file)
 
+
+;;******** Bind M-y to browse-kill-ring ********
+(browse-kill-ring-default-keybindings)
+
 ;;Bind M-j to imenu, for quick navigation.
 (global-set-key "\M-j" 'imenu)
 

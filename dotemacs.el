@@ -236,5 +236,8 @@
 ;;******** make scripts executable ********
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
+;;******** Load browse-kill-ring ********
+(require 'browse-kill-ring)
+
 ;;******** Finally, set key bindings ********
 (load-file (concat emacs-root "keys.el"))
