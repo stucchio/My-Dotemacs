@@ -101,8 +101,8 @@
 
       ("enumerate" ?i "item:" "~\\ref{%s}" item
        (regexp "items?" "Punkte?"))
-      
-      ("equation"  ?e "eq:" "~(\\ref{%s})" t
+
+      ("equation"  ?e "eq:" "~\\eqref{%s}" t
        (regexp "equations?" "eqs?\\." "eqn\\." "Gleichung\\(en\\)?"  "Gl\\."))
       ("eqnarray"  ?e "eq:" nil eqnarray-like)
       
