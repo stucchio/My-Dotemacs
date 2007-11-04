@@ -12,7 +12,7 @@
 (global-set-key [(control f6)] 'st-shell)
 (global-set-key [(M f6)] 'st-shell-go-back)
 ;; F8 controls bookmarks
-(global-set-key [(control f8)] 'bm-toggle) 
+(global-set-key [(control f8)] 'bm-toggle)
 (global-set-key [(f8)] 'bm-next)
 ;; F9 controls evaling lisp
 (global-set-key [(f9)] 'eval-last-sexp)
@@ -23,7 +23,7 @@
 (global-set-key [(control M f11)] 'name-last-kbd-macro) ;One button naming of last kbd macro
 (global-set-key [(f11)] 'call-last-kbd-macro) ;one button calling of kbd macros
 ;; F12 controls darcs
-(global-set-key [(f12)] 
+(global-set-key [(f12)]
 		(try-several-commands (darcsum-no-duplicate-buffer hg-commit-start ) "Failed to run darcs or hg")
 		); Tries to run either darcsum-no-duplicate-buffer or hg-commit start, i.e. run darcs or mercurial. Raise error message if neither one works.
 
@@ -35,7 +35,6 @@
 
 (global-set-key "\C-x\C-r" 'icicle-recent-file)
 
-
 ;;******** Bind M-y to browse-kill-ring ********
 (browse-kill-ring-default-keybindings)
 
@@ -45,7 +44,7 @@
 ;;
 (global-set-key [(M right)] 'forward-sexp)
 (global-set-key [(M left)] 'backward-sexp)
-
+(global-set-key [(M up)] 'backward-up-list)
 
 ;Zapping
 (global-set-key "\M-z" 'zap-up-to-char)
@@ -61,7 +60,6 @@
 (add-hook 'icicle-mode-hook (lambda ()
 			      (define-key icicle-mode-map "\C-c`" nil) ))
 
-
 ;; Tabbar mode
 (global-set-key [(control tab)] 'tabbar-forward-tab)
 (global-set-key [(control M tab)] 'switch-to-buffer)
@@ -69,11 +67,11 @@
 ;; LaTeX-mode
 
 (add-hook 'LaTeX-mode-hook (lambda ()
-			     (define-key LaTeX-mode-map [(insert)] 
+			     (define-key LaTeX-mode-map [(insert)]
 			       'LaTeX-insert-or-change-equation-environment-interactive
 			       )))
 (add-hook 'LaTeX-mode-hook (lambda ()
-			     (define-key LaTeX-mode-map [(control insert)] 
+			     (define-key LaTeX-mode-map [(control insert)]
 			       'LaTeX-insert-or-change-theorem-environment-interactive
 			       )))
 
