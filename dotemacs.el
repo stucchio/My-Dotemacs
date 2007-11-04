@@ -199,6 +199,9 @@
 ;(require 'hl-sexp)
 ;(global-hl-sexp-mode)
 
+(global-hl-line-mode 1)
+(set-face-background 'hl-line "#eff")
+
 ;;******** Show parenthesis ********
 (show-paren-mode t)
 
