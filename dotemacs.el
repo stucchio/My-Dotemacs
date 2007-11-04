@@ -33,6 +33,7 @@
 ;;********* st-shell stuff
 (require 'st-shell)
 (defalias 'emacs 'find-file) ;;This binds the command emacs to find-file. Useful in eshell.
+(defalias 'more 'find-file-temporary) ;;Binds command more to find-file-temporary. Opens file in split window.
 
 ;;******** tempbuf ********
 ;; Kill buffers after a while, if I don't really want them
