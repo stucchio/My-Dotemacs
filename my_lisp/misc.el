@@ -67,12 +67,6 @@
 
 
 ;;;###autoload
-(icicle-define-command
-   icicle-recent-file "Open recently used files."
-   find-file
-   "Recent files: " recentf-list )
-
-;;;###autoload
 (defun kill-buffer-eventually ()
   "Thus function kills a buffer eventually."
   (progn
