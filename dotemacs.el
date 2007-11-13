@@ -231,7 +231,9 @@
 (global-auto-revert-mode 1) ;; If file attached to unmodified buffer is changed, revert it transparently.
 
 ;;******** Ediff mode ********
-(ediff-toggle-multiframe) ;;Don't make *Ediff Control Panel* open in new frame, just new window.
+(if window-system
+    (ediff-toggle-multiframe) ;;Don't make *Ediff Control Panel* open in new frame, just new window.
+  )
 
 ;;******** windmove ********
 (when (fboundp 'windmove-default-keybindings) ;;Turns on windmove mode: shift+arrow keys move between windows.
