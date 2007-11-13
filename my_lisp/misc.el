@@ -2,7 +2,7 @@
 (defun zap-up-to-char (arg char) ;defined in xemacs, but not emacs
   "Kill up to the ARG'th occurrence of CHAR."
   (interactive "p\ncDelete to: ")
-  (kill-region (point) 
+  (kill-region (point)
 	       (progn (search-forward (char-to-string char) nil nil arg)
 		      (backward-char)
 		      (point))))
@@ -20,11 +20,11 @@
   (zap-to-char -1 c)
   )
 
-;;;###autoload 
+;;;###autoload
 (defun backward-zap-up-to-char (arg c)
   "Just like zap-up-to-char, except works backwards."
   (interactive "p\ncBackward Zap up to Char: ")
-  (kill-region (point) 
+  (kill-region (point)
 	       (progn (search-backward (char-to-string c) nil nil arg)
 		      (forward-char)
       (point)))
@@ -65,7 +65,6 @@
        (lisp-files-in-directory d)
      ))
 
-
 ;;;###autoload
 (defun kill-buffer-eventually ()
   "Thus function kills a buffer eventually."
@@ -81,17 +80,17 @@
       ;; Never kill *scratch*
       nil)
      ((and buffer-file-name (buffer-modified-p))
-      ;; If there's a file associated with the buffer, 
+      ;; If there's a file associated with the buffer,
       ;; make sure it's saved
-      (y-or-n-p (format "Buffer %s modified; kill anyway? " 
+      (y-or-n-p (format "Buffer %s modified; kill anyway? "
 			(buffer-name))))
      ((get-buffer-process buffer)
-      ;; If there's a process associated with the buffer, 
+      ;; If there's a process associated with the buffer,
       ;; make sure it's dead
       (y-or-n-p (format "Process %s active; kill anyway? "
 			(process-name (get-buffer-process buffer)))))
      (t t))))
- 
+
 ;;;###autoload
 (defun kill-buffer-shortly (&optional un-tempbufify)
   "This function will turn on tempbuf mode in a buffer, and then bury it. The buffer will be killed shortly. When called with a non-nil argument, it will un-tempbuffer-ify the current buffer. (i.e. imagine we tempbufified something, and buried it."
@@ -101,7 +100,7 @@
 	(turn-off-tempbuf-mode)
 	(message (concat "Saved buffer " (buffer-name (current-buffer)) " from imminent deletion."))
 	)
-    (if (ask-before-killing-buffer) 
+    (if (ask-before-killing-buffer)
 	(progn
 	  (turn-on-tempbuf-mode)
 	  (message (concat "Buffer " (buffer-name (current-buffer)) " has been buried, will expire shortly.") )
@@ -155,7 +154,7 @@
 ;;;###autoload
 (defmacro try-several-commands (cmds failure-message)
   "Given a list of commands, will return a function that will try to run each of them in sequence."
-  (let ( (error-catching-commands 
+  (let ( (error-catching-commands
 	  (mapcar (lambda (x) (macroexpand `(catch-and-ignore-error ,x))) cmds)
 	  )
 	 )
@@ -165,4 +164,3 @@
        )
     )
   )
-
