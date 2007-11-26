@@ -66,6 +66,7 @@
  '(tempbuf-minimum-timeout 60)
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
  '(eshell-directory-name (concat emacs-root "eshell-custom/") )
+ '(eshell-save-history-on-exit t)
 )
 
 ;;******** eshell custom ********
