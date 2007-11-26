@@ -80,8 +80,17 @@
 			     (define-key LaTeX-mode-map "$" (wrap-region-with-function "$" "$") )))
 
 ;; Eshell-mode
-
 (add-hook 'eshell-mode-hook
 	  '(lambda () (define-key eshell-mode-map "\C-a" 'eshell-maybe-bol)))
 (add-hook 'eshell-mode-hook
 	  '(lambda () (define-key eshell-mode-map [(control f4)] '(lambda () (interactive) (kill-buffer (current-buffer))))))
+
+;; Darcsum-mode
+(add-hook 'darcsum-mode-hook
+	  '(lambda () (define-key darcsum-mode-map [(control f4)] '(lambda () (interactive)
+								     (progn
+								       (kill-buffer (get-buffer-create "*darcs comment*"))
+								       (kill-buffer (current-buffer))
+								       )))))
+(add-hook 'darcsum-comment-mode-hook
+	  '(lambda () (define-key darcsum-comment-mode-map [(control f4)] '(lambda () (interactive) (kill-buffer (current-buffer))))))
