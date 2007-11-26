@@ -144,10 +144,10 @@
 (load "auctex.el" nil t t)
 
 (require 'xdvi-search)
-(load-file (concat emacs-root "my_lisp/auctex-custom.el"))
 (require 'bibtex)
 (add-hook 'LaTeX-mode-hook (lambda () (ispell-minor-mode) ))
 (add-hook 'LaTeX-mode-hook (lambda () (load "reftex-custom")))
+(load-file (concat emacs-root "my_lisp/auctex-custom.el"))
 
 ;Load misc stuff
 (load-file (concat emacs-root "my_lisp/misc.el"))
