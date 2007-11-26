@@ -41,10 +41,10 @@
 ;;   to jump forward and backward to the next bookmark.
 ;;
 ;;   Features:
-;;    - Different wrapping modes, see `bm-wrap-search' and `bm-wrap-immediately'. 
+;;    - Different wrapping modes, see `bm-wrap-search' and `bm-wrap-immediately'.
 ;;      Use `bm-toggle-wrapping' to turn wrapping on/off.
 ;;
-;;    - Setting bookmarks based on a regexp, see `bm-bookmark-regexp' and 
+;;    - Setting bookmarks based on a regexp, see `bm-bookmark-regexp' and
 ;;      `bm-bookmark-regexp-region'.
 ;;
 ;;    - Bookmark line based on line number, see `bm-bookmark-line'.
@@ -54,7 +54,7 @@
 ;;    - Persistent bookmarks (see below). Use `bm-toggle-buffer-persistence'
 ;;      to enable/disable persistent bookmarks (buffer local).
 ;;
-;;    - List bookmarks with annotations and context in a separate buffer, 
+;;    - List bookmarks with annotations and context in a separate buffer,
 ;;      see `bm-show'.
 ;;
 ;;    - Annotate bookmarks, see `bm-bookmark-annotate' and `bm-bookmark-show-annotation'.
@@ -160,12 +160,12 @@
 ;;
 ;;   The `after-save-hook' and `after-revert-hook' is not necessary to
 ;;   use to achieve persistence, but it makes the bookmark data in
-;;   repository more connected to the file state. 
+;;   repository more connected to the file state.
 ;;
 ;;   The `after-revert-hook' might cause trouble when using packages
 ;;   that automatically reverts the buffer (like vc after a check-in).
 ;;   This can easily be avoided if the package provides a hook that is
-;;   called before the buffer is reverted (like `vc-before-checkin-hook'). 
+;;   called before the buffer is reverted (like `vc-before-checkin-hook').
 ;;   Then new bookmarks can be saved before the buffer is reverted.
 ;;
 ;;   ;; make sure bookmarks is saved before check-in (and revert-buffer)
@@ -201,7 +201,6 @@
   (unless (fboundp 'overlay-lists)
     (require 'overlay)))
 
-
 (defconst bm-version "$Id: bm.el,v 1.31 2006/03/06 20:33:33 jood Exp $"
   "RCS version of bm.el")
 
@@ -215,19 +214,16 @@
   :group 'editing
   :prefix "bm-")
 
-
 (defcustom bm-face 'bm-face
   "*Specify face used to highlight the current line."
   :type 'face
   :group 'bm)
-
 
 (defcustom bm-persistent-face 'bm-persistent-face
   "*Specify face used to highlight the current line when bookmark is
 persistent."
   :type 'face
   :group 'bm)
-
 
 (defcustom bm-priority 0
   "*Specify bm overlay priority.
@@ -237,32 +233,29 @@ over overlays with lower priority.  *Don't* use negative number."
   :type 'integer
   :group 'bm)
 
-
 (defface bm-face
-  '((((class grayscale) 
+  '((((class grayscale)
       (background light)) (:background "DimGray"))
-    (((class grayscale) 
+    (((class grayscale)
       (background dark))  (:background "LightGray"))
-    (((class color) 
-      (background light)) (:foreground "White" :background "DarkOrange1"))
-    (((class color) 
+    (((class color)
+      (background light)) (:foreground "Black" :background "DarkOrange1"))
+    (((class color)
       (background dark))  (:foreground "Black" :background "DarkOrange1")))
   "Face used to highlight current line."
   :group 'bm)
 
-
 (defface bm-persistent-face
-  '((((class grayscale) 
+  '((((class grayscale)
       (background light)) (:background "DimGray"))
-    (((class grayscale) 
+    (((class grayscale)
       (background dark))  (:background "LightGray"))
-    (((class color) 
+    (((class color)
       (background light)) (:foreground "White" :background "DarkBlue"))
-    (((class color) 
+    (((class color)
       (background dark))  (:foreground "White" :background "DarkBlue")))
   "Face used to highlight current line if bookmark is persistent."
   :group 'bm)
-
 
 (defcustom bm-annotate-on-create nil
   "*Specify if bookmarks must be annotated when created.
@@ -272,7 +265,6 @@ t, always ask for annotation when creating a bookmark."
   :type 'boolean
   :group 'bm)
 
-
 (defcustom bm-wrap-search t
  "*Specify if bookmark search should wrap.
 
@@ -280,7 +272,6 @@ nil, don't wrap when there are no more bookmarks.
 t, wrap."
  :type 'boolean
  :group 'bm)
-
 
 (defcustom bm-wrap-immediately t
   "*Specify if a wrap should be announced or not. Has only effect when
@@ -291,23 +282,20 @@ t, don't announce."
   :type 'boolean
   :group 'bm)
 
-
 (defcustom bm-recenter nil
   "*Specify if the buffer should be recentered around the bookmark
 after a `bm-next' or a `bm-previous'."
   :type 'boolean
   :group 'bm)
 
-
 (defcustom bm-goto-position t
   "*Specify if the `bm-next' and `bm-previous' should goto start of
 line or to the position where the bookmark was set.
 
-nil, goto start of line. 
+nil, goto start of line.
 t, goto position on line."
   :type 'boolean
   :group 'bm)
-
 
 (defcustom bm-repository-file (expand-file-name "~/.bm-repository")
   "*Filename to store persistent bookmarks across sessions. If nil the
@@ -315,12 +303,10 @@ repository will not be persistent.."
   :type 'string
   :group 'bm)
 
-
 (defcustom bm-repository-size 100
   "*Size of persistent repository. If nil then there if no limit."
   :type 'integer
   :group 'bm)
-
 
 (defcustom bm-buffer-persistence nil
   "*Specify if bookmarks in a buffer should be persistent. Buffer
@@ -332,7 +318,6 @@ t, save bookmarks."
   :group 'bm)
 (make-variable-buffer-local 'bm-buffer-persistence)
 
-
 (defcustom bm-restore-on-mismatch nil
   "*DEPRECATED. Specify if bookmarks should be restored when there is
 a buffer size mismatch. Only in use for version 1 of repositoty.
@@ -342,11 +327,10 @@ t, restore if possible."
   :type 'boolean
   :group 'bm)
 
-
 (defvar bm-restore-repository-on-load nil
   "Specify if repository should be restored when loading bm.
 
-nil, don't restore repository on load. 
+nil, don't restore repository on load.
 t, restore repository when this file is loaded. This must be set
 before bm is loaded. ")
 
@@ -371,16 +355,13 @@ before bm is loaded. ")
 (defvar bm-show-format-string "%5d %-20s %s"
   "The bookmark line format.")
 
-
-
 (defun bm-customize nil
   "Customize bm group"
   (interactive)
   (customize-group 'bm))
 
-
 (defun bm-bookmark-annotate (&optional bookmark annotation)
-  "Annotate bookmark at point or the bookmark specified with the 
+  "Annotate bookmark at point or the bookmark specified with the
 optional parameter."
   (interactive)
   (if (null bookmark)
@@ -389,11 +370,10 @@ optional parameter."
   (if (bm-bookmarkp bookmark)
       (progn
         (if (null annotation)
-            (setq annotation (read-from-minibuffer 
+            (setq annotation (read-from-minibuffer
                               "Annotation: " nil nil nil 'bm-annotation-history)))
         (overlay-put bookmark 'annotation annotation))
     (if (interactive-p) (message "No bookmark at point"))))
-    
 
 (defun bm-bookmark-show-annotation (&optional bookmark)
   "Show bookmark annotation for the bookmark at point or the bookmark
@@ -409,7 +389,6 @@ specified with the optional parameter."
               (message annotation)
             (message "No annotation for current bookmark."))))
     (message "No bookmark at current line.")))
-
 
 (defun bm-bookmark-add (&optional annotation)
   "Add bookmark at current line. Do nothing if bookmark is
@@ -434,7 +413,6 @@ present."
 	(overlay-put bookmark 'insert-in-front-hooks '(bm-freeze-in-front))
 	(overlay-put bookmark 'insert-behind-hooks '(bm-freeze)))
       bookmark)))
-
 
 (defun bm-bookmark-remove (&optional bookmark)
   "Remove bookmark at point or the bookmark specified with the
@@ -502,7 +480,7 @@ postion."
 
 (defun bm-bookmarkp (bookmark)
   "Return the bookmark if overlay is a bookmark."
-  (if (and (overlayp bookmark) 
+  (if (and (overlayp bookmark)
 	   (string= (overlay-get bookmark 'category) "bm"))
       bookmark
     nil))
@@ -624,13 +602,13 @@ A bookmark implementation of `overlay-list'."
 (defun bm-bookmark-regexp-region (beg end)
   "Set bookmark on lines that matches regexp in region."
   (interactive "r")
-  (let ((regexp (read-from-minibuffer 
+  (let ((regexp (read-from-minibuffer
 		 "regexp: " nil nil nil 'bm-regexp-history))
         (annotation nil)
         (count 0))
     (save-excursion
-      (if bm-annotate-on-create 
-          (setq annotation (read-from-minibuffer 
+      (if bm-annotate-on-create
+          (setq annotation (read-from-minibuffer
                             "Annotation: " nil nil nil 'bm-annotation-history)))
 
       (goto-char beg)
@@ -646,11 +624,11 @@ A bookmark implementation of `overlay-list'."
   (interactive "nSet a bookmark on line: ")
   (let ((lines (count-lines (point-min) (point-max))))
     (if (> line lines)
-	(message "Unable to set bookmerk at line %d. Only %d lines in buffer" 
+	(message "Unable to set bookmerk at line %d. Only %d lines in buffer"
 		 line lines)
       (goto-line line)
       (bm-bookmark-add))))
-  
+
 
 (defun bm-show nil
   "Show bookmarked lines to the *bm-bookmarks* buffer."
@@ -671,9 +649,9 @@ A bookmark implementation of `overlay-list'."
 		   (append
 		    ;; xemacs has the list sorted after buffer position, while
 		    ;; gnu emacs list is sorted relative to current position.
-		    (if (featurep 'xemacs) 
-			(car bookmarks) 
-		      (reverse (car bookmarks))) 
+		    (if (featurep 'xemacs)
+			(car bookmarks)
+		      (reverse (car bookmarks)))
 		    (cdr bookmarks)) "")))
       ;; set output buffer
       (with-output-to-temp-buffer "*bm-bookmarks*"
@@ -684,7 +662,6 @@ A bookmark implementation of `overlay-list'."
 	(setq buffer-read-only t)
 	))))
 
-
 (defun bm-show-goto-bookmark nil
   "Goto the bookmark on current line in the *bm-bookmarks* buffer."
   (interactive)
@@ -694,7 +671,6 @@ A bookmark implementation of `overlay-list'."
 	(message "No bookmark at this line.")
       (pop-to-buffer (get-buffer buffer-name))
       (bm-goto bookmark))))
-
 
 (defun bm-show-bookmark nil
   "Show the bookmark on current line in the *bm-bookmarks* buffer."
@@ -708,14 +684,12 @@ A bookmark implementation of `overlay-list'."
 	(bm-goto bookmark)
 	(pop-to-buffer current-buffer)))))
 
-
 (defvar bm-show-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "RET") 'bm-show-goto-bookmark)
     (define-key map (kbd "SPC") 'bm-show-bookmark)
     map)
   "Keymap for `bm-show-mode'.")
-
 
 (defun bm-show-mode nil
   "Major mode for `bm-show' buffers."
@@ -724,7 +698,6 @@ A bookmark implementation of `overlay-list'."
   (setq major-mode 'bm-show-mode)
   (setq mode-name "bm-bookmarks")
   (use-local-map bm-show-mode-map))
-
 
 (defun bm-toggle-buffer-persistence nil
   "Toggle if a buffer has persistent bookmarks or not."
@@ -745,12 +718,11 @@ A bookmark implementation of `overlay-list'."
     (mapc '(lambda (bookmark)
 	     (if bm-buffer-persistence
 		 (overlay-put bookmark 'face bm-persistent-face)
-	       (overlay-put bookmark 'face bm-face))) 
+	       (overlay-put bookmark 'face bm-face)))
 	  (append (car bookmarks) (cdr bookmarks)))))
 
-
 (defun bm-get-position-from-context (bookmark)
-  "Get position of bookmark based on context. If we find the context before the old 
+  "Get position of bookmark based on context. If we find the context before the old
 bookmark we use it, otherwise we use the context after."
   (save-excursion
     (let ((point nil)
@@ -762,14 +734,13 @@ bookmark we use it, otherwise we use the context after."
           (progn
             (goto-char (match-beginning 0))
             (setq point (point))))
-        
+
       ;; search backward for context
       (if (and before (search-backward before (point-min) t))
           (progn
             (goto-char (match-end 0))
             (setq point (point))))
       point)))
-
 
 (defun bm-buffer-restore nil
   "Restore bookmarks saved in the repository for the current buffer."
@@ -783,7 +754,6 @@ bookmark we use it, otherwise we use the context after."
                  (bm-buffer-restore-1 buffer-data))))
     (if (interactive-p) (message "No bookmarks in repository.")))))
 
-
 (defun bm-buffer-restore-all nil
   "Restore bookmarks in all buffers."
   (save-current-buffer
@@ -796,19 +766,19 @@ bookmark we use it, otherwise we use the context after."
   "Restore bookmarks from version 1 format."
   (let ((buffer-size-match (equal (point-max) (cdr (assoc 'size buffer-data))))
         (positions (cdr (assoc 'positions buffer-data))))
-      
+
     ;; validate buffer size
     (if (or buffer-size-match
             bm-restore-on-mismatch)
         ;; restore bookmarks
         (let ((pos nil)
               (count 0))
-          
+
           (setq bm-buffer-persistence t) ; enable persistence
           (save-excursion
             (while positions
               (setq pos (car positions))
-              
+
               (if (and (< pos (point-min))
                        (> (point-max) pos))
                   nil		; outside buffer, skip bookmark
@@ -816,63 +786,61 @@ bookmark we use it, otherwise we use the context after."
                 (bm-bookmark-add)
                 (setq count (1+ count))
                 (setq positions (cdr positions)))))
-          
+
           (if buffer-size-match
               (message "%d bookmark(s) restored." count)
             (message "Buffersize mismatch. %d bookmarks restored." count)))
-	
+
       ;; size mismatch
       (bm-repository-remove (buffer-file-name))
       (message "Buffersize mismatch. No bookmarks restored."))))
-
 
 (defun bm-buffer-restore-2 (buffer-data)
   "Restore bookmarks from version 2 format."
   (let ((buffer-size-match (equal (point-max) (cdr (assoc 'size buffer-data))))
         (bookmarks (cdr (assoc 'bookmarks buffer-data))))
-      
+
     ;; restore bookmarks
     (let ((pos nil)
           (count 0))
-      
+
       (setq bm-buffer-persistence t) ; enable persistence
       (save-excursion
         (while bookmarks
-          (let ((pos 
+          (let ((pos
                  (if buffer-size-match
                      (cdr (assoc 'position (car bookmarks)))
                    (bm-get-position-from-context (car bookmarks))))
                 (bm nil)
                 (annotation (cdr (assoc 'annotation (car bookmarks)))))
-            
+
             (if (and (< pos (point-min))
                      (> (point-max) pos))
                 nil		; outside buffer, skip bookmark
               (goto-char pos)
               (setq bm (bm-bookmark-add))
-              (if annotation 
+              (if annotation
                   (bm-bookmark-annotate bm annotation))
               (setq count (1+ count))
               (setq bookmarks (cdr bookmarks))))))
-      
+
       (if buffer-size-match
           (message "%d bookmark(s) restored." count)
         (message "%d bookmark(s) restored based on context." count)))))
-    
 
 (defun bm-buffer-save nil
   "Save all bookmarks to repository."
   (interactive)
   (if bm-buffer-persistence
-      (let ((buffer-data 
-	     (list 
+      (let ((buffer-data
+	     (list
 	      (buffer-file-name)
               (cons 'version bm-bookmark-repository-version)
 	      (cons 'size (point-max))
 	      (cons 'timestamp (current-time))
-              (cons 'bookmarks 
+              (cons 'bookmarks
                     (let ((bookmarks (bm-lists)))
-                      (mapcar 
+                      (mapcar
                        '(lambda (bm)
                           (let ((position (marker-position (overlay-get bm 'position))))
                             (list
@@ -895,15 +863,14 @@ bookmark we use it, otherwise we use the context after."
 	(bm-repository-remove (car buffer-data))
 
 	;; add if there exists bookmarks
-	(let ((count (length (cdr (assoc 'bookmarks buffer-data))))) 
+	(let ((count (length (cdr (assoc 'bookmarks buffer-data)))))
 	  (if (> count 0)
 	      (bm-repository-add buffer-data))
 	  (if (interactive-p)
 	      (message "%d bookmark(s) saved to repository." count))))
-    
+
     (if (interactive-p)
 	(message "Bookmarks in buffer are not persistent."))))
-
 
 (defun bm-buffer-save-all nil
   "Save bookmarks in all buffers."
@@ -913,17 +880,15 @@ bookmark we use it, otherwise we use the context after."
 	     (bm-buffer-save))
 	  (buffer-list))))
 
-
 (defun bm-repository-add (data)
   "Add data for a buffer to the repository."
   ;; appending to list, makes the list sorted by time
   (setq bm-repository (append bm-repository (list data)))
-  
+
   ;; remove oldest element if repository is too large
   (while (and bm-repository-size
 	      (> (length bm-repository) bm-repository-size))
 	(setq bm-repository (cdr bm-repository))))
-
 
 (defun bm-repository-remove (key)
   "Remove data for a buffer from the repository."
@@ -938,19 +903,17 @@ bookmark we use it, otherwise we use the context after."
 	(setq bm-repository (cdr bm-repository)))
       (setq bm-repository repository))))
 
-
 (defun bm-repository-load (&optional file)
   "Load the repository from the file specified or to `bm-repository-file'."
   (if (null file)
       (setq file bm-repository-file))
-  (if (and file 
+  (if (and file
 	   (file-readable-p file))
       (let ((repository-buffer (find-file-noselect file)))
 	(setq bm-repository (with-current-buffer repository-buffer
 			      (goto-char (point-min))
 			      (read (current-buffer))))
 	(kill-buffer repository-buffer))))
-
 
 (defun bm-repository-save (&optional file)
   "Save the repository to the file specified or to `bm-repository-file'."
@@ -967,12 +930,10 @@ bookmark we use it, otherwise we use the context after."
 	  (save-buffer))
 	(kill-buffer repository-buffer))))
 
-
 (defun bm-repository-clear nil
   "Clear the repository."
   (interactive)
   (setq bm-repository nil))
-
 
 (defun bm-load-and-restore nil
   "Load bookmarks from persistent repository and restore them."
@@ -980,18 +941,15 @@ bookmark we use it, otherwise we use the context after."
   (bm-repository-load)
   (bm-buffer-restore-all))
 
-
 (defun bm-save nil
   "Save bookmarks to persistent reposity."
   (interactive)
   (bm-buffer-save-all)
   (bm-repository-save))
-  
 
 ;; restore repository on load
 (if bm-restore-repository-on-load
     (bm-repository-load))
-
 
 ;; bm.el ends here
 (provide 'bm)
