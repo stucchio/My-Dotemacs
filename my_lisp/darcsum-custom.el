@@ -5,7 +5,7 @@
     (let ( (darcs-buffer-name (concat "*darcs-" working-dir "*")) )
       (let ( (darcs-buffer (get-buffer darcs-buffer-name)) )
 	(if darcs-buffer
-	    (progn 
+	    (progn
 	      (switch-to-buffer darcs-buffer)
 	      (darcsum-refresh)
 	      )
@@ -45,7 +45,7 @@
 			    (make-variable-buffer-local 'darcsum-pristine-buffer)
 			    (setq pre-darcsum-ediff-window-configuration old-window-configuration)
 			    (make-local-hook 'ediff-quit-hook)
-			    (add-hook 'ediff-quit-hook (lambda () 
+			    (add-hook 'ediff-quit-hook (lambda ()
 							 (set-window-configuration pre-darcsum-ediff-window-configuration)
 							  )
 				      )
