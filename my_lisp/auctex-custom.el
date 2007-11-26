@@ -108,6 +108,8 @@
     )
   )
 
+(require 'tex-buf)
+
 (defun TeX-run-command (name command file)
   "Create a process for NAME using COMMAND to process FILE.
 Return the new process. This command is already defined in tex-buf.el (part of auctex), but we redefine it here to make the buffer used into a temporary buffer."
