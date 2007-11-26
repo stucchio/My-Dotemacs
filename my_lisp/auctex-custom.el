@@ -1,5 +1,5 @@
 ; Enable parse on load.
-(setq TeX-parse-self t) 
+(setq TeX-parse-self t)
 
 ;auctex customizations
 (custom-set-variables
@@ -22,7 +22,7 @@
 
 ;sets bookmark jump to call an xdvi forward search immediately afterward, in latex-mode only
 (add-hook 'LaTeX-mode-hook (lambda ()
-			     (local-set-key "\C-xrb" 
+			     (local-set-key "\C-xrb"
 					    '(bookmark-jump
 					      xdvi-jump-to-line
 					      )
@@ -46,7 +46,7 @@
     (progn
       (require 'kdvi-search) ;Load kdvi-search
       (add-hook 'LaTeX-mode-hook (lambda () (local-set-key "\C-q" 'kdvi-jump-to-line)))
-      
+
       (defun stucchio-bookmark-jump-with-kdvi-jump ()
 	"Does bookmark-jump followed by kdvi-jump-to-line."
 	(interactive)
@@ -73,7 +73,7 @@
   (let ( (new-environment (cdr (assoc (LaTeX-current-environment) environments-to-multi-lineify )))
 	)
       (if new-environment
-	  (progn 
+	  (progn
 	    (LaTeX-modify-environment new-environment)
 	    (message (concat "Changed environment to " new-environment))
 	    ))))
@@ -96,7 +96,7 @@
   "Inserts or changes latex environments. Checks if the current environment is a member of possible-environments. If so, changes the environment to the nesxt environment listed in  LaTeX-environments-to-insert-interactively."
   (let ( (env-list (member (LaTeX-current-environment) possible-environments))
 	 )
-    (if env-list ;;If current environment a member of LaTeX-environments-to-insert-interactively, 
+    (if env-list ;;If current environment a member of LaTeX-environments-to-insert-interactively,
 	(let ((env-list-tail (cdr env-list)))
 	  (if env-list-tail
 	      (LaTeX-modify-environment (car env-list-tail)) ;;then change environment to next environment in list
@@ -108,7 +108,46 @@
     )
   )
 
-
-
-
-
+(defun TeX-run-command (name command file)
+  "Create a process for NAME using COMMAND to process FILE.
+Return the new process. This command is already defined in tex-buf.el (part of auctex), but we redefine it here to make the buffer used into a temporary buffer."
+  (let ((default TeX-command-default)
+	(buffer (TeX-process-buffer-name file))
+	(dir (TeX-master-directory))
+	(command-buff (current-buffer)))
+    (TeX-process-check file)		; Check that no process is running
+    (setq-default TeX-command-buffer command-buff)
+    (get-buffer-create buffer)
+    (set-buffer buffer)
+    (erase-buffer)
+    (turn-on-tempbuf-mode)
+    (set (make-local-variable 'line-number-display-limit) 0)
+    (setq TeX-output-extension nil)
+    (set (make-local-variable 'TeX-command-buffer) command-buff)
+    (if dir (cd dir))
+    (insert "Running `" name "' on `" file "' with ``" command "''\n")
+    (setq mode-name name)
+    (if TeX-show-compilation
+	(display-buffer buffer)
+      (message "Type `C-c C-l' to display results of compilation."))
+    (setq TeX-parse-function 'TeX-parse-command)
+    (setq TeX-command-default default)
+    (setq TeX-sentinel-function
+	  (lambda (process name)
+	    (message (concat name ": done."))))
+    (if TeX-process-asynchronous
+	(let ((process (start-process name buffer TeX-shell
+				      TeX-shell-command-option command)))
+	  (if TeX-after-start-process-function
+	      (funcall TeX-after-start-process-function process))
+	  (TeX-command-mode-line process)
+	  (set-process-filter process 'TeX-command-filter)
+	  (set-process-sentinel process 'TeX-command-sentinel)
+	  (set-marker (process-mark process) (point-max))
+	  (setq compilation-in-progress (cons process compilation-in-progress))
+	  process)
+      (setq mode-line-process ": run")
+      (set-buffer-modified-p (buffer-modified-p))
+      (sit-for 0)				; redisplay
+      (call-process TeX-shell nil buffer nil
+		    TeX-shell-command-option command))))
