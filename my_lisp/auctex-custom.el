@@ -153,3 +153,54 @@ Return the new process. This command is already defined in tex-buf.el (part of a
       (sit-for 0)				; redisplay
       (call-process TeX-shell nil buffer nil
 		    TeX-shell-command-option command))))
+
+(defun TeX-help-error (error output runbuffer)
+  "Print ERROR in context OUTPUT from RUNBUFFER in another window."
+
+  (let ((old-buffer (current-buffer))
+	(log-file (with-current-buffer runbuffer
+		    (with-current-buffer TeX-command-buffer
+		      (expand-file-name (TeX-active-master "log")))))
+	(TeX-error-pointer 0))
+
+    ;; Find help text entry.
+    (while (not (string-match (car (nth TeX-error-pointer
+					TeX-error-description-list))
+			      error))
+      (setq TeX-error-pointer (+ TeX-error-pointer 1)))
+
+    (pop-to-buffer (get-buffer-create "*TeX Help*"))
+    (erase-buffer)
+    (turn-on-tempbuf-mode)
+    (insert "ERROR: " error
+	    "\n\n--- TeX said ---"
+	    output
+	    "\n--- HELP ---\n"
+	    (save-excursion
+	      (if (and (string= (cdr (nth TeX-error-pointer
+					  TeX-error-description-list))
+				"No help available")
+		       (let* ((log-buffer (find-buffer-visiting log-file)))
+			 (if log-buffer
+			     (progn
+			       (set-buffer log-buffer)
+			       (revert-buffer t t))
+			   (setq log-buffer
+				 (find-file-noselect log-file))
+			   (set-buffer log-buffer))
+			 (auto-save-mode nil)
+			 (setq buffer-read-only t)
+			 (goto-line (point-min))
+			 (search-forward error nil t 1)))
+		  (progn
+		    (re-search-forward "^l.")
+		    (re-search-forward "^ [^\n]+$")
+		    (forward-char 1)
+		    (let ((start (point)))
+		      (re-search-forward "^$")
+		      (concat "From the .log file...\n\n"
+			      (buffer-substring start (point)))))
+		(cdr (nth TeX-error-pointer
+			  TeX-error-description-list)))))
+    (goto-char (point-min))
+    (pop-to-buffer old-buffer)))
