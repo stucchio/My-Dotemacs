@@ -184,10 +184,13 @@ Return the new process. This command is already defined in tex-buf.el (part of a
 			 (if log-buffer
 			     (progn
 			       (set-buffer log-buffer)
-			       (revert-buffer t t))
+			       (revert-buffer t t)
+			       (turn-on-tempbuf-mode))
 			   (setq log-buffer
 				 (find-file-noselect log-file))
-			   (set-buffer log-buffer))
+			   (progn (set-buffer log-buffer)
+				  (turn-on-tempbuf-mode))
+			   )
 			 (auto-save-mode nil)
 			 (setq buffer-read-only t)
 			 (goto-line (point-min))
