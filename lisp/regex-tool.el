@@ -62,55 +62,6 @@
 (defvar regex-tool-mode-abbrev-table)
 (defvar regex-tool-old-window-configuration-temp nil)
 
-(defcustom regex-tool-new-frame t
-  "*Non-nil means that regex-tool will be opened in a new frame. nil means that regex-tool will be opened in current frame."
-  :type 'boolean
-  :group 'regex-tool)
-
-(defsubst regex-tool-remember-window-configuration ()
-  )
-
-(defun regex-tool-create-work-area ()
-  "Create the regex-tool work area. If regex-tool-new-frame is nil, use current frame, otherwise create a new frame."
-  (if regex-tool-new-frame
-      (progn
-	(select-frame (make-frame-command)) ;;Make a new frame
-	(split-window-vertically)
-	(split-window-vertically)
-	(balance-windows)
-	)
-    (progn
-      (setq regex-tool-window-configuration-temp (list (current-window-configuration)
-						       (point-marker))) ;; Remember current window configuration
-      (delete-other-windows) ;;Now setup regex-tool window configuration
-      (split-window-vertically)
-      (split-window-vertically)
-      (balance-windows)
-      )
-    )
-  )
-
-(defun regex-tool-destroy-work-area ()
-  "Destroys the regex-tool work area, since we are done with it now."
-  (progn ;; First kill the regex-tool buffers.
-    (kill-buffer regex-expr-buffer)
-    (kill-buffer regex-text-buffer)
-    (kill-buffer regex-group-buffer)
-    (if regex-tool-new-frame
-	(progn  ;;If we created a new frame, destroy it.
-	  (delete-frame)
-	  )
-      (progn ;; If we used the current frame, restore the old window configuration (if possible).
-	(if regex-tool-window-configuration-temp
-	    (progn
-	      (set-window-configuration (car regex-tool-window-configuration-temp))
-	      (goto-char (cadr regex-tool-window-configuration-temp)))
-	  (error "No window configuration to restore."))
-	)
-      )
-    )
-  )
-
 (define-derived-mode regex-tool-mode text-mode "Regex Tool"
   "This is regex-tool mode."
   (define-key regex-tool-mode-map [(control ?c) (control ?c)]
@@ -133,6 +84,11 @@ The `perl' backend talks to a perl subprocess to do the handling.\"
   :type '(choice
 	  (const :tag "Emacs" emacs)
 	  (const :tag "Perl" perl))
+  :group 'regex-tool)
+
+(defcustom regex-tool-new-frame t
+  "*Non-nil means that regex-tool will be opened in a new frame. nil means that regex-tool will be opened in current frame."
+  :type 'boolean
   :group 'regex-tool)
 
 (defun regex-render-perl (regex sample)
@@ -159,6 +115,47 @@ __DATA__
 (defvar regex-expr-buffer nil)
 (defvar regex-text-buffer nil)
 (defvar regex-group-buffer nil)
+
+(defun regex-tool-create-work-area ()
+  "Create the regex-tool work area. If regex-tool-new-frame is nil, use current frame, otherwise create a new frame."
+  (if regex-tool-new-frame
+      (progn
+	(select-frame (make-frame-command)) ;;Make a new frame
+	(split-window-vertically)
+	(split-window-vertically)
+	(balance-windows)
+	)
+    (progn
+      (setq regex-tool-window-configuration-temp (list (current-window-configuration)
+						       (point-marker))) ;; Remember current window configuration
+      (delete-other-windows) ;;Now setup regex-tool window configuration
+      (split-window-vertically)
+      (split-window-vertically)
+      (balance-windows)
+      )
+    )
+  )
+
+(defun regex-tool-destroy-work-area ()
+  "Destroys the regex-tool work area, since we are done with it now."
+  (progn ;; First kill the regex-tool buffers.
+    (if regex-tool-new-frame
+	(progn  ;;If we created a new frame, destroy it.
+	  (delete-frame)
+	  )
+      (progn ;; If we used the current frame, restore the old window configuration (if possible).
+	(if regex-tool-window-configuration-temp
+	    (progn
+	      (set-window-configuration (car regex-tool-window-configuration-temp))
+	      (goto-char (cadr regex-tool-window-configuration-temp)))
+	  (error "No window configuration to restore."))
+	)
+      )
+    (kill-buffer regex-expr-buffer)
+    (kill-buffer regex-text-buffer)
+    (kill-buffer regex-group-buffer)
+    )
+  )
 
 (defun regex-tool ()
   (interactive)
