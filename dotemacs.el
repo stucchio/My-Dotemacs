@@ -72,6 +72,10 @@
 ;;******** eshell custom ********
 (load-file (concat emacs-root "my_lisp/eshell-custom.el"))
 
+;;******** regex-tool ********
+(load-file (concat emacs-root "lisp/regex-tool.el"))
+(custom-set-variables '(regex-tool-new-frame nil))
+
 ;;******** tabbar ********
 
 (require 'tabbar)
