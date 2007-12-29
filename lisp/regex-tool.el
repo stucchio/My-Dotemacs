@@ -70,6 +70,10 @@
     'regex-tool-quit)
   (define-key regex-tool-mode-map [(control ?c) (control ?i)]
     'regex-tool-insert-old-buffer-contents)
+  (define-key regex-tool-mode-map [(control ?c) (control ?n)]
+    'regex-tool-next-match)
+  (define-key regex-tool-mode-map [(control ?c) (control ?p)]
+    'regex-tool-prev-match)
   (add-hook 'after-change-functions 'regex-tool-markup-text nil t))
 
 (defface regex-tool-matched-face
@@ -176,6 +180,12 @@ __DATA__
   (switch-to-buffer regex-group-buffer)
   (other-window 1))
 
+(defun regex-tool-current-regex ()
+  "A utility function which returns the current regex."
+  (with-current-buffer regex-expr-buffer
+    (buffer-string))
+  )
+
 (defun regex-tool-markup-text (&optional beg end len)
   (interactive)
   (let ((regex (with-current-buffer regex-expr-buffer
@@ -226,6 +236,28 @@ __DATA__
 		      (insert ?\n)))))))))
       (with-current-buffer regex-group-buffer
 	(goto-char (point-min))))))
+
+(defun regex-tool-next-match ()
+  "Sends the point in regex-text-buffer to the next match."
+  (interactive)
+  (with-selected-window (get-buffer-window regex-text-buffer)
+    (progn
+      (select-window (get-buffer-window regex-text-buffer))
+      (re-search-forward (regex-tool-current-regex) nil t)
+      )
+    )
+  )
+
+(defun regex-tool-prev-match ()
+  "Sends the point in regex-text-buffer to the next match."
+  (interactive)
+  (with-selected-window (get-buffer-window regex-text-buffer)
+    (progn
+      (select-window (get-buffer-window regex-text-buffer))
+      (re-search-backward (regex-tool-current-regex) nil t)
+      )
+    )
+  )
 
 (defun regex-tool-insert-old-buffer-contents ()
   "Inserts the contents of whatever buffer we were in before calling regex tool into regex-text-buffer."
