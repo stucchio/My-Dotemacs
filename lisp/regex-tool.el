@@ -74,6 +74,10 @@
     'regex-tool-next-match)
   (define-key regex-tool-mode-map [(control ?c) (control ?p)]
     'regex-tool-prev-match)
+  (define-key regex-tool-mode-map "\C-v"
+    'regex-tool-scroll-up-text)
+  (define-key regex-tool-mode-map "\M-v"
+    'regex-tool-scroll-down-text)
   (add-hook 'after-change-functions 'regex-tool-markup-text nil t))
 
 (defface regex-tool-matched-face
@@ -237,27 +241,37 @@ __DATA__
       (with-current-buffer regex-group-buffer
 	(goto-char (point-min))))))
 
-(defun regex-tool-next-match ()
-  "Sends the point in regex-text-buffer to the next match."
-  (interactive)
-  (with-selected-window (get-buffer-window regex-text-buffer)
-    (progn
-      (select-window (get-buffer-window regex-text-buffer))
-      (re-search-forward (regex-tool-current-regex) nil t)
-      )
-    )
+(defmacro def-regex-tool-text-window-operation (opname opdoc work)
+  "This macro defines a function called opname (with docstring opdoc) which will evaluate the form work inside the regex-text-buffer/window."
+  `(defun ,opname ()
+     ,opdoc
+     (interactive)
+     (with-selected-window (get-buffer-window regex-text-buffer)
+       ,work
+       )
+     )
   )
 
-(defun regex-tool-prev-match ()
-  "Sends the point in regex-text-buffer to the next match."
-  (interactive)
-  (with-selected-window (get-buffer-window regex-text-buffer)
-    (progn
-      (select-window (get-buffer-window regex-text-buffer))
-      (re-search-backward (regex-tool-current-regex) nil t)
-      )
-    )
+(def-regex-tool-text-window-operation regex-tool-prev-match
+  "Sends the point in regex-text-buffer to the previous match."
+  (re-search-backward (regex-tool-current-regex) nil t)
   )
+
+(def-regex-tool-text-window-operation regex-tool-next-match
+  "Sends the point in regex-text-buffer to the next match."
+  (re-search-forward (regex-tool-current-regex) nil t)
+  )
+
+(def-regex-tool-text-window-operation regex-tool-scroll-up-text
+  "Scrolls up the text window"
+  (scroll-up)
+  )
+
+(def-regex-tool-text-window-operation regex-tool-scroll-down-text
+  "Scrolls down the text window"
+  (scroll-down)
+  )
+
 
 (defun regex-tool-insert-old-buffer-contents ()
   "Inserts the contents of whatever buffer we were in before calling regex tool into regex-text-buffer."
