@@ -68,6 +68,8 @@
     'regex-tool-markup-text)
   (define-key regex-tool-mode-map [(control ?c) (control ?k)]
     'regex-tool-quit)
+  (define-key regex-tool-mode-map [(control ?c) (control ?i)]
+    'regex-tool-insert-old-buffer-contents)
   (add-hook 'after-change-functions 'regex-tool-markup-text nil t))
 
 (defface regex-tool-matched-face
@@ -115,24 +117,23 @@ __DATA__
 (defvar regex-expr-buffer nil)
 (defvar regex-text-buffer nil)
 (defvar regex-group-buffer nil)
+(defvar regex-old-buffer nil)
 
 (defun regex-tool-create-work-area ()
   "Create the regex-tool work area. If regex-tool-new-frame is nil, use current frame, otherwise create a new frame."
-  (if regex-tool-new-frame
-      (progn
+  (progn
+    (setq regex-old-buffer (current-buffer))
+    (if regex-tool-new-frame
 	(select-frame (make-frame-command)) ;;Make a new frame
-	(split-window-vertically)
-	(split-window-vertically)
-	(balance-windows)
+      (progn ;;Or, use current frame and build new window configuration
+	(setq regex-tool-window-configuration-temp (list (current-window-configuration)
+							 (point-marker))) ;; Remember current window configuration
+	(delete-other-windows) ;;Now setup regex-tool window configuration
 	)
-    (progn
-      (setq regex-tool-window-configuration-temp (list (current-window-configuration)
-						       (point-marker))) ;; Remember current window configuration
-      (delete-other-windows) ;;Now setup regex-tool window configuration
-      (split-window-vertically)
-      (split-window-vertically)
-      (balance-windows)
       )
+    (split-window-vertically)
+    (split-window-vertically)
+    (balance-windows)
     )
   )
 
@@ -225,6 +226,18 @@ __DATA__
 		      (insert ?\n)))))))))
       (with-current-buffer regex-group-buffer
 	(goto-char (point-min))))))
+
+(defun regex-tool-insert-old-buffer-contents ()
+  "Inserts the contents of whatever buffer we were in before calling regex tool into regex-text-buffer."
+  (interactive)
+  (with-current-buffer regex-text-buffer
+    (progn
+      (end-of-buffer)
+      (newline)
+      (insert-buffer regex-old-buffer)
+      )
+    )
+  )
 
 (defun regex-tool-quit ()
   (interactive)
