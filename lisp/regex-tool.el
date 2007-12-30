@@ -2,12 +2,19 @@
 
 ;; Copyright (C) 2007 John Wiegley
 
-;; Author: John Wiegley <johnw@newartisans.com>
+;; Original Author: John Wiegley <johnw@newartisans.com>
+;; Modifications: Chris Stucchio <stucchio@cims.nyu.edu>
 ;; Created: 29 Oct 2007
-;; Modified: 17 Nov 2007
-;; Version: 1.2
+;; Modified: 29 Dec 2007
+;; Version: 1.2.1 (C.S. Branch)
 ;; Keywords: regex languages programming development
-;; X-URL: http://www.newartisans.com/
+;; X-URL: http://cims.nyu.edu/~stucchio/
+;; Webpage of the original author: http://www.newartisans.com/
+
+;; All comments/questions about this version of the file should be
+;; directed to Chris Stucchio. This version is a *branch* of the original
+;; regex-tool.el, so don't bother him about it. To get the original version, go
+;; to the webpage of the original author.
 
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
@@ -26,16 +33,21 @@
 
 ;;; Commentary:
 
-;; This program currently uses frames only.
-;;
 ;; After you type M-x regex-tool, you will see three buffers: *Regex*, *Text*
-;; and *Groups*.  The *Regex* buffer contains your regular expression.  By
-;; default, this tool uses Emacs regular expressions.  If you customize the
-;; variable `regex-tool-backend', you can switch to using full Perl regular
-;; expressions.
+;; and *Groups*, in a new frame. If you want to use the existing frame, set
+;; regex-tool-new-frame to nil. The *Regex* buffer contains your regular
+;; expression.  By default, this tool uses Emacs regular expressions.  If you
+;; customize the variable `regex-tool-backend', you can switch to using full
+;; Perl regular expressions.
 ;;
 ;; The *Text* buffer contains the sample text you want to match against.
-;; Change this however you like.
+;; Change this however you like. The function regex-tool-insert-old-buffer-contents
+;; (bound by default to C-c C-i) will insert the contents of the buffer you
+;; were editing when regex-tool was first called.
+
+;; From within the *Regex* buffer, you can navigate the *Text* frame
+;; using C-v and M-v (scroll up/down). C-n and C-p will move point
+;; in the *Text* buffer to the next and previous matches.
 ;;
 ;; The *Groups* buffer will list out any regular expression groups that match.
 ;; Your regular expression is searched for as many times as it appears in the
@@ -49,6 +61,8 @@
 
 ;; 1.1 - Don't die horribly if the user simply types '^' or '$'
 ;; 1.2 - Include cl.el at compile time
+;; 1.2.1 (C.S. Branch) - Added functions for navigation in *Text* buffer from
+;;       *Regex* buffer, as well as regex-tool-insert-old-buffer-contents.
 
 (eval-when-compile
   (require 'cl))
@@ -70,9 +84,9 @@
     'regex-tool-quit)
   (define-key regex-tool-mode-map [(control ?c) (control ?i)]
     'regex-tool-insert-old-buffer-contents)
-  (define-key regex-tool-mode-map [(control ?c) (control ?n)]
+  (define-key regex-tool-mode-map "\C-n"
     'regex-tool-next-match)
-  (define-key regex-tool-mode-map [(control ?c) (control ?p)]
+  (define-key regex-tool-mode-map "\C-p"
     'regex-tool-prev-match)
   (define-key regex-tool-mode-map "\C-v"
     'regex-tool-scroll-up-text)
