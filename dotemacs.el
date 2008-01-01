@@ -81,6 +81,9 @@
 (require 'tabbar)
 (tabbar-mode 1)
 
+;;******** htmlize ********
+(require 'htmlize)
+
 ;;Set tabbar faces
 (progn
   (set-face-attribute
