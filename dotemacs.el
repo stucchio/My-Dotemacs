@@ -54,27 +54,25 @@
  '(LaTeX-command "latex -src")
  '(LaTeX-enable-toolbar nil)
  '(TeX-electric-sub-and-superscript t)
+ '(eshell-directory-name (concat emacs-root "eshell-custom/"))
+ '(eshell-save-history-on-exit t)
  '(icicle-reminder-prompt-flag 0)
  '(lazy-lock-mode nil t (lazy-lock))
+ '(nxhtml-skip-welcome t)
  '(paren-mode (quote sexp) nil (paren))
  '(popcmp-popup-completion nil)
  '(reftex-toc-split-windows-horizontally t)
- '(st-shell-shell-function '(eshell))
+ '(regex-tool-new-frame nil)
  '(st-shell-name "*eshell*")
- '(paren-mode (quote sexp) nil (paren))
- '(lazy-lock-mode nil nil (lazy-lock))
+ '(st-shell-shell-function (quote (eshell)))
  '(tempbuf-minimum-timeout 60)
- '(uniquify-buffer-name-style (quote forward) nil (uniquify))
- '(eshell-directory-name (concat emacs-root "eshell-custom/") )
- '(eshell-save-history-on-exit t)
-)
+ '(uniquify-buffer-name-style (quote forward) nil (uniquify)))
 
 ;;******** eshell custom ********
 (load-file (concat emacs-root "my_lisp/eshell-custom.el"))
 
 ;;******** regex-tool ********
 (load-file (concat emacs-root "lisp/regex-tool.el"))
-(custom-set-variables '(regex-tool-new-frame nil))
 
 ;;******** tabbar ********
 
