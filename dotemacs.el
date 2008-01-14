@@ -2,6 +2,7 @@
 			   (eq system-type 'gnu/linux)
 			   (eq system-type 'linux)
 			   (eq system-type 'usg-unix-v)
+			   (eq system-type 'darwin)
 			   )
 		       (concat (getenv "HOME") "/emacs/")
 		     "c:/home/stucchio/")
