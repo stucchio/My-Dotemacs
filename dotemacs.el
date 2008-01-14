@@ -125,6 +125,7 @@
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
 (global-font-lock-mode t)
+(setq inhibit-startup-message t)
 
 ;;********* Uniquify buffer names *********
 (require 'uniquify)
