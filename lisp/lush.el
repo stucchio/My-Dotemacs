@@ -33,8 +33,6 @@
   (interactive)
   (inferior-lisp "lush"))
 
-(global-set-key "\C-xg" 'goto-line)
-
 ;; this file contains useful definitions for emacs
 
 ;; detection
