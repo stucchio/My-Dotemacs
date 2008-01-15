@@ -140,6 +140,9 @@
 ;;********* C-mode *********
 (load "c-custom")
 
+;;******** Lush ********
+(load (concat emacs-root "lisp/lush.el"))
+
 ;;********* AUCTEX *********
 ;; For auctex
 
