@@ -133,6 +133,15 @@
 
 ;; Icicles
 (load "icicles-custom")
+;;Build a gigantic regexp to match a bunch of buffers I don't care about.
+(setq icicle-buffer-no-match-regexp (mapconcat 'identity  ;; We will take a list of sub-regexp's, and \| or them together
+					       '("\*Messages\*" ;;A list of
+						 "\*Completions\*"
+						 "\*xdvi output\*"
+						 "\*.*+ output\*"
+						 )
+					       "\\|" ))
+
 
 ;Load bm.el, bookmarking facility.
 (load "bm")
