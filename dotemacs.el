@@ -20,6 +20,7 @@
 (add-path "site-lisp/gnuplot-mode") ;;Gnuplot support
 (add-path "site-lisp/python-mode") ;;Python mode
 (add-path "site-lisp/icicles") ;;Icicles, autocompletion
+(add-path "site-lisp/slime-2.0") ;;Slime lisp mode
 
 (transient-mark-mode 1)
 (add-hook 'write-file-functions 'delete-trailing-whitespace)
@@ -52,6 +53,10 @@
 (add-hook 'darcsum-mode-hook 'turn-on-tempbuf-mode)
 
 (custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
  '(LaTeX-command "latex -src")
  '(LaTeX-enable-toolbar nil)
  '(TeX-electric-sub-and-superscript t)
@@ -193,6 +198,13 @@
 (setq auto-mode-alist (cons '("\\.ml\\w?" . tuareg-mode) auto-mode-alist))
 (autoload 'tuareg-mode "tuareg" "Major mode for editing Caml code" t)
 (autoload 'camldebug "camldebug" "Run the Caml debugger" t)
+
+;;********* Slime mode *********
+(setenv "SBCL_HOME" (concat (getenv "HOME") "/lib/sbcl")) ;;Need to set location of slime core path
+(setq inferior-lisp-program (concat (getenv "HOME") "/bin/sbcl"))
+;;(add-to-list 'load-path "the path of your slime directory")
+(require 'slime)
+(slime-setup)
 
 ;;********* Python Mode **********
 (setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
