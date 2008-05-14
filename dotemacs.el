@@ -286,7 +286,7 @@
   (flet ((process-list ())) ad-do-it))
 
 ;;********* Smooth scrolling *********
-(require 'smooth-scrolling)dot
+(require 'smooth-scrolling)
 
 ;;******** Finally, set key bindings ********
 (load-file (concat emacs-root "keys.el"))
