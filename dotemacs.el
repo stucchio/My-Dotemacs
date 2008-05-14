@@ -285,5 +285,8 @@
   "Prevent annoying \"Active processes exist\" query when you quit Emacs."
   (flet ((process-list ())) ad-do-it))
 
+;;********* Smooth scrolling *********
+(require 'smooth-scrolling)dot
+
 ;;******** Finally, set key bindings ********
 (load-file (concat emacs-root "keys.el"))
