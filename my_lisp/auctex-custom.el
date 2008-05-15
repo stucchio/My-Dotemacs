@@ -108,6 +108,23 @@
     )
   )
 
+(defun save-buffer-and-tex ()
+  "This function saves the buffer and automagically runs latex on it."
+  (interactive)
+  (if (buffer-modified-p)
+      (progn
+	(save-buffer)
+	(TeX-command "LaTeX" 'TeX-master-file nil)
+	)
+    (message "(No changes need to be saved)")
+    )
+)
+
+(add-hook 'LaTeX-mode-hook (lambda ()
+			     (local-set-key "\C-x\C-s"
+					    'save-buffer-and-tex
+					    )))
+
 (require 'tex-buf)
 
 (defun TeX-run-command (name command file)
