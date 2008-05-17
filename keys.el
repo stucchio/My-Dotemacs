@@ -8,9 +8,9 @@
 (global-set-key [(f5)] 'bubble-buffer-next)
 (global-set-key [(control f5)] 'bubble-buffer-previous)
 ;;F6 controls the shell
-(global-set-key [(f6)] 'st-shell-switch)
-(global-set-key [(control f6)] 'st-shell)
-(global-set-key [(M f6)] 'st-shell-go-back)
+(global-set-key [(f6)] 'multi-eshell-switch)
+(global-set-key [(control f6)] 'multi-eshell)
+(global-set-key [(M f6)] 'multi-eshell-go-back)
 ;; F8 controls bookmarks
 (global-set-key [(control f8)] 'bm-toggle)
 (global-set-key [(f8)] 'bm-next)

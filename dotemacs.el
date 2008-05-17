@@ -32,8 +32,8 @@
 ;;******** wrap-region ********
 (require 'wrap-region)
 
-;;********* st-shell stuff
-(require 'st-shell)
+;;********* multi-shell stuff
+(require 'multi-eshell)
 (defalias 'emacs 'find-file) ;;This binds the command emacs to find-file. Useful in eshell.
 (defalias 'more 'find-file-temporary) ;;Binds command more to find-file-temporary. Opens file in split window.
 
@@ -69,8 +69,8 @@
  '(popcmp-popup-completion nil)
  '(reftex-toc-split-windows-horizontally t)
  '(regex-tool-new-frame nil)
- '(st-shell-name "*eshell*")
- '(st-shell-shell-function (quote (eshell)))
+ '(multi-eshell-name "*eshell*")
+ '(multi-eshell-shell-function (quote (eshell)))
  '(tempbuf-minimum-timeout 60)
  '(uniquify-buffer-name-style (quote forward) nil (uniquify)))
 
