@@ -25,6 +25,9 @@
 (transient-mark-mode 1)
 (add-hook 'write-file-functions 'delete-trailing-whitespace)
 
+;;********* Byte-compile local lisp directory, if necessary *********
+(byte-recompile-directory (concat emacs-root "lisp") 0)
+
 ;;Load my basic customizations
 
 ;;******** bubble-buffer ********
