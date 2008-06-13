@@ -211,6 +211,7 @@
 
 ;;********* Quack *********
 (require 'quack)
+(load-file (concat emacs-root "my_lisp/quack-custom.el"))
 
 ;;********* Python Mode **********
 (setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
