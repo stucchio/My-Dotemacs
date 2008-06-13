@@ -164,3 +164,12 @@
        )
     )
   )
+
+;;;###autoload
+(defun turn-on-appropriate-repl ()
+  (interactive)
+  (cond ((eq major-mode 'scheme-mode) (call-interactively 'run-scheme))
+	((eq major-mode 'python-mode) (call-interactively 'py-shell))
+	(t (message (concat "Can't find an appropriate repl for " (symbol-name major-mode ))))
+	)
+  )

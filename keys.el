@@ -11,6 +11,9 @@
 (global-set-key [(f6)] 'multi-eshell-switch)
 (global-set-key [(control f6)] 'multi-eshell)
 (global-set-key [(M f6)] 'multi-eshell-go-back)
+;;F7 turns on an interpreter reply, if one is available
+(global-set-key [(f7)] 'turn-on-appropriate-repl)
+
 ;; F8 controls bookmarks
 (global-set-key [(control f8)] 'bm-toggle)
 (global-set-key [(f8)] 'bm-next)
