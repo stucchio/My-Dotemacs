@@ -209,6 +209,9 @@
 (require 'slime)
 (slime-setup)
 
+;;********* Quack *********
+(require 'quack)
+
 ;;********* Python Mode **********
 (setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
 (setq interpreter-mode-alist (cons '("python" . python-mode)
