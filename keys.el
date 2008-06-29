@@ -41,6 +41,9 @@
 ;;******** Bind M-y to browse-kill-ring ********
 (browse-kill-ring-default-keybindings)
 
+;;Far-search
+(global-set-key "\M-s" 'far-search)
+
 ;;Bind M-j to imenu, for quick navigation.
 (global-set-key "\M-j" 'imenu)
 

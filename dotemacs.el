@@ -288,6 +288,9 @@
 ;;******** Load browse-kill-ring ********
 (require 'browse-kill-ring)
 
+;;******** far-search ********
+(require 'far-search)
+
 ;;******** TRAMP ********
 (setq tramp-default-method "ssh")
 
