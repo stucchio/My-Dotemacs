@@ -72,9 +72,16 @@
 
 ;; Lisp mode
 (add-hook 'emacs-lisp-mode-hook (lambda ()
-				  (progn
-				    (define-key emacs-lisp-mode-map "\M-k" 'kill-sexp)
-				    )))
+		    (progn
+		      (define-key emacs-lisp-mode-map "\M-k" 'kill-sexp)
+		      )))
+
+(add-hook 'clojure-mode-hook (lambda ()
+		    (progn
+		      (define-key clojure-mode-map "\M-k" 'kill-sexp)
+		      )))
+
+
 
 ;; LaTeX-mode
 
