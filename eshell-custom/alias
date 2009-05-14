@@ -1,2 +1,2 @@
-alias emacs find-file $1
+alias vi find-file $1
 alias more find-file-temporary $1
