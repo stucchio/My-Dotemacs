@@ -70,30 +70,37 @@
 (global-set-key [(control tab)] 'tabbar-forward-tab)
 (global-set-key [(control M tab)] 'switch-to-buffer)
 
+;; Lisp mode
+(add-hook 'emacs-lisp-mode-hook (lambda ()
+				  (progn
+				    (define-key emacs-lisp-mode-map "\M-k" 'kill-sexp)
+				    )))
+
 ;; LaTeX-mode
 
 (add-hook 'LaTeX-mode-hook (lambda ()
-			     (define-key LaTeX-mode-map [(insert)]
-			       'LaTeX-insert-or-change-equation-environment-interactive
-			       )))
-(add-hook 'LaTeX-mode-hook (lambda ()
-			     (define-key LaTeX-mode-map [(control insert)]
-			       'LaTeX-insert-or-change-theorem-environment-interactive
-			       )))
-
-
-(add-hook 'LaTeX-mode-hook (lambda ()
-			     (define-key LaTeX-mode-map "$" (wrap-region-with-function "$" "$") )))
+			     (progn
+			       (define-key LaTeX-mode-map [(insert)] 'LaTeX-insert-or-change-equation-environment-interactive)
+			       (define-key LaTeX-mode-map [(control insert)] 'LaTeX-insert-or-change-theorem-environment-interactive)
+			       (define-key LaTeX-mode-map "$" (wrap-region-with-function "$" "$"))
+			       )
+			     )
+	  )
 
 ;; Eshell-mode
 (add-hook 'eshell-mode-hook
-	  '(lambda () (define-key eshell-mode-map "\C-a" 'eshell-maybe-bol)))
-(add-hook 'eshell-mode-hook
-	  '(lambda () (define-key eshell-mode-map [(control f4)] '(lambda () (interactive) (kill-buffer (current-buffer))))))
+	  '(lambda ()
+	     (progn
+	       (define-key eshell-mode-map "\C-a" 'eshell-maybe-bol)
+	       (define-key eshell-mode-map [(control f4)] '(lambda () (interactive) (kill-buffer (current-buffer))))
+	       )
+	     )
+	  )
 
 ;; Darcsum-mode
 (add-hook 'darcsum-mode-hook
-	  '(lambda () (define-key darcsum-mode-map [(control f4)] '(lambda () (interactive)
+	  '(lambda ()
+	     (define-key darcsum-mode-map [(control f4)] '(lambda () (interactive)
 								     (progn
 								       (kill-buffer (get-buffer-create "*darcs comment*"))
 								       (kill-buffer (current-buffer))
