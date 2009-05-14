@@ -269,14 +269,26 @@
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 ;;******** Global-sexp highlighting *********
-;(require 'hl-sexp)
-;(global-hl-sexp-mode)
-
 (global-hl-line-mode 1)
-(set-face-background 'hl-line "#eff")
+(set-face-background 'hl-line "#f3f3f3")
+
+(require 'hl-sexp)
+(set-face-background 'hl-sexp-face "#ffe0e0")
+(custom-set-variables
+ '(hl-delay 0.05)
+ )
+
+(add-hook 'emacs-lisp-mode-hook 'hl-sexp-mode)
+(add-hook 'clojure-mode-hook 'hl-sexp-mode)
+
 
 ;;******** Show parenthesis ********
 (show-paren-mode t)
+
+;;******** Highlight Parenthesis ********
+(require 'highlight-parentheses)
+(add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode)
+(add-hook 'clojure-mode-hook 'highlight-parentheses-mode)
 
 ;;********** Desktop mode **********
 (desktop-save-mode 1)
