@@ -250,6 +250,8 @@
 (add-path "lisp/clojure/swank-clojure")
 (require 'swank-clojure-autoload)
 
+(load-file (concat emacs-root "my_lisp/paredit-custom.el"))
+
 ;; The following function runs Slime with Clojure, even if Slime defaults to another Lisp.
 ;; The above configuration alone, however, will make Clojure the default, so all that is necessary
 ;; to run Slime with Clojure is M-x slime.
