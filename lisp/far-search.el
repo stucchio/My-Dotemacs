@@ -86,6 +86,7 @@
 (defvar far-search-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map "\C-c\C-q" 'far-search-quit)
+    (define-key map "\C-g" 'far-search-quit)
     (define-key map "\C-n" 'far-search-next-match)
     (define-key map "\C-p" 'far-search-prev-match)
     (define-key map [(return)] 'far-search-choose-current-result)
