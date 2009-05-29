@@ -3801,6 +3801,26 @@ ffap -> recentf -> buffer -> bookmark -> file-cache -> files-in-current-dir -> l
 	      anything-c-source-recentf
 	      )))
 
+(defvar anything-c-source-file-not-found
+  '((name . "Create file")
+    (dummy)
+    (type . file)))
+
+(defun anything-for-files-create-if-not-found ()
+  "Preconfigured `anything' for opening files.
+ffap -> recentf -> buffer -> bookmark -> file-cache -> files-in-current-dir -> locate"
+  (interactive)
+  (anything '(anything-c-source-ffap-line
+              anything-c-source-ffap-guesser
+	      anything-c-source-regular-filename-completion
+              anything-c-source-recentf
+              anything-c-source-buffers+
+	      anything-c-source-file-not-found
+              anything-c-source-bookmarks
+              anything-c-source-file-cache
+              anything-c-source-files-in-current-dir+
+              anything-c-source-mac-spotlight)))
+
 (defun anything-show-kill-ring-and-registers ()
   "Show `kill-ring' and also any stored registers. It is drop-in replacement of `yank-pop'.
 You may bind this command to M-y."
