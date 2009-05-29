@@ -486,7 +486,7 @@ With two prefix args allow choosing in which symbol to search."
        ("Kill Buffer" . (lambda (candidate)
 				  (kill-buffer candidate)
 				  (if ( not (= one-or-many 1))
-				      (anything-kill-buffers one-or-many)
+				      (anything-kill-buffers-close-by-default one-or-many)
 				      )
 				  )))))
    nil nil))
