@@ -432,23 +432,23 @@ Deprecated: use `paredit-mode' instead."
                  "|body"))
 
    "Barfage & Slurpage"
-   (("C-)" "C-<right>")
+   (("C-)" )
                 paredit-forward-slurp-sexp
                 ("(foo (bar |baz) quux zot)"
                  "(foo (bar |baz quux) zot)")
                 ("(a b ((c| d)) e f)"
                  "(a b ((c| d) e) f)"))
-   (("C-}" "C-<left>")
+   (("C-}" )
                 paredit-forward-barf-sexp
                 ("(foo (bar |baz quux) zot)"
                  "(foo (bar |baz) quux zot)"))
-   (("C-(" "C-M-<left>" "ESC C-<left>")
+   (("C-("  "ESC C-<left>")
                 paredit-backward-slurp-sexp
                 ("(foo bar (baz| quux) zot)"
                  "(foo (bar baz| quux) zot)")
                 ("(a b ((c| d)) e f)"
                  "(a (b (c| d)) e f)"))
-   (("C-{" "C-M-<right>" "ESC C-<right>")
+   (("C-{"  "ESC C-<right>")
                 paredit-backward-barf-sexp
                 ("(foo (bar baz |quux) zot)"
                  "(foo bar (baz |quux) zot)"))
