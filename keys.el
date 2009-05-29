@@ -3,7 +3,7 @@
 (global-set-key [(M f1)] 'describe-function)
 ;Makes f4 key switch to buffers, C-f4 kills buffer
 (global-set-key [(control f4)] 'kill-buffer-shortly)
-(global-set-key [(f4)] 'icicle-buffer)
+;(global-set-key [(f4)] 'icicle-buffer)
 ;; F5 does bubble-buffer
 (global-set-key [(f5)] 'bubble-buffer-next)
 (global-set-key [(control f5)] 'bubble-buffer-previous)
@@ -36,10 +36,15 @@
 (global-set-key "[" (wrap-region-with-function "[" "]"))
 
 
-(global-set-key "\C-x\C-r" 'icicle-recent-file)
-
-;;******** Bind M-y to browse-kill-ring ********
-(browse-kill-ring-default-keybindings)
+;;******** anything stuff ********
+(global-set-key "\C-\M-a" 'anything)
+(global-set-key [(f3)] 'anything)
+(global-set-key "\C-x\C-r" 'anything-for-files)
+(global-set-key "\C-xk" 'anything-kill-buffers-close-by-default)
+(global-set-key "\C-xb" 'anything-for-buffers)
+(global-set-key [(M f8)] 'anything-for-bm)
+(global-set-key "\M-y" 'anything-show-kill-ring-and-registers)
+ (global-set-key "\M-x" 'anything-M-x)
 
 ;;Far-search
 (global-set-key "\M-s" 'far-search)
@@ -61,10 +66,10 @@
 (global-set-key "\C-c\C-d" 'insert-time-at-point)
 
 ;unset f5 in icicle-mode
-(add-hook 'icicle-mode-hook (lambda ()
-			      (define-key icicle-mode-map [(f5)] nil) ))
-(add-hook 'icicle-mode-hook (lambda ()
-			      (define-key icicle-mode-map "\C-c`" nil) ))
+;; (add-hook 'icicle-mode-hook (lambda ()
+;; 			      (define-key icicle-mode-map [(f5)] nil) ))
+;; (add-hook 'icicle-mode-hook (lambda ()
+;; 			      (define-key icicle-mode-map "\C-c`" nil) ))
 
 ;; Tabbar mode
 (global-set-key [(control tab)] 'tabbar-forward-tab)
@@ -72,16 +77,18 @@
 
 ;; Lisp mode
 (add-hook 'emacs-lisp-mode-hook (lambda ()
-		    (progn
-		      (define-key emacs-lisp-mode-map "\M-k" 'kill-sexp)
-		      )))
+				  (progn
+				    (define-key emacs-lisp-mode-map "\M-k" 'kill-sexp)
+				    (define-key emacs-lisp-mode-map "\M-/" 'lisp-complete-symbol)
+				    )))
 
 (add-hook 'clojure-mode-hook (lambda ()
-		    (progn
-		      (define-key clojure-mode-map "\M-k" 'kill-sexp)
-		      )))
-
-
+			       (progn
+				 (define-key clojure-mode-map "\M-k" 'kill-sexp)
+				 (define-key clojure-mode-map "\M-/" 'slime-complete-symbol)
+				 (define-key clojure-mode-map [(f9)] 'slime-eval-last-sexp)
+				 (define-key clojure-mode-map [(M f9)] 'slime-eval-buffer)
+				 )))
 
 ;; LaTeX-mode
 

@@ -19,7 +19,7 @@
 (add-path "site-lisp/tuareg")  ;; OCaml support
 (add-path "site-lisp/gnuplot-mode") ;;Gnuplot support
 (add-path "site-lisp/python-mode") ;;Python mode
-(add-path "site-lisp/icicles") ;;Icicles, autocompletion
+;(add-path "site-lisp/icicles") ;;Icicles, autocompletion
 (add-path "site-lisp/slime-cvs") ;;Slime lisp mode
 
 (transient-mark-mode 1)
@@ -139,18 +139,20 @@
 ;;********* Uniquify buffer names *********
 (require 'uniquify)
 
-;; Icicles
-(load "icicles-custom")
-;;Build a gigantic regexp to match a bunch of buffers I don't care about.
-(setq icicle-buffer-no-match-regexp (mapconcat 'identity  ;; We will take a list of sub-regexp's, and \| or them together
-					       '("\*Messages\*" ;;A list of
-						 "\*Completions\*"
-						 "\*xdvi output\*"
-						 "\*.*+ output\*"
-						 )
-					       "\\|" ))
+;; ;; Icicles
+;; (load "icicles-custom")
+;; ;;Build a gigantic regexp to match a bunch of buffers I don't care about.
+;; (setq icicle-buffer-no-match-regexp (mapconcat 'identity  ;; We will take a list of sub-regexp's, and \| or them together
+;; 					       '("\*Messages\*" ;;A list of
+;; 						 "\*Completions\*"
+;; 						 "\*xdvi output\*"
+;; 						 "\*.*+ output\*"
+;; 						 )
+;; 					       "\\|" ))
 
 
+(require 'anything-config)
+(require 'anything)
 ;Load bm.el, bookmarking facility.
 (load "bm")
 
