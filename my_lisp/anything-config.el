@@ -1925,7 +1925,7 @@ with the tracker desktop search.")
 
 ;;; Spotlight (MacOS X desktop search)
 (defvar anything-c-source-mac-spotlight
-  '((name . "mdfind")
+  '((name . "mdfind (OS X Spotlight)")
     (candidates . (lambda ()
                     (start-process "mdfind-process" nil "mdfind" anything-pattern)))
     (type . file)
