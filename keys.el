@@ -44,7 +44,7 @@
 (global-set-key "\C-xb" 'anything-for-buffers)
 (global-set-key [(M f8)] 'anything-for-bm)
 (global-set-key "\M-y" 'anything-show-kill-ring-and-registers)
- (global-set-key "\M-x" 'anything-M-x)
+(global-set-key "\M-x" 'anything-M-x)
 
 ;;Far-search
 (global-set-key "\M-s" 'far-search)
