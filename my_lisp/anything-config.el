@@ -3806,6 +3806,24 @@ ffap -> recentf -> buffer -> bookmark -> file-cache -> files-in-current-dir -> l
     (dummy)
     (type . file)))
 
+(defun regular-emacs-find-file ()
+  (let ((dir (or (file-name-directory anything-pattern) "") )
+	(filename (file-name-nondirectory anything-pattern)))
+    (mapcar (lambda (x) (concat dir x))
+     (file-name-all-completions filename dir))
+      ))
+
+(defvar anything-c-source-regular-filename-completion
+  '((name . "Open File")
+    (volatile)
+    (candidates . (lambda ()
+		    (let ((dir (or (file-name-directory anything-pattern) "") )
+			  (filename (file-name-nondirectory anything-pattern)))
+		      (mapcar (lambda (x) (concat dir x))
+			      (file-name-all-completions filename dir))
+      )))
+    (type . file)))
+
 (defun anything-for-files-create-if-not-found ()
   "Preconfigured `anything' for opening files.
 ffap -> recentf -> buffer -> bookmark -> file-cache -> files-in-current-dir -> locate"
@@ -3814,8 +3832,8 @@ ffap -> recentf -> buffer -> bookmark -> file-cache -> files-in-current-dir -> l
               anything-c-source-ffap-guesser
 	      anything-c-source-regular-filename-completion
               anything-c-source-recentf
-              anything-c-source-buffers+
 	      anything-c-source-file-not-found
+              anything-c-source-buffers+
               anything-c-source-bookmarks
               anything-c-source-file-cache
               anything-c-source-files-in-current-dir+
