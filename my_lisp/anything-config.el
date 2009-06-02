@@ -3817,7 +3817,7 @@ ffap -> recentf -> buffer -> bookmark -> file-cache -> files-in-current-dir -> l
   '((name . "Open File")
     (volatile)
     (candidates . (lambda ()
-		    (let ((dir (or (file-name-directory anything-pattern) "") )
+		    (let ((dir (or (file-name-directory anything-pattern) default-directory) )
 			  (filename (file-name-nondirectory anything-pattern)))
 		      (mapcar (lambda (x) (concat dir x))
 			      (file-name-all-completions filename dir))
