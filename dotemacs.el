@@ -25,9 +25,6 @@
 (transient-mark-mode 1)
 (add-hook 'write-file-functions 'delete-trailing-whitespace)
 
-;;********* Byte-compile local lisp directory, if necessary *********
-(byte-recompile-directory (concat emacs-root "lisp") 0)
-
 ;;Load my basic customizations
 
 ;;******** bubble-buffer ********
@@ -54,7 +51,8 @@
 (add-hook 'ediff-mode-hook 'turn-on-tempbuf-mode)
 (add-hook 'ediff-meta-mode-hook 'turn-on-tempbuf-mode)
 (add-hook 'darcsum-mode-hook 'turn-on-tempbuf-mode)
-(add-hook 'compile-mode 'turn-on-tempbuf-mode)
+(add-hook 'compilation-mode-hook 'turn-on-tempbuf-mode)
+(add-hook 'compile-mode-hook 'turn-on-tempbuf-mode)
 
 
 
@@ -335,7 +333,7 @@
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
 ;;******** Load browse-kill-ring ********
-(require 'browse-kill-ring)
+;(require 'browse-kill-ring)
 
 ;;******** far-search ********
 (require 'far-search)
@@ -353,3 +351,6 @@
 
 ;;******** Finally, set key bindings ********
 (load-file (concat emacs-root "keys.el"))
+
+;;********* Byte-compile local lisp directory, if necessary *********
+(byte-recompile-directory (concat emacs-root "lisp") 0)
