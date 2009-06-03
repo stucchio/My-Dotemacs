@@ -54,6 +54,9 @@
 (add-hook 'ediff-mode-hook 'turn-on-tempbuf-mode)
 (add-hook 'ediff-meta-mode-hook 'turn-on-tempbuf-mode)
 (add-hook 'darcsum-mode-hook 'turn-on-tempbuf-mode)
+(add-hook 'compile-mode 'turn-on-tempbuf-mode)
+
+
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
