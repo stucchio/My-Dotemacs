@@ -354,3 +354,6 @@
 
 ;;********* Byte-compile local lisp directory, if necessary *********
 (byte-recompile-directory (concat emacs-root "lisp") 0)
+
+;;******** Turn on emacsclient server ********
+(server-start)
