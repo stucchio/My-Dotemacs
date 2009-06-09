@@ -87,7 +87,7 @@
 			       (progn
 				 (define-key clojure-mode-map "\M-k" 'kill-sexp)
 				 (define-key clojure-mode-map "\M-/" 'slime-complete-symbol)
-				 (define-key clojure-mode-map [(f9)] 'slime-eval-last-sexp)
+				 (define-key clojure-mode-map [(f9)] 'slime-eval-last-expression)
 				 (define-key clojure-mode-map [(M f9)] 'slime-eval-buffer)
 				 )))
 
