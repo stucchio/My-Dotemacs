@@ -53,6 +53,7 @@
 (add-hook 'darcsum-mode-hook 'turn-on-tempbuf-mode)
 (add-hook 'compilation-mode-hook 'turn-on-tempbuf-mode)
 (add-hook 'compile-mode-hook 'turn-on-tempbuf-mode)
+(add-hook 'slime-macroexpansion-minor-mode-hook 'turn-on-tempbuf-mode)
 
 
 
