@@ -3853,6 +3853,24 @@ You may bind this command to M-y."
   (anything '(anything-c-source-emacs-commands
 	      anything-c-source-extended-command-history)))
 
+(defun anything-kill-buffers-tweaked (one-or-many)
+  "You can continuously kill buffer you selected. By default will close anything after first buffer is selected, however if passed a prefix argument will kill in general."
+  (interactive "p")
+  (anything
+   '(((name . "Kill Buffers")
+      (candidates . anything-c-buffer-list)
+      (action
+       ("Kill Buffer" . (lambda (candidate)
+				  (kill-buffer candidate)
+				  (if ( not (= one-or-many 1))
+				      (anything-kill-buffers-close-by-default one-or-many)
+				      )
+				  ))
+       ("Kill Marked buffers" . anything-kill-marked-buffers)
+       ("Switch to buffer" . switch-to-buffer)
+       )))
+   nil nil))
+
 (provide 'anything-config)
 
 ;;; Local Variables:

@@ -41,7 +41,7 @@
 (global-set-key [(f3)] 'anything)
 (global-set-key "\C-x\C-f" 'anything-for-files-create-if-not-found)
 (global-set-key "\C-x\C-r" 'anything-for-files)
-(global-set-key "\C-xk" 'anything-kill-buffers-close-by-default)
+(global-set-key "\C-xk" 'anything-kill-buffers-tweaked)
 (global-set-key "\C-xb" 'anything-for-buffers)
 (global-set-key [(M f8)] 'anything-for-bm)
 (global-set-key "\M-y" 'anything-show-kill-ring-and-registers)
