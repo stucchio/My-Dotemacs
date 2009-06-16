@@ -3,7 +3,7 @@
 (global-set-key [(M f1)] 'describe-function)
 ;Makes f4 key switch to buffers, C-f4 kills buffer
 (global-set-key [(control f4)] 'kill-buffer-shortly)
-;(global-set-key [(f4)] 'icicle-buffer)
+(global-set-key [(f4)] 'anything-for-buffers)
 ;; F5 does bubble-buffer
 (global-set-key [(f5)] 'bubble-buffer-next)
 (global-set-key [(control f5)] 'bubble-buffer-previous)
@@ -74,7 +74,7 @@
 
 ;; Tabbar mode
 (global-set-key [(control tab)] 'tabbar-forward-tab)
-(global-set-key [(control M tab)] 'switch-to-buffer)
+(global-set-key [(control M tab)] 'anything-for-buffers)
 
 ;; Lisp mode
 (add-hook 'emacs-lisp-mode-hook (lambda ()
