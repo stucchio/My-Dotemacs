@@ -350,6 +350,21 @@
 ;;********* Smooth scrolling *********
 (require 'smooth-scrolling)
 
+;;******** Mozrepl ********
+(require 'moz)
+
+(autoload 'inferior-moz-mode "moz" "MozRepl Inferior Mode" t)
+(autoload 'moz-minor-mode "moz" "MozRepl Minor Mode" t)
+(defun web-moz-setup ()
+  (progn
+    (run-mozilla)
+    (moz-minor-mode 1)))
+
+(add-hook 'js2-mode-hook 'web-moz-setup)
+(add-hook 'css-mode-hook 'web-moz-setup)
+(add-hook 'nxhtml-mode-hook 'web-moz-setup)
+
+
 ;;******** Finally, set key bindings ********
 (load-file (concat emacs-root "keys.el"))
 
