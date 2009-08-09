@@ -16,6 +16,7 @@
 (add-path "site-lisp")       ;; elisp stuff I find on the 'net
 (add-path "site-lisp/reftex") ;;reftex, support for references
 (add-path "site-lisp/gnuserv") ;;gnuserv
+(add-path "site-lisp/erlang") ;;Erlang mode
 (add-path "site-lisp/tuareg")  ;; OCaml support
 (add-path "site-lisp/gnuplot-mode") ;;Gnuplot support
 (add-path "site-lisp/python-mode") ;;Python mode
@@ -163,6 +164,11 @@
 
 ;;******** Lush ********
 (load (concat emacs-root "lisp/lush.el"))
+
+;;******** Erlang mode ********
+(setq erlang-root-dir "/opt/local/lib/erlang")
+(setq exec-path (cons "/opt/local/lib/erlang/bin" exec-path))
+(require 'erlang-start)
 
 ;;********* AUCTEX *********
 ;; For auctex
