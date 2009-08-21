@@ -162,6 +162,9 @@
 ;;********* C-mode *********
 (load "c-custom")
 
+(autoload 'expand-member-functions "member-functions" "Expand C++ member function declarations" t)
+
+
 ;;******** Lush ********
 (load (concat emacs-root "lisp/lush.el"))
 

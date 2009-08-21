@@ -122,3 +122,6 @@
 								       )))))
 (add-hook 'darcsum-comment-mode-hook
 	  '(lambda () (define-key darcsum-comment-mode-map [(control f4)] '(lambda () (interactive) (kill-buffer (current-buffer))))))
+
+;; C++ mode
+(add-hook 'c++-mode-hook (lambda () (local-set-key "\C-cm" #'expand-member-functions)))
