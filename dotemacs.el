@@ -335,6 +335,11 @@
     (ediff-toggle-multiframe) ;;Don't make *Ediff Control Panel* open in new frame, just new window.
   )
 
+;;******** Window numbering ********
+(require 'window-numbering)
+(window-numbering-mode 1)
+
+
 ;;******** windmove ********
 (when (fboundp 'windmove-default-keybindings) ;;Turns on windmove mode: shift+arrow keys move between windows.
   (windmove-default-keybindings))
