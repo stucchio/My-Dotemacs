@@ -339,6 +339,10 @@
 (require 'window-numbering)
 (window-numbering-mode 1)
 
+;;******** winner ********
+;; Binds C-c left or C-c right to move through past window configurations
+(winner-mode)
+
 
 ;;******** windmove ********
 (when (fboundp 'windmove-default-keybindings) ;;Turns on windmove mode: shift+arrow keys move between windows.
