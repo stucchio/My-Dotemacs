@@ -43,7 +43,7 @@
 ;;******** anything stuff ********
 (global-set-key "\C-\M-a" 'anything)
 (global-set-key [(f3)] 'anything)
-(global-set-key "\C-x\C-f" 'anything-for-files-create-if-not-found)
+(global-set-key "\C-x\C-f" 'anything-for-files-create-if-not-found-with-eproject)
 (global-set-key "\C-x\C-r" 'anything-for-files)
 (global-set-key "\C-xk" 'anything-kill-buffers-tweaked)
 (global-set-key "\C-xb" 'anything-for-buffers)

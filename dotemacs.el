@@ -22,6 +22,7 @@
 (add-path "site-lisp/python-mode") ;;Python mode
 ;(add-path "site-lisp/icicles") ;;Icicles, autocompletion
 (add-path "site-lisp/slime-cvs") ;;Slime lisp mode
+(add-path "site-lisp/eproject") ;;Eproject
 
 (transient-mark-mode 1)
 (add-hook 'write-file-functions 'delete-trailing-whitespace)
@@ -141,6 +142,11 @@
 
 ;;********* Uniquify buffer names *********
 (require 'uniquify)
+
+;;******** eproject ********
+(require 'eproject)
+(require 'eproject-extras)
+(load-file (concat emacs-root "my_lisp/eproject-custom.el"))
 
 ;; ;; Icicles
 ;; (load "icicles-custom")

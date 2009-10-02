@@ -3782,7 +3782,19 @@ If optional 2nd argument is non-nil, the file opened with `auto-revert-mode'.")
      (expect 'sym2
              (anything-c-symbolify 'sym2)))))
 
-;;************************* Stuff added by me, c. stucchi *****
+;;************************* Stuff added by me, c. stucchio *****
+(defvar anything-c-source-eproject-files
+  '((name . "Files in eProject")
+    (init . (lambda () (if (buffer-file-name)
+			   (setq anything-eproject-root-dir (eproject-maybe-turn-on))
+			 (setq anything-eproject-root-dir 'nil)
+			 )))
+    (candidates . (lambda () (if anything-eproject-root-dir
+				 (eproject-list-project-files anything-eproject-root-dir))))
+    (type . file)
+    )
+  "Search for files in the current eProject.")
+
 (defun anything-for-buffers ()
   "Preconfigured `anything' for opening buffers.
 ffap -> recentf -> buffer -> bookmark -> file-cache -> files-in-current-dir -> locate"
@@ -3790,6 +3802,7 @@ ffap -> recentf -> buffer -> bookmark -> file-cache -> files-in-current-dir -> l
   (anything '(anything-c-source-buffers+
 	      anything-c-source-buffer-not-found
 	      anything-c-source-recentf
+	      anything-c-source-eproject-files
 	      )))
 
 (defun anything-for-bm ()
@@ -3829,6 +3842,24 @@ ffap -> recentf -> buffer -> bookmark -> file-cache -> files-in-current-dir -> l
 ffap -> recentf -> buffer -> bookmark -> file-cache -> files-in-current-dir -> locate"
   (interactive)
   (anything '(anything-c-source-ffap-line
+              anything-c-source-ffap-guesser
+	      anything-c-source-regular-filename-completion
+              anything-c-source-recentf
+	      anything-c-source-file-not-found
+              anything-c-source-buffers+
+              anything-c-source-bookmarks
+              anything-c-source-file-cache
+              anything-c-source-files-in-current-dir+
+              anything-c-source-mac-spotlight)))
+
+(defvar anything-eproject-root-dir "")
+
+(defun anything-for-files-create-if-not-found-with-eproject ()
+  "Preconfigured `anything' for opening files.
+ffap -> recentf -> buffer -> bookmark -> file-cache -> files-in-current-dir -> locate"
+  (interactive)
+  (anything '(anything-c-source-eproject-files
+	      anything-c-source-ffap-line
               anything-c-source-ffap-guesser
 	      anything-c-source-regular-filename-completion
               anything-c-source-recentf
