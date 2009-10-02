@@ -3795,14 +3795,28 @@ If optional 2nd argument is non-nil, the file opened with `auto-revert-mode'.")
     )
   "Search for files in the current eProject.")
 
+(defvar anything-c-source-eproject-buffers
+  '((name . "Buffers in this eProject")
+    (init . (lambda () (if (buffer-file-name)
+			   (setq anything-eproject-root-dir (eproject-maybe-turn-on))
+			 (setq anything-eproject-root-dir 'nil)
+			 )))
+    (candidates . (lambda () (if anything-eproject-root-dir
+				 (mapcar 'buffer-name  ( cdr  (assoc anything-eproject-root-dir (eproject--project-buffers))))
+				 )))
+    (volatile)
+    (type . buffer)
+    )
+  "Search for buffers in this project.")
+
 (defun anything-for-buffers ()
   "Preconfigured `anything' for opening buffers.
 ffap -> recentf -> buffer -> bookmark -> file-cache -> files-in-current-dir -> locate"
   (interactive)
-  (anything '(anything-c-source-buffers+
+  (anything '(anything-c-source-eproject-buffers
+	      anything-c-source-buffers+
 	      anything-c-source-buffer-not-found
 	      anything-c-source-recentf
-	      anything-c-source-eproject-files
 	      )))
 
 (defun anything-for-bm ()
