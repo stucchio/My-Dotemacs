@@ -1,11 +1,11 @@
 (define-project-type mercurial (generic)
   (look-for ".hg")
-  (irrelevant-files "*.aux" "*.pyc*" "*.eps" "*.dvi" "*.blg")
+  ;(irrelevant-files "*.aux" "*.pyc*" "*.eps" "*.dvi" "*.blg")
   )
 
 (define-project-type darcs (generic)
   (look-for "_darcs")
-  (irrelevant-files "*.aux" "*.pyc*" "*.eps" "*.dvi" "*.blg")
+  ;(irrelevant-files "*.aux" "*.pyc*" "*.eps" "*.dvi" "*.blg")
   )
 
 (define-project-type svn (generic)
