@@ -3810,8 +3810,7 @@ If optional 2nd argument is non-nil, the file opened with `auto-revert-mode'.")
   "Search for buffers in this project.")
 
 (defun anything-for-buffers ()
-  "Preconfigured `anything' for opening buffers.
-ffap -> recentf -> buffer -> bookmark -> file-cache -> files-in-current-dir -> locate"
+  "Preconfigured `anything' for opening buffers. Searches for buffers in the current project, then other buffers, also gives option of recentf."
   (interactive)
   (anything '(anything-c-source-eproject-buffers
 	      anything-c-source-buffers+
