@@ -170,6 +170,8 @@
 
 (autoload 'expand-member-functions "member-functions" "Expand C++ member function declarations" t)
 
+;;********* Mathematica mode *********
+(require 'mathematica)
 
 ;;******** Lush ********
 (load (concat emacs-root "lisp/lush.el"))
