@@ -26,6 +26,7 @@
 
 (transient-mark-mode 1)
 (add-hook 'write-file-functions 'delete-trailing-whitespace)
+(setq truncate-partial-width-windows 'nil) ;;Makes word wrapping work even after split horizontally
 
 ;;Load my basic customizations
 
