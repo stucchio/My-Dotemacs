@@ -173,3 +173,15 @@
 	(t (message (concat "Can't find an appropriate repl for " (symbol-name major-mode ))))
 	)
   )
+
+;;;###autoload
+(defun start-process-other-window ( &rest cmd)
+  (if (get-buffer "gcompile")
+      (kill-buffer "gcompile"))
+  (eval  (eshell-flatten-list `((start-process-shell-command "gcompile" "gcompile") ,cmd)))
+  (let ((oldbuf (current-buffer)))
+    (switch-to-buffer-other-window "gcompile")
+    (tempbuf-mode 1)
+    (select-window (get-buffer-window oldbuf))
+    )
+)
