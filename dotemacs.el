@@ -267,7 +267,9 @@
 ;(setq swank-clojure-binary "/path/to/cljwrapper")
 
 ; you can also set up extra classpaths, such as the classes/ directory used by AOT compilation
-;(setq swank-clojure-extra-classpaths (list "/path/to/extra/classpaths" "/even/more/classpaths"))
+(setq swank-clojure-extra-classpaths
+      (list (concat (getenv "HOME") "/src/clojure/src/clj/clojure")
+	    ))
 
 (add-path "lisp/clojure/swank-clojure")
 (require 'swank-clojure-autoload)
