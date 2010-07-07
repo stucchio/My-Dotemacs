@@ -217,6 +217,11 @@
 (autoload 'gnuplot-make-buffer "gnuplot" "open a buffer in gnuplot mode" t)
 (setq auto-mode-alist (append '(("\\.gp$" . gnuplot-mode)) auto-mode-alist))
 
+;******** Markdown mode ********
+(autoload 'markdown-mode "markdown-mode.el"
+   "Major mode for editing Markdown files" t)
+(setq auto-mode-alist
+   (cons '("\\.md" . markdown-mode) auto-mode-alist))
 
 ;;********* Tuared Mode *********
 
