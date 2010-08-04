@@ -57,6 +57,7 @@
 (add-hook 'compilation-mode-hook 'turn-on-tempbuf-mode)
 (add-hook 'compile-mode-hook 'turn-on-tempbuf-mode)
 (add-hook 'slime-macroexpansion-minor-mode-hook 'turn-on-tempbuf-mode)
+(add-hook 'org-agenda-mode-hook 'turn-on-tempbuf-mode)
 
 
 
@@ -73,6 +74,7 @@
  '(icicle-reminder-prompt-flag 0)
  '(lazy-lock-mode nil t (lazy-lock))
  '(nxhtml-skip-welcome t)
+ '(org-agenda-files (quote ("~/notes/projects.org")))
  '(paren-mode (quote sexp) nil (paren))
  '(popcmp-popup-completion nil)
  '(reftex-toc-split-windows-horizontally t)
@@ -92,6 +94,13 @@
 
 (require 'tabbar)
 (tabbar-mode 1)
+
+
+;;********* Org mode ********
+(setq org-replace-disputed-keys t)
+(global-set-key "\C-ca" 'org-agenda)
+(setq org-tab-follows-link t)
+
 
 ;;******** htmlize ********
 (require 'htmlize)

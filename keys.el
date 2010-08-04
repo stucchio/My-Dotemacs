@@ -129,3 +129,15 @@
 
 ;; C++ mode
 (add-hook 'c++-mode-hook (lambda () (local-set-key "\C-cm" #'expand-member-functions)))
+
+;; Org mode
+
+(add-hook 'org-mode-hook (lambda ()
+			   (progn
+			     (define-key org-mode-map [(control shift right)] 'org-shiftright)
+			     (define-key org-mode-map [(control shift left)] 'org-shiftleft)
+			     (define-key org-mode-map [(control shift up)] 'org-shiftup)
+			     (define-key org-mode-map [(control shift down)] 'org-shiftdown)
+			     )
+			   )
+	  )
