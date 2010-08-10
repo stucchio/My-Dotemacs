@@ -15,7 +15,7 @@
 
 
 (define-project-type svn (generic)
-  (look-for ".svn")
+  (look-for ".svn/dir-prop-base")
   )
 
 (define-project-type git (generic)
@@ -25,3 +25,4 @@
 (add-hook 'find-file-hook 'eproject-maybe-turn-on)
 
 (provide 'eproject-stucchio-custom)
+
