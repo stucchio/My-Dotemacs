@@ -8,6 +8,12 @@
   ;(irrelevant-files "*.aux" "*.pyc*" "*.eps" "*.dvi" "*.blg")
   )
 
+(define-project-type git (generic)
+  (look-for ".git")
+  ;(irrelevant-files "*.aux" "*.pyc*" "*.eps" "*.dvi" "*.blg")
+  )
+
+
 (define-project-type svn (generic)
   (look-for ".svn")
   )

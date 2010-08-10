@@ -8,6 +8,7 @@
 		     "c:/home/stucchio/")
   "My home directory, the root of my personal emacs load-path.")
 
+(setenv "PAGER" "cat") ;;Allows git to work in eshell
 
 (defun add-path (p)
 		 (add-to-list 'load-path (concat emacs-root p)))
