@@ -8,8 +8,6 @@
 		     "c:/home/stucchio/")
   "My home directory, the root of my personal emacs load-path.")
 
-(setenv "PAGER" "cat") ;;Allows git to work in eshell
-
 (defun add-path (p)
 		 (add-to-list 'load-path (concat emacs-root p)))
 (add-path "lisp")            ;; Simple lisp files I've found, not big enough to need a whole directory
@@ -410,6 +408,9 @@
 (add-hook 'css-mode-hook 'web-moz-setup)
 (add-hook 'nxhtml-mode-hook 'web-moz-setup)
 
+;;******** Git environment variables ********
+(setenv "PAGER" "cat") ;;Allows git to work in eshell
+(setenv "EDITOR" "emacsclient -c ") ;;Allows git to work in eshell
 
 ;;******** Finally, set key bindings ********
 (load-file (concat emacs-root "keys.el"))
