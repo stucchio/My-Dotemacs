@@ -4,7 +4,7 @@
 			   (eq system-type 'usg-unix-v)
 			   (eq system-type 'darwin)
 			   )
-		       (concat (getenv "HOME") "/emacs/")
+		       (concat (getenv "HOME") "/dotemacs/")
 		     "c:/home/stucchio/")
   "My home directory, the root of my personal emacs load-path.")
 
