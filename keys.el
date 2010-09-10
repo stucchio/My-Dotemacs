@@ -29,10 +29,15 @@
 (global-set-key [(control f11)] 'start-or-end-kbd-macro) ;One-button recording of kbd macros
 (global-set-key [(control M f11)] 'name-last-kbd-macro) ;One button naming of last kbd macro
 (global-set-key [(f11)] 'call-last-kbd-macro) ;one button calling of kbd macros
-;; F12 controls darcs
-(global-set-key [(f12)]
-		(try-several-commands (darcsum-no-duplicate-buffer hg-commit-start ) "Failed to run darcs or hg")
-		); Tries to run either darcsum-no-duplicate-buffer or hg-commit start, i.e. run darcs or mercurial. Raise error message if neither one works.
+;; F12 tries to vc commit
+;; Tries to run either appropriate version control commit commanddarcsum-no-duplicate-buffer or hg-commit start, i.e. run darcs or mercurial. Raise error message if neither one works.
+(global-set-key [(f12)] (try-several-commands 
+			 (darcsum-no-duplicate-buffer
+			  hg-commit-start
+			  (lambda () (git-status (buffer-file-name (current-buffer))))
+			  )
+		 "Failed to run version control commit")
+		)
 
 ;;******** wrap-region stuff ********
 (global-set-key "(" (wrap-region-with-function "(" ")"))
