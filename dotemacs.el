@@ -23,6 +23,7 @@
 (add-path "site-lisp/slime-cvs") ;;Slime lisp mode
 (add-path "site-lisp/eproject") ;;Eproject
 (add-path "site-lisp/google-maps") ;;Google maps
+(add-path "site-lisp/git-emacs") ;;git emacs
 
 (transient-mark-mode 1)
 (add-hook 'write-file-functions 'delete-trailing-whitespace)
@@ -160,6 +161,9 @@
 
 ;;******** google-maps ********
 (require 'google-maps)
+
+;;******** git-emacs ********
+(require 'git-emacs)
 
 ;;******** rainbow-mode ********
 ;; http://julien.danjou.info/rainbow-mode.html
