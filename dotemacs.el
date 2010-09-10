@@ -307,6 +307,10 @@
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
+;;******** Java mode ********
+(load-file (concat emacs-root "lisp/java-abbrev.el"))
+
+
 ;;******** Global-sexp highlighting *********
 (global-hl-line-mode 1)
 (set-face-background 'hl-line "#f3f3f3")
