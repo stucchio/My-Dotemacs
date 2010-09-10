@@ -122,7 +122,7 @@
   "A user interface for the git versioning system."
   :group 'tools)
 
-(defcustom git--use-ido t
+(defcustom git--use-ido nil
   "Use ido for Git prompts. Affects the default of `git--completing-read'."
   :type '(boolean)
   :group 'git-emacs)
