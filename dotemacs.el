@@ -22,6 +22,7 @@
 ;(add-path "site-lisp/icicles") ;;Icicles, autocompletion
 (add-path "site-lisp/slime-cvs") ;;Slime lisp mode
 (add-path "site-lisp/eproject") ;;Eproject
+(add-path "site-lisp/google-maps") ;;Google maps
 
 (transient-mark-mode 1)
 (add-hook 'write-file-functions 'delete-trailing-whitespace)
@@ -156,6 +157,9 @@
 (require 'eproject)
 (require 'eproject-extras)
 (load-file (concat emacs-root "my_lisp/eproject-custom.el"))
+
+;;******** google-maps ********
+(require 'google-maps)
 
 ;; ;; Icicles
 ;; (load "icicles-custom")
