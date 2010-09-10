@@ -161,6 +161,11 @@
 ;;******** google-maps ********
 (require 'google-maps)
 
+;;******** rainbow-mode ********
+;; http://julien.danjou.info/rainbow-mode.html
+(require 'rainbow-mode)
+
+
 ;; ;; Icicles
 ;; (load "icicles-custom")
 ;; ;;Build a gigantic regexp to match a bunch of buffers I don't care about.
