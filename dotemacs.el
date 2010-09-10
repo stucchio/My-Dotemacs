@@ -164,6 +164,7 @@
 
 ;;******** git-emacs ********
 (require 'git-emacs)
+(require 'git-status)
 
 ;;******** rainbow-mode ********
 ;; http://julien.danjou.info/rainbow-mode.html
