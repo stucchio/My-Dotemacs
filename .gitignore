@@ -1,0 +1,4 @@
+.gitignore
+*.elc
+eshell-custom/lastdir
+eshell-custom/history
