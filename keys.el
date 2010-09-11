@@ -31,13 +31,15 @@
 (global-set-key [(f11)] 'call-last-kbd-macro) ;one button calling of kbd macros
 ;; F12 tries to vc commit
 ;; Tries to run either appropriate version control commit commanddarcsum-no-duplicate-buffer or hg-commit start, i.e. run darcs or mercurial. Raise error message if neither one works.
-(global-set-key [(f12)] (try-several-commands 
+(global-set-key [(f12)] (try-several-commands
 			 (darcsum-no-duplicate-buffer
 			  hg-commit-start
 			  (lambda () (git-status (buffer-file-name (current-buffer))))
 			  )
 		 "Failed to run version control commit")
 		)
+(global-set-key [(control f12)] 'git-log)
+(global-set-key [(M f12)] 'git-branch)
 
 ;;******** wrap-region stuff ********
 (global-set-key "(" (wrap-region-with-function "(" ")"))
