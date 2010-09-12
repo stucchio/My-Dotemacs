@@ -24,6 +24,7 @@
 (add-path "site-lisp/eproject") ;;Eproject
 (add-path "site-lisp/google-maps") ;;Google maps
 (add-path "site-lisp/git-emacs") ;;git emacs
+(add-path "site-lisp/color-theme") ;;Color themes
 
 (transient-mark-mode 1)
 (add-hook 'write-file-functions 'delete-trailing-whitespace)
@@ -166,26 +167,19 @@
 (require 'git-emacs)
 (require 'git-status)
 
+;;******** color-theme ********
+(require 'color-theme)
+
 ;;******** rainbow-mode ********
 ;; http://julien.danjou.info/rainbow-mode.html
 (require 'rainbow-mode)
 
-
-;; ;; Icicles
-;; (load "icicles-custom")
-;; ;;Build a gigantic regexp to match a bunch of buffers I don't care about.
-;; (setq icicle-buffer-no-match-regexp (mapconcat 'identity  ;; We will take a list of sub-regexp's, and \| or them together
-;; 					       '("\*Messages\*" ;;A list of
-;; 						 "\*Completions\*"
-;; 						 "\*xdvi output\*"
-;; 						 "\*.*+ output\*"
-;; 						 )
-;; 					       "\\|" ))
-
+;;******** Anything ********
 
 (require 'anything-config)
 (require 'anything)
-;Load bm.el, bookmarking facility.
+
+;******** bookmarking ********
 (load "bm")
 
 ;;********* C-mode *********
