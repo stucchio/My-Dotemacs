@@ -166,6 +166,7 @@
 ;;******** git-emacs ********
 (require 'git-emacs)
 (require 'git-status)
+(custom-set-variables '(git--use-ido nil))
 
 ;;******** color-theme ********
 (require 'color-theme)
