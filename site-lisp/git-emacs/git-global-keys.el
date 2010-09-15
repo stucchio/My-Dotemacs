@@ -1,7 +1,4 @@
-;; Global keys for git-emacs.
-;;
-;; See git-emacs.el for license and versioning.
-
+;; See git-emacs.el for License information
 (require 'easymenu)
 
 (defcustom git-keyboard-prefix "\C-xg"
