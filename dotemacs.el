@@ -25,6 +25,7 @@
 (add-path "site-lisp/google-maps") ;;Google maps
 (add-path "site-lisp/git-emacs") ;;git emacs
 (add-path "site-lisp/color-theme") ;;Color themes
+(add-path "site-lisp/notmuch") ;;Notmuch mail mode
 
 (transient-mark-mode 1)
 (add-hook 'write-file-functions 'delete-trailing-whitespace)
@@ -333,6 +334,9 @@
 (add-hook 'emacs-lisp-mode-hook 'hl-sexp-mode)
 (add-hook 'clojure-mode-hook 'hl-sexp-mode)
 
+
+;;******** Notmuch mail mode ********
+(require 'notmuch)
 
 ;;******** Show parenthesis ********
 (show-paren-mode t)
