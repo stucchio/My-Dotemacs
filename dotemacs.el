@@ -407,6 +407,10 @@
 ;;********* Smooth scrolling *********
 (require 'smooth-scrolling)
 
+;;******** Undo-tree ********
+(require 'undo-tree)
+(global-undo-tree-mode)
+
 ;;******** Mozrepl ********
 (require 'moz)
 
