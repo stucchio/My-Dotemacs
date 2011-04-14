@@ -37,6 +37,8 @@
 (require 'bubble-buffer)
 ;;******** wrap-region ********
 (require 'wrap-region)
+;;******** thrift-mode ********
+(require 'thrift-mode)
 
 ;;********* multi-shell stuff
 (require 'multi-eshell)
