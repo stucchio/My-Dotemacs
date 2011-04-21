@@ -39,6 +39,9 @@
 (require 'wrap-region)
 ;;******** thrift-mode ********
 (require 'thrift-mode)
+;;******** yaml-mode ********
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
 ;;********* multi-shell stuff
 (require 'multi-eshell)
