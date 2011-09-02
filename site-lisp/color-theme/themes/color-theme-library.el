@@ -980,6 +980,7 @@ Includes faces for font-lock, widget, custom, speedbar."
      (show-paren-match-face ((t (:background "light blue"))))
      (show-paren-mismatch-face ((t (:foreground "white" :background "purple")))))))
 
+;;;###autoload
 (defun color-theme-billw ()
   "Cornsilk on black.
 Includes info, diary, font-lock, eshell, sgml, message, gnus,
