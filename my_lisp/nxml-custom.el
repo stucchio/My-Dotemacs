@@ -20,8 +20,6 @@
     )
   )
 
-(tempo-define-template "nxml-paragraph" '("<p>" p "</p>") )
-
 (defun nxml-edit-javascript ()
   "This function opens a new javascript-mode buffer based on the current <script></script element, in the js2-mode."
   (interactive)
