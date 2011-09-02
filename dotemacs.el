@@ -47,6 +47,7 @@
 (require 'multi-eshell)
 (defalias 'emacs 'find-file) ;;This binds the command emacs to find-file. Useful in eshell.
 (defalias 'more 'find-file-temporary) ;;Binds command more to find-file-temporary. Opens file in split window.
+(add-hook 'eshell-mode-hook (lambda () (interactive) (setenv "PYTHONPATH" "/home/stucchio/lib/python2.6/site-packages/") ))
 
 ;;******** tempbuf ********
 ;; Kill buffers after a while, if I don't really want them
@@ -140,14 +141,14 @@
 (load-file (concat emacs-root "local-customizations.el"))
 
 ;; start gnuserv, so apps can talk to us (e.g. p4, browsers)
-(autoload 'gnuserv-start "gnuserv-compat"
-             "Allow this Emacs process to be a server for client processes."
-             t)
-(setq gnuserv-frame (selected-frame))
-(condition-case nil
-	   (gnuserv-start)
-	   (error (message "Warning! Failed to start gnuserv!"))
-	   )
+;(autoload 'gnuserv-start "gnuserv-compat"
+;             "Allow this Emacs process to be a server for client processes."
+;             t)
+;(setq gnuserv-frame (selected-frame))
+;(condition-case nil
+;	   (gnuserv-start)
+;	   (error (message "Warning! Failed to start gnuserv!"))
+;	   )
 
 
 ;Turn on scroll bars, turn off menu-bar and toolbar
@@ -173,9 +174,6 @@
 (require 'git-emacs)
 (require 'git-status)
 (custom-set-variables '(git--use-ido nil))
-
-;;******** color-theme ********
-(require 'color-theme)
 
 ;;******** rainbow-mode ********
 ;; http://julien.danjou.info/rainbow-mode.html
@@ -328,16 +326,25 @@
 
 ;;******** Global-sexp highlighting *********
 (global-hl-line-mode 1)
-(set-face-background 'hl-line "#f3f3f3")
 
 (require 'hl-sexp)
-(set-face-background 'hl-sexp-face "#ffe0e0")
 (custom-set-variables
  '(hl-delay 0.05)
  )
 
 (add-hook 'emacs-lisp-mode-hook 'hl-sexp-mode)
 (add-hook 'clojure-mode-hook 'hl-sexp-mode)
+
+;;******** Color theme ********
+; Standard theme
+;(set-face-background 'hl-sexp-face "#ffe0e0")
+;(set-face-background 'hl-line "#f3f3f3")
+
+; Billw
+(load-file (concat emacs-root "site-lisp/color-theme/themes/color-theme-library.el"))
+(color-theme-billw)
+(set-face-background 'hl-line "#060606")
+(set-face-background 'hl-sexp-face "#250606")
 
 
 ;;******** Notmuch mail mode ********
@@ -352,13 +359,14 @@
 (add-hook 'clojure-mode-hook 'highlight-parentheses-mode)
 
 ;;********** Desktop mode **********
-(desktop-save-mode 1)
-(setq history-length 250)
-(add-to-list 'desktop-globals-to-save 'file-name-history)
-(add-to-list 'desktop-modes-not-to-save 'dired-mode)
-(add-to-list 'desktop-modes-not-to-save 'Info-mode)
-(add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
-(add-to-list 'desktop-modes-not-to-save 'fundamental-mode)
+;(custom-set-variables '(desktop-path emacs-root))
+;(desktop-save-mode 1)
+;(setq history-length 250)
+;(add-to-list 'desktop-globals-to-save 'file-name-history)
+;(add-to-list 'desktop-modes-not-to-save 'dired-mode)
+;(add-to-list 'desktop-modes-not-to-save 'Info-mode)
+;(add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
+;(add-to-list 'desktop-modes-not-to-save 'fundamental-mode)
 
 ;;********** Turn on session ********
 (require 'session)
@@ -366,8 +374,8 @@
 (setq desktop-globals-to-save '(desktop-missing-file-warning)) ;;Make sure session doesn't clobber desktop
 
 ;'******** Save location of point in files
-(require 'saveplace)
-(setq-default save-place t)
+;(require 'saveplace)
+;(setq-default save-place t)
 
 ;;******** Save list of files recently opened
 (require 'recentf)
