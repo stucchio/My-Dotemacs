@@ -180,7 +180,7 @@
 (require 'rainbow-mode)
 
 ;;******** Anything ********
-
+(add-path "lisp/anything")
 (require 'anything-config)
 (require 'anything)
 
@@ -275,46 +275,11 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
-;;********* Clojure mode *********
-;; Clojure mode
-(add-path "lisp/clojure/clojure-mode")
-(add-path "lisp/clojure/swank-clojure")
+
+;;******** Clojure Mode ********
+(add-path "lisp/clojure-mode")
 (require 'clojure-mode)
-;; (require 'clojure-paredit) ; Uncomment if you use Paredit
-
-;; Slime
-;;(add-to-list 'load-path "/path/to/slime/")
-(require 'slime)
-(slime-setup)
-
-;; clojure swank
-(setq swank-clojure-jar-path (concat (getenv "HOME") "/src/clojure/clojure.jar"))
-;alternatively, you can set up the clojure wrapper script and use that:
-;(setq swank-clojure-binary "/path/to/cljwrapper")
-
-; you can also set up extra classpaths, such as the classes/ directory used by AOT compilation
-(setq swank-clojure-extra-classpaths
-      (list (concat (getenv "HOME") "/src/clojure/src/clj/clojure")
-	    ))
-
-(add-path "lisp/clojure/swank-clojure")
-(require 'swank-clojure-autoload)
-
 (load-file (concat emacs-root "my_lisp/paredit-custom.el"))
-
-;; The following function runs Slime with Clojure, even if Slime defaults to another Lisp.
-;; The above configuration alone, however, will make Clojure the default, so all that is necessary
-;; to run Slime with Clojure is M-x slime.
-(defun run-clojure ()
-  "Starts clojure in Slime"
-  (interactive)
-  (slime 'clojure))
-
-;; To use other Lisps...
-;; Incidentally, you can then choose different Lisps with
-;;   M-- M-x slime <tab>
-;; (add-to-list 'slime-lisp-implementations
-;;             '(sbcl   ("/path/to/bin/sbcl")))
 
 ;;********* Javascript mode *********
 (autoload 'js2-mode "js2" nil t)
@@ -430,6 +395,10 @@
 
 ;;******** Mozrepl ********
 (require 'moz)
+
+;;******** Perspective mode ********
+(require 'perspective)
+(persp-mode)
 
 (autoload 'inferior-moz-mode "moz" "MozRepl Inferior Mode" t)
 (autoload 'moz-minor-mode "moz" "MozRepl Minor Mode" t)
