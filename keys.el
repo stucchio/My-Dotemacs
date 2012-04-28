@@ -22,9 +22,9 @@
 (global-set-key [(control f9)] 'fc-eval-and-replace)
 (global-set-key [(M f9)] 'execute-extended-command)
 ;; F10 controls window-config-ring
-(global-set-key [(control f10)] 'window-config-ring-store)
-(global-set-key [(M f10)] 'window-config-ring-remove)
-(global-set-key [(f10)] 'window-config-ring-next)
+(global-set-key [(control f10)] 'persp-kill)
+;;(global-set-key [(M f10)] 'window-config-ring-remove)
+(global-set-key [(f10)] 'persp-switch)
 ;; F11 controls keyboard macros
 (global-set-key [(control f11)] 'start-or-end-kbd-macro) ;One-button recording of kbd macros
 (global-set-key [(control M f11)] 'name-last-kbd-macro) ;One button naming of last kbd macro
