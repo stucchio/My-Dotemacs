@@ -1,3 +1,6 @@
 [submodule "lisp/clojure-mode"]
 	path = lisp/clojure-mode
 	url = https://github.com/technomancy/clojure-mode.git
+[submodule "site-lisp/scala-mode"]
+	path = site-lisp/scala-mode
+	url = https://github.com/haxney/scala-mode.git

@@ -195,9 +195,6 @@
 ;;********* Mathematica mode *********
 (require 'mathematica)
 
-;;******** Lush ********
-(load (concat emacs-root "lisp/lush.el"))
-
 ;;******** Erlang mode ********
 (setq erlang-root-dir "/opt/local/lib/erlang")
 (setq exec-path (cons "/opt/local/lib/erlang/bin" exec-path))
@@ -280,6 +277,11 @@
 (add-path "lisp/clojure-mode")
 (require 'clojure-mode)
 (load-file (concat emacs-root "my_lisp/paredit-custom.el"))
+
+;;******** Scala Mode ********
+(add-path "site-lisp/scala-mode")
+(require 'scala-mode)
+
 
 ;;********* Javascript mode *********
 (autoload 'js2-mode "js2" nil t)
