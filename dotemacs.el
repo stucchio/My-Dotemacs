@@ -292,7 +292,7 @@
 
 
 ;;******** Global-sexp highlighting *********
-(global-hl-line-mode 1)
+;(global-hl-line-mode 1)
 
 (require 'hl-sexp)
 (custom-set-variables
@@ -310,7 +310,7 @@
 ; Billw
 (load-file (concat emacs-root "site-lisp/color-theme/themes/color-theme-library.el"))
 (color-theme-billw)
-(set-face-background 'hl-line "#060606")
+;(set-face-background 'hl-line "#060606")
 (set-face-background 'hl-sexp-face "#250606")
 
 
