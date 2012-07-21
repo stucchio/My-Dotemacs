@@ -1,9 +1,11 @@
 ;Use f1 for help of various sorts
 (global-set-key [(control f1)] 'apropos)
 (global-set-key [(M f1)] 'describe-function)
-;Makes f4 key switch to buffers, C-f4 kills buffer
+; f2 for buffer revert
+(global-set-key [(f2)] 'revert-buffer)
+;Makes f4 key go back in buffer list, C-f4 kills buffer
+(global-set-key [(f4)] `bubble-buffer-previous)
 (global-set-key [(control f4)] 'kill-buffer-shortly)
-(global-set-key [(f4)] 'anything-for-buffers)
 ;; F5 does bubble-buffer
 (global-set-key [(f5)] 'bubble-buffer-next)
 (global-set-key [(control f5)] 'bubble-buffer-previous)
