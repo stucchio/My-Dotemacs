@@ -71,25 +71,30 @@
 
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(LaTeX-command "latex -src")
  '(LaTeX-enable-toolbar nil)
  '(TeX-electric-sub-and-superscript t)
+ '(TeX-output-view-style (quote (("^dvi$" ("^landscape$" "^pstricks$\\|^pst-\\|^psfrag$") "%(o?)dvips -t landscape %d -o && gv %f") ("^dvi$" "^pstricks$\\|^pst-\\|^psfrag$" "%(o?)dvips %d -o && gv %f") ("^dvi$" ("^a4\\(?:dutch\\|paper\\|wide\\)\\|sem-a4$" "^landscape$") "%(o?)xdvi %dS -paper a4r -s 0 %d") ("^dvi$" "^a4\\(?:dutch\\|paper\\|wide\\)\\|sem-a4$" "%(o?)xdvi %dS -paper a4 %d") ("^dvi$" ("^a5\\(?:comb\\|paper\\)$" "^landscape$") "%(o?)xdvi %dS -paper a5r -s 0 %d") ("^dvi$" "^a5\\(?:comb\\|paper\\)$" "%(o?)xdvi %dS -paper a5 %d") ("^dvi$" "^b5paper$" "%(o?)xdvi %dS -paper b5 %d") ("^dvi$" "^letterpaper$" "%(o?)xdvi %dS -paper us %d") ("^dvi$" "^legalpaper$" "%(o?)xdvi %dS -paper legal %d") ("^dvi$" "^executivepaper$" "%(o?)xdvi %dS -paper 7.25x10.5in %d") ("^dvi$" "." "%(o?)xdvi -bg white -fg black -editor \"gnuclient -q +%l %f\" -offsets -0.6in -expert -s 7 -geometry +0+0 -paper 16x24%dS %d") ("^pdf$" "." "xpdf %o") ("^html?$" "." "netscape %o"))))
+ '(TeX-view-style (quote (("^a4\\(?:dutch\\|paper\\|wide\\)\\|sem-a4$" "%(o?)xdvi %dS -paper a4 %d") ("^a5\\(?:comb\\|paper\\)$" "%(o?)xdvi %dS -paper a5 %d") ("^b5paper$" "%(o?)xdvi %dS -paper b5 %d") ("^letterpaper$" "%(o?)xdvi %dS -paper us %d") ("^legalpaper$" "%(o?)xdvi %dS -paper legal %d") ("^executivepaper$" "%(o?)xdvi %dS -paper 7.25x10.5in %d") ("^landscape$" "%(o?)xdvi %dS -paper a4r -s 0 %d") ("." "%(o?)xdvi -editor \"gnuclient -q +%l %f\" %dS %d"))))
  '(eshell-directory-name (concat emacs-root "eshell-custom/"))
  '(eshell-save-history-on-exit t)
+ '(git--use-ido nil)
+ '(hl-delay 0.05)
  '(icicle-reminder-prompt-flag 0)
  '(lazy-lock-mode nil t (lazy-lock))
+ '(multi-eshell-name "*eshell*")
+ '(multi-eshell-shell-function (quote (eshell)))
  '(nxhtml-skip-welcome t)
- '(org-agenda-files (quote ("~/notes/projects.org")))
+ '(org-agenda-files (quote ("~/myinfo/fitness/index.org" "~/notes/projects.org")))
  '(paren-mode (quote sexp) nil (paren))
  '(popcmp-popup-completion nil)
  '(reftex-toc-split-windows-horizontally t)
  '(regex-tool-new-frame nil)
- '(multi-eshell-name "*eshell*")
- '(multi-eshell-shell-function (quote (eshell)))
+ '(st-shell-shell-function (quote (ansi-term (getenv "SHELL"))))
  '(tempbuf-minimum-timeout 60)
  '(uniquify-buffer-name-style (quote forward) nil (uniquify)))
 
@@ -173,7 +178,7 @@
 ;;******** git-emacs ********
 (require 'git-emacs)
 (require 'git-status)
-(custom-set-variables '(git--use-ido nil))
+
 
 ;;******** rainbow-mode ********
 ;; http://julien.danjou.info/rainbow-mode.html
@@ -279,8 +284,8 @@
 (load-file (concat emacs-root "my_lisp/paredit-custom.el"))
 
 ;;******** Scala Mode ********
-(add-path "site-lisp/scala-mode")
-(require 'scala-mode)
+(add-path "site-lisp/scala-mode2")
+(require 'scala-mode2)
 
 
 ;;********* Javascript mode *********
@@ -295,9 +300,7 @@
 ;(global-hl-line-mode 1)
 
 (require 'hl-sexp)
-(custom-set-variables
- '(hl-delay 0.05)
- )
+
 
 (add-hook 'emacs-lisp-mode-hook 'hl-sexp-mode)
 (add-hook 'clojure-mode-hook 'hl-sexp-mode)
@@ -425,3 +428,9 @@
 
 ;;******** Turn on emacsclient server ********
 (server-start)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
