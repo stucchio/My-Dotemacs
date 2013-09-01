@@ -338,6 +338,12 @@
 ;(add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
 ;(add-to-list 'desktop-modes-not-to-save 'fundamental-mode)
 
+;;********** dired **********
+(require 'dired-x)
+(setq-default dired-omit-files-p t) ; this is buffer-local variable
+(setq dired-omit-files "^\\.?#\\|^\\.$\\$" )
+
+
 ;;********** Turn on session ********
 (require 'session)
 (add-hook 'after-init-hook 'session-initialize)
