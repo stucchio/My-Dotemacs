@@ -43,7 +43,7 @@
 (global-set-key [(control f12)] 'git-log)
 (global-set-key [(M f12)] 'git-branch)
 
-(global-set-key "\C-\M-y" 'delete-region)
+(global-set-key "\C-\M-w" 'delete-region)
 
 ;;******** wrap-region stuff ********
 (global-set-key "(" (wrap-region-with-function "(" ")"))
