@@ -267,6 +267,9 @@
 
 (require 'doctest-mode)
 
+;;******** julia mode ********
+(require 'julia-mode)
+
 ;;******** nxml mode ********
 (load (concat emacs-root "site-lisp/nxml/autostart.el"))
 (load (concat emacs-root "my_lisp/nxml-custom.el"))
@@ -301,7 +304,6 @@
 
 (require 'hl-sexp)
 
-
 (add-hook 'emacs-lisp-mode-hook 'hl-sexp-mode)
 (add-hook 'clojure-mode-hook 'hl-sexp-mode)
 
@@ -327,6 +329,9 @@
 (require 'highlight-parentheses)
 (add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode)
 (add-hook 'clojure-mode-hook 'highlight-parentheses-mode)
+
+;;******** Spaces instead of tabs ********
+(setq-default indent-tabs-mode nil)
 
 ;;********** Desktop mode **********
 ;(custom-set-variables '(desktop-path emacs-root))
