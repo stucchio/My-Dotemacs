@@ -4,7 +4,7 @@
 ; f2 for buffer revert
 (global-set-key [(f2)] 'revert-buffer)
 ;Makes f4 key go back in buffer list, C-f4 kills buffer
-(global-set-key [(f4)] `bubble-buffer-previous)
+(global-set-key [(f4)] `projectile-kill-buffers)
 (global-set-key [(control f4)] 'kill-buffer-shortly)
 ;; F5 does bubble-buffer
 (global-set-key [(f5)] 'bubble-buffer-next)
@@ -43,7 +43,10 @@
 (global-set-key [(control f12)] 'git-log)
 (global-set-key [(M f12)] 'git-branch)
 
+;;******** projectile ********
 (global-set-key [(control tab)] 'helm-projectile)
+(global-set-key "\M-s" 'projectile-multi-occur)
+(global-set-key "\C-\M-s" 'projectile-replace)
 
 (global-set-key "\C-\M-w" 'delete-region)
 
@@ -52,8 +55,7 @@
 (global-set-key "{" (wrap-region-with-function "{" "}"))
 (global-set-key "[" (wrap-region-with-function "[" "]"))
 
-;;Far-search
-(global-set-key "\M-s" 'far-search)
+
 
 ;;Bind M-j to imenu, for quick navigation.
 (global-set-key "\M-j" 'imenu)
@@ -70,12 +72,6 @@
 ;Eval
 (global-set-key "\C-x\C-e" 'fc-eval-and-replace)
 (global-set-key "\C-c\C-d" 'insert-time-at-point)
-
-;unset f5 in icicle-mode
-;; (add-hook 'icicle-mode-hook (lambda ()
-;; 			      (define-key icicle-mode-map [(f5)] nil) ))
-;; (add-hook 'icicle-mode-hook (lambda ()
-;; 			      (define-key icicle-mode-map "\C-c`" nil) ))
 
 ;; Lisp mode
 (add-hook 'emacs-lisp-mode-hook (lambda ()

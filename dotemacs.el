@@ -19,7 +19,6 @@
 (add-path "site-lisp/tuareg")  ;; OCaml support
 (add-path "site-lisp/gnuplot-mode") ;;Gnuplot support
 (add-path "site-lisp/python-mode") ;;Python mode
-;(add-path "site-lisp/icicles") ;;Icicles, autocompletion
 (add-path "site-lisp/slime-cvs") ;;Slime lisp mode
 
 (add-path "site-lisp/s.el") ;;String manipulation lib, dependency of projectile
@@ -89,7 +88,6 @@
  '(eshell-save-history-on-exit t)
  '(git--use-ido nil)
  '(hl-delay 0.05)
- '(icicle-reminder-prompt-flag 0)
  '(lazy-lock-mode nil t (lazy-lock))
  '(multi-eshell-name "*eshell*")
  '(multi-eshell-shell-function (quote (eshell)))
@@ -365,12 +363,6 @@
 
 ;;******** make scripts executable ********
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
-
-;;******** Load browse-kill-ring ********
-;(require 'browse-kill-ring)
-
-;;******** far-search ********
-(require 'far-search)
 
 ;;******** TRAMP ********
 (setq tramp-default-method "ssh")
