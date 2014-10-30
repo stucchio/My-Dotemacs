@@ -6,9 +6,8 @@
 ;Makes f4 key go back in buffer list, C-f4 kills buffer
 (global-set-key [(f4)] `projectile-kill-buffers)
 (global-set-key [(control f4)] 'kill-buffer-shortly)
-;; F5 does bubble-buffer
-(global-set-key [(f5)] 'bubble-buffer-next)
-(global-set-key [(control f5)] 'bubble-buffer-previous)
+;;F5 is available
+
 ;;F6 controls the shell
 (global-set-key [(f6)] 'multi-eshell-switch)
 (global-set-key [(control f6)] 'multi-eshell)
