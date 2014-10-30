@@ -7,3 +7,9 @@
 [submodule "site-lisp/scala-mode2"]
 	path = site-lisp/scala-mode2
 	url = git://github.com/hvesalai/scala-mode2.git
+[submodule "site-lisp/helm"]
+	path = site-lisp/helm
+	url = git@github.com:emacs-helm/helm.git
+[submodule "site-lisp/emacs-async"]
+	path = site-lisp/emacs-async
+	url = git@github.com:jwiegley/emacs-async.git

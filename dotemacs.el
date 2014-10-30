@@ -185,9 +185,9 @@
 (require 'rainbow-mode)
 
 ;;******** Anything ********
-(add-path "lisp/anything")
-(require 'anything-config)
-(require 'anything)
+(add-to-list 'load-path "/path/to/async/directory")
+(add-to-list 'load-path "/path/to/helm/directory")
+(require 'helm-config)
 
 ;******** bookmarking ********
 (load "bm")
