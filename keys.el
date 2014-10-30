@@ -43,11 +43,13 @@
 (global-set-key [(control f12)] 'git-log)
 (global-set-key [(M f12)] 'git-branch)
 
+;;******** Helm ********
+(global-set-key "\M-y" 'helm-show-kill-ring)
+
 ;;******** projectile ********
 (global-set-key [(control tab)] 'helm-projectile)
 (global-set-key "\M-s" 'projectile-multi-occur)
 (global-set-key "\C-\M-s" 'projectile-replace)
-
 (global-set-key "\C-\M-w" 'delete-region)
 
 ;;******** wrap-region stuff ********
