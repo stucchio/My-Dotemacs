@@ -21,7 +21,12 @@
 (add-path "site-lisp/python-mode") ;;Python mode
 ;(add-path "site-lisp/icicles") ;;Icicles, autocompletion
 (add-path "site-lisp/slime-cvs") ;;Slime lisp mode
-(add-path "site-lisp/eproject") ;;Eproject
+
+(add-path "site-lisp/s.el") ;;String manipulation lib, dependency of projectile
+(add-path "site-lisp/dash.el") ;;list manipulation lib, dependency of projectile
+(add-path "site-lisp/pkg-info.el") ;;list manipulation lib, dependency of projectile
+(add-path "site-lisp/epl") ;;list manipulation lib, dependency of projectile
+(add-path "site-lisp/projectile") ;;projectile
 (add-path "site-lisp/google-maps") ;;Google maps
 (add-path "site-lisp/git-emacs") ;;git emacs
 (add-path "site-lisp/color-theme") ;;Color themes
@@ -104,12 +109,6 @@
 ;;******** regex-tool ********
 (load-file (concat emacs-root "lisp/regex-tool.el"))
 
-;;******** tabbar ********
-
-(require 'tabbar)
-(tabbar-mode 1)
-
-
 ;;********* Org mode ********
 (setq org-replace-disputed-keys t)
 (global-set-key "\C-ca" 'org-agenda)
@@ -118,29 +117,6 @@
 
 ;;******** htmlize ********
 (require 'htmlize)
-
-;;Set tabbar faces
-(progn
-  (set-face-attribute
-   'tabbar-default-face nil
-   :background "gray60")
-  (set-face-attribute
-   'tabbar-unselected-face nil
-   :background "gray85"
-   :foreground "gray30"
-   :box nil)
-  (set-face-attribute
-   'tabbar-selected-face nil
-   :background "#f2f2f6"
-   :foreground "black"
-   :box nil)
-(set-face-attribute
- 'tabbar-button-face nil
- :box '(:line-width 1 :color "gray72" :style released-button))
-(set-face-attribute
- 'tabbar-separator-face nil
-   :height 0.7)
-)
 
 ;;Load local customizations
 (load-file (concat emacs-root "local-customizations.el"))
@@ -167,11 +143,6 @@
 ;;********* Uniquify buffer names *********
 (require 'uniquify)
 
-;;******** eproject ********
-(require 'eproject)
-(require 'eproject-extras)
-(load-file (concat emacs-root "my_lisp/eproject-custom.el"))
-
 ;;******** google-maps ********
 (require 'google-maps)
 
@@ -189,6 +160,12 @@
 (add-path "site-lisp/emacs-async")
 (require 'helm-config)
 (helm-mode)
+
+;;******** projectile ********
+(require 'projectile)
+(projectile-global-mode)
+(require 'helm-projectile)
+(setq projectile-enable-caching t)
 
 ;******** bookmarking ********
 (load "bm")

@@ -43,6 +43,8 @@
 (global-set-key [(control f12)] 'git-log)
 (global-set-key [(M f12)] 'git-branch)
 
+(global-set-key [(control tab)] 'helm-projectile)
+
 (global-set-key "\C-\M-w" 'delete-region)
 
 ;;******** wrap-region stuff ********
@@ -74,9 +76,6 @@
 ;; 			      (define-key icicle-mode-map [(f5)] nil) ))
 ;; (add-hook 'icicle-mode-hook (lambda ()
 ;; 			      (define-key icicle-mode-map "\C-c`" nil) ))
-
-;; Tabbar mode
-(global-set-key [(control tab)] 'tabbar-forward-tab)
 
 ;; Lisp mode
 (add-hook 'emacs-lisp-mode-hook (lambda ()
