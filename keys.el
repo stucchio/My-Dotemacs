@@ -40,7 +40,7 @@
 			  )
 		 "Failed to run version control commit")
 		)
-(global-set-key [(control f12)] 'git-log)
+(global-set-key [(control f12)] 'git-push-ff-only)
 (global-set-key [(M f12)] 'git-branch)
 
 ;;******** Helm ********
