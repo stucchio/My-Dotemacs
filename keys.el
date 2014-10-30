@@ -50,18 +50,6 @@
 (global-set-key "{" (wrap-region-with-function "{" "}"))
 (global-set-key "[" (wrap-region-with-function "[" "]"))
 
-
-;;******** anything stuff ********
-(global-set-key "\C-\M-a" 'anything)
-(global-set-key [(f3)] 'delete-other-windows)
-(global-set-key "\C-x\C-f" 'anything-for-files-create-if-not-found-with-eproject)
-(global-set-key "\C-x\C-r" 'anything-for-files)
-(global-set-key "\C-xk" 'anything-kill-buffers-tweaked)
-(global-set-key "\C-xb" 'anything-for-buffers)
-(global-set-key [(M f8)] 'anything-for-bm)
-(global-set-key "\M-y" 'anything-show-kill-ring-and-registers)
-(global-set-key "\M-x" 'anything-M-x)
-
 ;;Far-search
 (global-set-key "\M-s" 'far-search)
 
@@ -89,7 +77,6 @@
 
 ;; Tabbar mode
 (global-set-key [(control tab)] 'tabbar-forward-tab)
-(global-set-key [(control M tab)] 'anything-for-buffers)
 
 ;; Lisp mode
 (add-hook 'emacs-lisp-mode-hook (lambda ()

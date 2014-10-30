@@ -184,10 +184,11 @@
 ;; http://julien.danjou.info/rainbow-mode.html
 (require 'rainbow-mode)
 
-;;******** Anything ********
-(add-to-list 'load-path "/path/to/async/directory")
-(add-to-list 'load-path "/path/to/helm/directory")
+;;******** Helm ********
+(add-path "site-lisp/helm")
+(add-path "site-lisp/emacs-async")
 (require 'helm-config)
+(helm-mode)
 
 ;******** bookmarking ********
 (load "bm")
