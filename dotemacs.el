@@ -37,8 +37,6 @@
 
 ;;Load my basic customizations
 
-;;******** bubble-buffer ********
-(require 'bubble-buffer)
 ;;******** wrap-region ********
 (require 'wrap-region)
 ;;******** thrift-mode ********
