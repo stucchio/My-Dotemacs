@@ -5,7 +5,7 @@
 (global-set-key [(f2)] 'revert-buffer)
 ;Makes f4 key go back in buffer list, C-f4 kills buffer
 (global-set-key [(f4)] `projectile-kill-buffers)
-(global-set-key [(control f4)] 'kill-buffer-shortly)
+(global-set-key [(control f4)] (lambda () (interactive) (kill-buffer (current-buffer))))
 ;;F5 is available
 
 ;;F6 controls the shell
@@ -105,10 +105,10 @@
 	  '(lambda ()
 	     (progn
 	       (define-key eshell-mode-map "\C-a" 'eshell-maybe-bol)
-	       (define-key eshell-mode-map [(control f4)] '(lambda () (interactive) (kill-buffer (current-buffer))))
 	       )
 	     )
 	  )
+
 
 ;; Darcsum-mode
 (add-hook 'darcsum-mode-hook
