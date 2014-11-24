@@ -87,8 +87,8 @@
  '(git--use-ido nil)
  '(hl-delay 0.05)
  '(lazy-lock-mode nil t (lazy-lock))
- '(multi-eshell-name "*eshell*")
- '(multi-eshell-shell-function (quote (eshell)))
+ '(multi-eshell-name "*ansi-term*")
+ '(multi-eshell-shell-function (quote (ansi-term (getenv "SHELL"))))
  '(nxhtml-skip-welcome t)
  '(org-agenda-files (quote ("~/myinfo/fitness/index.org" "~/notes/projects.org")))
  '(paren-mode (quote sexp) nil (paren))
@@ -161,7 +161,7 @@
 (require 'projectile)
 (projectile-global-mode)
 (require 'helm-projectile)
-(setq projectile-enable-caching t)
+;(setq projectile-enable-caching t)
 
 ;******** bookmarking ********
 (load "bm")
