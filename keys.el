@@ -7,6 +7,7 @@
 (global-set-key [(f4)] `projectile-kill-buffers)
 (global-set-key [(control f4)] (lambda () (interactive) (kill-buffer (current-buffer))))
 ;;F5 is available
+(global-set-key [(f5)] `org-capture)
 
 ;;F6 controls the shell
 (global-set-key [(f6)] 'multi-eshell-switch)

@@ -87,7 +87,7 @@
  '(git--use-ido nil)
  '(hl-delay 0.05)
  '(lazy-lock-mode nil t (lazy-lock))
- '(multi-eshell-name "*ansi-term*")
+; '(multi-eshell-name "*ansi-term*")
  '(multi-eshell-shell-function (quote (ansi-term (getenv "SHELL"))))
  '(nxhtml-skip-welcome t)
  '(org-agenda-files (quote ("~/myinfo/fitness/index.org" "~/notes/projects.org")))
@@ -109,7 +109,13 @@
 (setq org-replace-disputed-keys t)
 (global-set-key "\C-ca" 'org-agenda)
 (setq org-tab-follows-link t)
-
+(setq org-default-notes-file "~/myinfo/notes/capture.org")
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/myinfo/notes/tasks.org" "Tasks") "* TODO %?\n  %i\n  %a")
+        ("i" "Idea" entry (file+datetree "~/myinfo/notes/ideas.org" "Ideas") "* %?\nEntered on %U\n  %i\n  %a")
+        ("r" "Toread" entry (file+datetree "~/myinfo/notes/toread.org" "Stuff to read") "* %?\nEntered on %U\n  %i\n  %a")
+        )
+      )
 
 ;;******** htmlize ********
 (require 'htmlize)
