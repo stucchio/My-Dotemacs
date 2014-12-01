@@ -48,6 +48,7 @@
 
 ;;******** projectile ********
 (global-set-key [(control tab)] 'helm-projectile)
+(define-key org-mode-map [(control tab)] 'helm-projectile) ;; override org mode's map
 (global-set-key "\M-s" 'projectile-multi-occur)
 (global-set-key "\C-\M-s" 'projectile-replace)
 (global-set-key "\C-\M-w" 'delete-region)

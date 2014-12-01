@@ -90,7 +90,7 @@
 ; '(multi-eshell-name "*ansi-term*")
  '(multi-eshell-shell-function (quote (ansi-term (getenv "SHELL"))))
  '(nxhtml-skip-welcome t)
- '(org-agenda-files (quote ("~/myinfo/fitness/index.org" "~/notes/projects.org")))
+ '(org-agenda-files (quote ("~/myinfo/papers.org" "~/myinfo/tasks.org")))
  '(paren-mode (quote sexp) nil (paren))
  '(popcmp-popup-completion nil)
  '(reftex-toc-split-windows-horizontally t)
@@ -106,6 +106,7 @@
 (load-file (concat emacs-root "lisp/regex-tool.el"))
 
 ;;********* Org mode ********
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (setq org-replace-disputed-keys t)
 (global-set-key "\C-ca" 'org-agenda)
 (setq org-tab-follows-link t)
@@ -116,6 +117,17 @@
         ("r" "Toread" entry (file+datetree "~/myinfo/notes/toread.org" "Stuff to read") "* %?\nEntered on %U\n  %i\n  %a")
         )
       )
+(org-agenda nil "t")
+(setq org-log-done 'time)
+(setq org-fontify-done-headline t)
+(custom-set-faces
+ '(org-done ((t (:foreground "PaleGreen"
+                 :weight normal
+                 :strike-through t))))
+ '(org-headline-done
+            ((((class color) (min-colors 16) (background dark))
+               (:foreground "LightSalmon" :strike-through t)))))
+
 
 ;;******** htmlize ********
 (require 'htmlize)
