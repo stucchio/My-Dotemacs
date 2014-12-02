@@ -9,10 +9,12 @@
   "My home directory, the root of my personal emacs load-path.")
 
 (defun add-path (p)
-		 (add-to-list 'load-path (concat emacs-root p)))
+  (add-to-list 'load-path (concat emacs-root p)))
 (add-path "lisp")            ;; Simple lisp files I've found, not big enough to need a whole directory
 (add-path "my_lisp")         ;; My own personal lisp files, mostly used for customizing particular modes.
 (add-path "site-lisp")       ;; elisp stuff I find on the 'net
+(add-path "site-lisp/org-mode/lisp") ;;Latest org-mode
+(add-path "site-lisp/org-mode/contrib/lisp") ;;Latest org-mode contrib
 (add-path "site-lisp/reftex") ;;reftex, support for references
 (add-path "site-lisp/gnuserv") ;;gnuserv
 (add-path "site-lisp/erlang") ;;Erlang mode
@@ -106,6 +108,7 @@
 (load-file (concat emacs-root "lisp/regex-tool.el"))
 
 ;;********* Org mode ********
+(require 'org)
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (setq org-replace-disputed-keys t)
 (global-set-key "\C-ca" 'org-agenda)
@@ -126,10 +129,6 @@
  '(org-headline-done
             ((((class color) (min-colors 16) (background dark))
                (:foreground "LightSalmon" :strike-through t)))))
-
-
-;;******** htmlize ********
-(require 'htmlize)
 
 ;;Load local customizations
 (load-file (concat emacs-root "local-customizations.el"))
@@ -432,4 +431,6 @@
  )
 
 ;;******** Activate org mode ********
+(find-file "~/org/tasks.org")
+(find-file "~/org/papers.org")
 (org-agenda nil "t")

@@ -6,9 +6,10 @@
 ;Makes f4 key go back in buffer list, C-f4 kills buffer
 (global-set-key [(f4)] `projectile-kill-buffers)
 (global-set-key [(control f4)] (lambda () (interactive) (kill-buffer (current-buffer))))
-;;F5 is available
+;;F5 for org-mode stuff
 (global-set-key [(f5)] 'org-agenda)
 (global-set-key [(control f5)] `org-capture)
+(global-set-key [(M f5)] 'helm-org-headlines)
 
 ;;F6 controls the shell
 (global-set-key [(f6)] 'multi-eshell-switch)
