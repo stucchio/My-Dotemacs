@@ -8,8 +8,8 @@
 (global-set-key [(control f4)] (lambda () (interactive) (kill-buffer (current-buffer))))
 ;;F5 for org-mode stuff
 (global-set-key [(f5)] 'org-agenda)
-(global-set-key [(control f5)] `org-capture)
-(global-set-key [(M f5)] 'helm-org-headlines)
+(global-set-key [(control f5)] 'org-tags-view)
+(global-set-key [(M f5)] `org-capture)
 
 ;;F6 controls the shell
 (global-set-key [(f6)] 'multi-eshell-switch)
