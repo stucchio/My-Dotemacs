@@ -128,6 +128,7 @@
                  :strike-through t))))
  )
 (load-file (concat emacs-root "my_lisp/org-custom.el"))
+(setq org-file-apps (cons '("\\.ps\\'" . default) org-file-apps))
 
 ;;Load local customizations
 (load-file (concat emacs-root "local-customizations.el"))

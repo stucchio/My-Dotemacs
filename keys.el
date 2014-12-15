@@ -135,7 +135,7 @@
 			     (define-key org-mode-map [(control shift up)] 'org-shiftup)
 			     (define-key org-mode-map [(control shift down)] 'org-shiftdown)
                              (define-key org-mode-map [(control tab)] 'helm-projectile) ;; override org mode's map
-                             (define-key org-mode-map [(control i) 'stucchio-org-move-to-papers])
+                             (define-key org-mode-map "\C-c\C-i" 'stucchio-org-move-to-papers)
 			     )
 			   )
 	  )
