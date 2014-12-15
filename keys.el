@@ -7,7 +7,7 @@
 (global-set-key [(f4)] `projectile-kill-buffers)
 (global-set-key [(control f4)] (lambda () (interactive) (kill-buffer (current-buffer))))
 ;;F5 for org-mode stuff
-(global-set-key [(f5)] 'org-agenda)
+(global-set-key [(f5)] 'org-todo-list)
 (global-set-key [(control f5)] 'org-tags-view)
 (global-set-key [(M f5)] `org-capture)
 
@@ -135,6 +135,7 @@
 			     (define-key org-mode-map [(control shift up)] 'org-shiftup)
 			     (define-key org-mode-map [(control shift down)] 'org-shiftdown)
                              (define-key org-mode-map [(control tab)] 'helm-projectile) ;; override org mode's map
+                             (define-key org-mode-map [(control i) 'stucchio-org-move-to-papers])
 			     )
 			   )
 	  )

@@ -115,9 +115,9 @@
 (setq org-tab-follows-link t)
 (setq org-default-notes-file "~/org/notes/capture.org")
 (setq org-capture-templates
-      '(("t" "Todo" entry (file+headline "~/org/notes/tasks.org" "Tasks") "* TODO %?\n  %i\n  %a")
-        ("i" "Idea" entry (file+datetree "~/org/notes/ideas.org" "Ideas") "* %?\nEntered on %U\n  %i\n  %a")
-        ("r" "Toread" entry (file+datetree "~/org/notes/toread.org" "Stuff to read") "* %?\nEntered on %U\n  %i\n  %a")
+      '(("t" "Todo" entry (file+headline "~/org/tasks.org" "Uncategorized") "* TODO %?\n  %i\n  %a")
+        ("i" "Idea" entry (file+datetree "~/org/ideas.org" "Ideas") "* %?\nEntered on %U\n  %i\n  %a")
+        ("r" "Toread" entry (file+headline "~/org/papers.org" "Uncategorized") "* READ %?\nEntered on %U\n  %i\n  %a")
         )
       )
 (setq org-log-done 'time)
@@ -126,9 +126,8 @@
  '(org-done ((t (:foreground "PaleGreen"
                  :weight normal
                  :strike-through t))))
- '(org-headline-done
-            ((((class color) (min-colors 16) (background dark))
-               (:foreground "LightSalmon" :strike-through t)))))
+ )
+(load-file (concat emacs-root "my_lisp/org-custom.el"))
 
 ;;Load local customizations
 (load-file (concat emacs-root "local-customizations.el"))
