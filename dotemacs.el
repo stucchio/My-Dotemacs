@@ -107,6 +107,10 @@
 ;;******** regex-tool ********
 (load-file (concat emacs-root "lisp/regex-tool.el"))
 
+;;******** windmove ********
+(when (fboundp 'windmove-default-keybindings) ;;Turns on windmove mode: shift+arrow keys move between windows.
+  (windmove-default-keybindings))
+
 ;;********* Org mode ********
 (require 'org)
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
@@ -129,6 +133,10 @@
  )
 (load-file (concat emacs-root "my_lisp/org-custom.el"))
 (setq org-file-apps (cons '("\\.ps\\'" . default) org-file-apps))
+(custom-set-variables
+ '(org-agenda-files (quote ("~/org/papers.org" "~/org/tasks.org")))
+ '(org-startup-truncated nil)
+ )
 
 ;;Load local customizations
 (load-file (concat emacs-root "local-customizations.el"))
@@ -370,10 +378,6 @@
 
 ;;******** Window-config-ring ********
 (require 'window-config-ring)
-
-;;******** windmove ********
-(when (fboundp 'windmove-default-keybindings) ;;Turns on windmove mode: shift+arrow keys move between windows.
-  (windmove-default-keybindings))
 
 ;;******** make scripts executable ********
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
