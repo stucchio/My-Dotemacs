@@ -296,6 +296,9 @@
 ;;******** Java mode ********
 (load-file (concat emacs-root "lisp/java-abbrev.el"))
 
+;;******** Puppet-mode ********
+(autoload 'puppet-mode "puppet-mode" "Major mode for editing puppet manifests")
+(add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 
 ;;******** Global-sexp highlighting *********
 ;(global-hl-line-mode 1)
