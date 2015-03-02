@@ -25,7 +25,7 @@
   "Pulls a file from the web  into my org-mode papers directory. Specific location is determined by the stucchio-org-papers-directory variable."
   (interactive "sTitle of paper: \nsURL: ")
 
-  (let ((cleaned-title (replace-regexp-in-string "\\W+" "_" title))
+  (let ((cleaned-title (replace-regexp-in-string "\n+" " " title))
         (filename (file-name-nondirectory (url-filename (url-generic-parse-url url))))
         )
     (let ((dest-file (stucchio-org-humanize-filename filename title)))
