@@ -136,7 +136,10 @@
 (custom-set-variables
  '(org-agenda-files (quote ("~/org/papers.org" "~/org/tasks.org")))
  '(org-startup-truncated nil)
- )
+ `(org-export-backends ,(cons 'markdown org-export-backends))
+)
+
+
 
 ;;Load local customizations
 (load-file (concat emacs-root "local-customizations.el"))
